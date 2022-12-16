@@ -16,7 +16,7 @@ namespace PruebaAppPedidos2.Views
         public VerGrupos()
         {
             InitializeComponent();
-            BindingContext = new ViewModelVerGrupo();
+            BindingContext = new ViewModelVerGrupo(Navigation);
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)

@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using PruebaAppPedidos2.Services;
 using PruebaAppPedidos2.Models;
 using System.Collections.ObjectModel;
+using PruebaAppPedidos2.Views;
 
 namespace PruebaAppPedidos2.ViewsModels
 {
@@ -20,8 +21,9 @@ namespace PruebaAppPedidos2.ViewsModels
         public ObservableCollection<ModelGrupo> _listartigrupos;
 
         //CONSTRUCTOR
-        public ViewModelVerGrupo()
+        public ViewModelVerGrupo(INavigation navigation)
         {
+            Navigation= navigation;
             obtenerGrupos();
         }
 
@@ -54,9 +56,16 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task obtenerGrupos()
         {
             var grupoObtenido = ServicesGrupo.extraerGrupos();
+            //ListGrupos = await ServicesGrupo.extraerGrupos(); Averiguar como
             ListGrupos = grupoObtenido;
+        }
+
+        public async Task irArticulosDeGrupo(ModelGrupo parametros)
+        {
+            await Navigation.PushAsync(new ArticulosDeUnGrupo(parametros));
         }
         //COMANDOS
         public ICommand obtenerGruposcommand => new Command(async () => await obtenerGrupos());
+        public ICommand irArticulosDeGrupocommand => new Command<ModelGrupo> (async (p) => await irArticulosDeGrupo(p));  
     }
 }

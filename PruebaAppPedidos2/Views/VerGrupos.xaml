@@ -8,13 +8,20 @@
         <CollectionView  ItemsSource="{Binding ListGrupos}" x:Name="grup_arti_list">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding nombre}"/>
-                            <Label Text="{Binding codigo}"/>
-                            <Label Text="{Binding tipo}"/>
-                        </StackLayout>
-                    </Frame>
+                    <StackLayout>
+                        <Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding nombre}"/>
+                                <Label Text="{Binding codigo}"/>
+                                <Label Text="{Binding tipo}"/>
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.irArticulosDeGrupocommand,
+                                                                    Source={x:Reference grup_arti_list}}" 
+                                                                    CommandParameter="{Binding .}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
