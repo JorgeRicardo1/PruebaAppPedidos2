@@ -6,5 +6,21 @@
                  VerticalOptions="Center">
         <Label Text="Funcionee"/>
         <Label Text="{Binding GrupoAMostrar}"/>
+        <CollectionView ItemsSource="{Binding ListArticulos}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding articodigo}"/>
+                                <Label Text="{Binding artigrupo}"/>
+                                <Label Text="{Binding articodi2}"/>
+                                <Label Text="{Binding artinomb}"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </ContentPage>

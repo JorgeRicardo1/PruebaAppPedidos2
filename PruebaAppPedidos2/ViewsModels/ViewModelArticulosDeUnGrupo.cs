@@ -9,17 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+
 namespace PruebaAppPedidos2.ViewsModels
 {
     public class ViewModelArticulosDeUnGrupo :BaseViewModel
     {
         //Variables
         public string _grupoAMostrar;
+        public ObservableCollection<ModelArticulo> _listArticulos;
         //CONSTRUCTOR
         public ViewModelArticulosDeUnGrupo(INavigation navigation, ModelGrupo grupoSeleccionado)
         {
             Navigation = navigation;
-            _grupoAMostrar = grupoSeleccionado.nombre.ToString();
+            _grupoAMostrar = grupoSeleccionado.codigo.ToString();
+            obtenerArticulos();
         }
 
         //OBJETOS
@@ -29,9 +32,20 @@ namespace PruebaAppPedidos2.ViewsModels
             set { SetValue(ref _grupoAMostrar, value); }
         }
 
+        public ObservableCollection<ModelArticulo> ListArticulos
+        {
+            get { return _listArticulos; }
+            set { SetValue(ref _listArticulos, value); }
+        }
+
         //PROCESOS
 
+        public async Task obtenerArticulos()
+        {
+            var articulos = ServicesArticulos.extraerArticulos(GrupoAMostrar);
+            ListArticulos = articulos;
+        }
         //COMANDOS
-
+        public ICommand obtenerArticuloscommand => new Command(async () => await obtenerArticulos());
     }
 }
