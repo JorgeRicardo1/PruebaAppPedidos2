@@ -14,19 +14,24 @@ namespace PruebaAppPedidos2.ViewsModels
     public class ViewModelArticulosDeUnGrupo :BaseViewModel
     {
         //Variables
-        public ModelGrupo parametrosRecibe { get; set; } 
+        public string _grupoAMostrar;
         //CONSTRUCTOR
-        public ViewModelArticulosDeUnGrupo(INavigation navigation, ModelGrupo parametrosTrae)
+        public ViewModelArticulosDeUnGrupo(INavigation navigation, ModelGrupo grupoSeleccionado)
         {
             Navigation = navigation;
-            parametrosRecibe = parametrosTrae;
+            _grupoAMostrar = grupoSeleccionado.nombre.ToString();
         }
 
         //OBJETOS
-        
-        //PROCESPS
-        
+        public string GrupoAMostrar
+        {
+            get { return _grupoAMostrar; }
+            set { SetValue(ref _grupoAMostrar, value); }
+        }
+
+        //PROCESOS
+
         //COMANDOS
-        
+
     }
 }

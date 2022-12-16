@@ -18,7 +18,7 @@ namespace PruebaAppPedidos2.ViewsModels
         string _codigo;
         string _nombre;
         string _tipo;
-        public ObservableCollection<ModelGrupo> _listartigrupos;
+        public ObservableCollection<ModelGrupo> _listgrupos;
 
         //CONSTRUCTOR
         public ViewModelVerGrupo(INavigation navigation)
@@ -48,8 +48,8 @@ namespace PruebaAppPedidos2.ViewsModels
 
         public ObservableCollection<ModelGrupo> ListGrupos
         {
-            get { return _listartigrupos; }
-            set { SetValue(ref _listartigrupos, value); }
+            get { return _listgrupos; }
+            set { SetValue(ref _listgrupos, value); }
         }
 
         //PROCESPS

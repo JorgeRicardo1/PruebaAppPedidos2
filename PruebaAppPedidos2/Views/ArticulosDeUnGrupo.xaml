@@ -5,6 +5,6 @@
     <StackLayout HorizontalOptions="Center"
                  VerticalOptions="Center">
         <Label Text="Funcionee"/>
-        <Label Text="{Binding parametrosRecibe.nombre}"/>
+        <Label Text="{Binding GrupoAMostrar}"/>
     </StackLayout>
 </ContentPage>
