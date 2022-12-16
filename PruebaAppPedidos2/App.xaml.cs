@@ -11,7 +11,7 @@ namespace PruebaAppPedidos2
         {
             InitializeComponent();
 
-            MainPage = new VerGrupos();
+            MainPage = new NavigationPage(new VerGrupos());
         }
 
         protected override void OnStart()

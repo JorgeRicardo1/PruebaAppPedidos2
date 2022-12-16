@@ -17,7 +17,7 @@ namespace PruebaAppPedidos2.ViewsModels
         string _codigo;
         string _nombre;
         string _tipo;
-        public ObservableCollection<ModelGrupo> _listarticulos;
+        public ObservableCollection<ModelGrupo> _listartigrupos;
 
         //CONSTRUCTOR
         public ViewModelVerGrupo()
@@ -44,17 +44,17 @@ namespace PruebaAppPedidos2.ViewsModels
             set { SetValue(ref _tipo, value); }
         }
 
-        public ObservableCollection<ModelGrupo> ListArticulos
+        public ObservableCollection<ModelGrupo> ListGrupos
         {
-            get { return _listarticulos; }
-            set { SetValue(ref _listarticulos, value); }
+            get { return _listartigrupos; }
+            set { SetValue(ref _listartigrupos, value); }
         }
 
         //PROCESPS
         public async Task obtenerGrupos()
         {
             var grupoObtenido = ServicesGrupo.extraerGrupos();
-            ListArticulos = grupoObtenido;
+            ListGrupos = grupoObtenido;
         }
         //COMANDOS
         public ICommand obtenerGruposcommand => new Command(async () => await obtenerGrupos());

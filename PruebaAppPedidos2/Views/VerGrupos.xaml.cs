@@ -24,11 +24,11 @@ namespace PruebaAppPedidos2.Views
             var _container = BindingContext as ViewModelVerGrupo;
             if (string.IsNullOrEmpty(e.NewTextValue))
             {
-                grup_arti_list.ItemsSource = _container.ListArticulos;
+                grup_arti_list.ItemsSource = _container.ListGrupos;
             }
             else
             {
-                grup_arti_list.ItemsSource = _container.ListArticulos.Where(i => i.nombre.Contains(e.NewTextValue.ToUpper()));
+                grup_arti_list.ItemsSource = _container.ListGrupos.Where(i => i.nombre.Contains(e.NewTextValue.ToUpper()));
             }
         }
     }
