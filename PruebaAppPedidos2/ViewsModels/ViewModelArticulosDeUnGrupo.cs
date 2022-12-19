@@ -15,18 +15,18 @@ namespace PruebaAppPedidos2.ViewsModels
     public class ViewModelArticulosDeUnGrupo :BaseViewModel
     {
         //Variables
-        public string _grupoAMostrar;
+        public ModelGrupo _grupoAMostrar;
         public ObservableCollection<ModelArticulo> _listArticulos;
         //CONSTRUCTOR
         public ViewModelArticulosDeUnGrupo(INavigation navigation, ModelGrupo grupoSeleccionado)
         {
             Navigation = navigation;
-            _grupoAMostrar = grupoSeleccionado.codigo.ToString();
+            _grupoAMostrar = grupoSeleccionado;
             obtenerArticulos();
         }
 
         //OBJETOS
-        public string GrupoAMostrar
+        public ModelGrupo GrupoAMostrar
         {
             get { return _grupoAMostrar; }
             set { SetValue(ref _grupoAMostrar, value); }

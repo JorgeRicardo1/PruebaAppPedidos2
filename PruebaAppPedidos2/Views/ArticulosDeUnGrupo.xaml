@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PruebaAppPedidos2.Views.ArticulosDeUnGrupo">
-    <StackLayout HorizontalOptions="Center"
-                 VerticalOptions="Center">
-        <Label Text="Funcionee"/>
-        <Label Text="{Binding GrupoAMostrar}"/>
+    <StackLayout>
+        <Label Text="{Binding GrupoAMostrar.nombre}"
+               FontSize="Large"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"/>
         <CollectionView ItemsSource="{Binding ListArticulos}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

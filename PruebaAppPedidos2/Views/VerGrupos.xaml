@@ -4,7 +4,7 @@
              x:Class="PruebaAppPedidos2.Views.VerGrupos"
              NavigationPage.HasNavigationBar="False">
     <StackLayout>
-        <SearchBar TextChanged="SearchBar_TextChanged"  ></SearchBar>
+        <SearchBar TextChanged="SearchBar_TextChanged"  Placeholder="Buscar Grupo"></SearchBar>
         <CollectionView  ItemsSource="{Binding ListGrupos}" x:Name="grup_arti_list">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -25,6 +25,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="unda" Command="{Binding obtenerGruposcommand}"/>
     </StackLayout>
 </ContentPage>

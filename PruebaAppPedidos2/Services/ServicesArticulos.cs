@@ -10,14 +10,14 @@ namespace PruebaAppPedidos2.Services
 {
     public class ServicesArticulos
     {
-        public static ObservableCollection<ModelArticulo> extraerArticulos(string codigoGrupo)
+        public static ObservableCollection<ModelArticulo> extraerArticulos(ModelGrupo grupo)
         {
             var conexionBD = DataConexion.conectar();
 
             try
             {
                 ObservableCollection<ModelArticulo> listArticulos = new ObservableCollection<ModelArticulo> { };
-                string query = "SELECT * FROM xxxxarti  WHERE artigrupo=" + codigoGrupo;
+                string query = "SELECT * FROM xxxxarti  WHERE artigrupo=" + grupo.codigo;
                 MySqlCommand comando = new MySqlCommand(query);
                 //comando.Parameters.AddWithValue("@codigo_grupo", codigoGrupo);
                 MySqlDataReader reader = null;
