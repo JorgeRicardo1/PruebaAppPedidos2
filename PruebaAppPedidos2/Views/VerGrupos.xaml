@@ -4,7 +4,10 @@
              x:Class="PruebaAppPedidos2.Views.VerGrupos"
              NavigationPage.HasNavigationBar="False">
     <StackLayout>
-        <SearchBar TextChanged="SearchBar_TextChanged"  Placeholder="Buscar Grupo"></SearchBar>
+        <StackLayout Orientation="Horizontal">
+            <SearchBar TextChanged="SearchBar_TextChanged"  Placeholder="Buscar Grupo"></SearchBar>
+            <Button Text="filtrar" HorizontalOptions="CenterAndExpand" Command="{Binding irAFiltrarcommand}"></Button>
+        </StackLayout>
         <CollectionView  ItemsSource="{Binding ListGrupos}" x:Name="grup_arti_list">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

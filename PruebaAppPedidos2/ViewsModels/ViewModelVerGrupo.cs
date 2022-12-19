@@ -52,7 +52,7 @@ namespace PruebaAppPedidos2.ViewsModels
             set { SetValue(ref _listgrupos, value); }
         }
 
-        //PROCESPS
+        //PROCESOS
         public async Task obtenerGrupos()
         {
             var grupoObtenido = ServicesGrupo.extraerGrupos();
@@ -64,8 +64,15 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             await Navigation.PushAsync(new ArticulosDeUnGrupo(parametros));
         }
+
+        public async Task irAfiltrar()
+        {
+            await Navigation.PushAsync(new FiltrarArticulos());
+        }
         //COMANDOS
         public ICommand obtenerGruposcommand => new Command(async () => await obtenerGrupos());
-        public ICommand irArticulosDeGrupocommand => new Command<ModelGrupo> (async (p) => await irArticulosDeGrupo(p));  
+        public ICommand irArticulosDeGrupocommand => new Command<ModelGrupo> (async (p) => await irArticulosDeGrupo(p));
+
+        public ICommand irAFiltrarcommand => new Command(async () => await irAfiltrar());
     }
 }
