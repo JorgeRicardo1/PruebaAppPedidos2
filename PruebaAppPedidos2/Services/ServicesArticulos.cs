@@ -12,16 +12,16 @@ namespace PruebaAppPedidos2.Services
 {
     public class ServicesArticulos
     {
-        public static ObservableCollection<ModelArticulo> listaArticulos;
+        public static ObservableCollection<ModelArticulo> lstaArticulos;
 
         public ServicesArticulos() 
         {
             obtenerTodoArticulos();
         }
 
-        public static ObservableCollection<ModelArticulo> extraerArticulos(ModelGrupo grupo)
+        public static async Task<ObservableCollection<ModelArticulo>> extraerArticulos(ModelGrupo grupo)
         {
-            var conexionBD = DataConexion.conectar();
+            var conexionBD = await DataConexion.conectar();
 
             try
             {
@@ -57,9 +57,9 @@ namespace PruebaAppPedidos2.Services
             return null;
         }
 
-        public static ObservableCollection<ModelArticulo> obtenerTodoArticulos()
+        public static async Task<ObservableCollection<ModelArticulo>> obtenerTodoArticulos()
         {
-            var conexionBD =  DataConexion.conectar();
+            var conexionBD =  await DataConexion.conectar();
             try
             {
                 ObservableCollection<ModelArticulo> listArticulos = new ObservableCollection<ModelArticulo> { };

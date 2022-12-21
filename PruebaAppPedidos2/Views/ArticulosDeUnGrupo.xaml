@@ -14,8 +14,7 @@
                         <Frame>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding articodigo}"/>
-                                <Label Text="{Binding artigrupo}"/>
-                                <Label Text="{Binding articodi2}"/>
+                                <Label Text="--"/>
                                 <Label Text="{Binding artinomb}"/>
                             </StackLayout>
                         </Frame>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using MySqlConnector;
 using PruebaAppPedidos2.Data;
 using PruebaAppPedidos2.Models;
@@ -11,9 +12,9 @@ namespace PruebaAppPedidos2.Services
     public class ServicesGrupo
     {
         
-        public static ObservableCollection<ModelGrupo> extraerGrupos()
+        public static async Task<ObservableCollection<ModelGrupo>> extraerGrupos()
         {
-            var conexionBD = DataConexion.conectar();
+            var conexionBD = await DataConexion.conectar();
             
             try
             {

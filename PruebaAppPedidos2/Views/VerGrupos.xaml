@@ -14,9 +14,8 @@
                     <StackLayout>
                         <Frame>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding nombre}"/>
-                                <Label Text="{Binding codigo}"/>
-                                <Label Text="{Binding tipo}"/>
+                                <Label Text="{Binding nombre}" TextColor="Black"/>
+                                <Label Text="{Binding tipo}" TextColor="Black"/>
                             </StackLayout>
                         </Frame>
                         <StackLayout.GestureRecognizers>

@@ -10,7 +10,6 @@ namespace PruebaAppPedidos2
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new VerGrupos());
         }
 

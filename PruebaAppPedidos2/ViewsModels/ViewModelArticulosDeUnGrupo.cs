@@ -42,7 +42,7 @@ namespace PruebaAppPedidos2.ViewsModels
 
         public async Task obtenerArticulos()
         {
-            var articulos = ServicesArticulos.extraerArticulos(GrupoAMostrar);
+            var articulos = await ServicesArticulos.extraerArticulos(GrupoAMostrar);
             ListArticulos = articulos;
         }
         //COMANDOS
