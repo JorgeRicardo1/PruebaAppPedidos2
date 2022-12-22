@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PruebaAppPedidos2.Models
 {
-    class ModelArticulos
+    public class ModelArticulo
     {
         public string articodigo { get; set; }
         public string artigrupo { get; set; }

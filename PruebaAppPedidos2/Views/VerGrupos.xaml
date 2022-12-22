@@ -4,16 +4,18 @@
              x:Class="PruebaAppPedidos2.Views.VerGrupos"
              NavigationPage.HasNavigationBar="False">
     <StackLayout>
-        <SearchBar TextChanged="SearchBar_TextChanged"  ></SearchBar>
+        <StackLayout Orientation="Horizontal">
+            <SearchBar TextChanged="SearchBar_TextChanged"  Placeholder="Buscar Grupo"></SearchBar>
+            <Button Text="filtrar" HorizontalOptions="CenterAndExpand" Command="{Binding irAFiltrarcommand}"></Button>
+        </StackLayout>
         <CollectionView  ItemsSource="{Binding ListGrupos}" x:Name="grup_arti_list">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
                         <Frame>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding nombre}"/>
-                                <Label Text="{Binding codigo}"/>
-                                <Label Text="{Binding tipo}"/>
+                                <Label Text="{Binding nombre}" TextColor="Black"/>
+                                <Label Text="{Binding tipo}" TextColor="Black"/>
                             </StackLayout>
                         </Frame>
                         <StackLayout.GestureRecognizers>
@@ -25,6 +27,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="unda" Command="{Binding obtenerGruposcommand}"/>
     </StackLayout>
 </ContentPage>

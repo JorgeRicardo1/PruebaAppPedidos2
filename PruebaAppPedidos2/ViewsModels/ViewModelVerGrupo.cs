@@ -18,7 +18,7 @@ namespace PruebaAppPedidos2.ViewsModels
         string _codigo;
         string _nombre;
         string _tipo;
-        public ObservableCollection<ModelGrupo> _listartigrupos;
+        public ObservableCollection<ModelGrupo> _listgrupos;
 
         //CONSTRUCTOR
         public ViewModelVerGrupo(INavigation navigation)
@@ -48,24 +48,31 @@ namespace PruebaAppPedidos2.ViewsModels
 
         public ObservableCollection<ModelGrupo> ListGrupos
         {
-            get { return _listartigrupos; }
-            set { SetValue(ref _listartigrupos, value); }
+            get { return _listgrupos; }
+            set { SetValue(ref _listgrupos, value); }
         }
 
-        //PROCESPS
+        //PROCESOS
         public async Task obtenerGrupos()
         {
-            var grupoObtenido = ServicesGrupo.extraerGrupos();
+            await ServicesGrupo.extraerGrupos();
             //ListGrupos = await ServicesGrupo.extraerGrupos(); Averiguar como
-            ListGrupos = grupoObtenido;
+            ListGrupos =  ServicesGrupo.Grupos;
         }
 
         public async Task irArticulosDeGrupo(ModelGrupo parametros)
         {
             await Navigation.PushAsync(new ArticulosDeUnGrupo(parametros));
         }
+
+        public async Task irAfiltrar()
+        {
+            await Navigation.PushAsync(new FiltrarArticulos());
+        }
         //COMANDOS
         public ICommand obtenerGruposcommand => new Command(async () => await obtenerGrupos());
-        public ICommand irArticulosDeGrupocommand => new Command<ModelGrupo> (async (p) => await irArticulosDeGrupo(p));  
+        public ICommand irArticulosDeGrupocommand => new Command<ModelGrupo> (async (p) => await irArticulosDeGrupo(p));
+
+        public ICommand irAFiltrarcommand => new Command(async () => await irAfiltrar());
     }
 }

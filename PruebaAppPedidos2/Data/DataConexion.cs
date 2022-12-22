@@ -2,20 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PruebaAppPedidos2.Data
 {
     public class DataConexion
     {
         private static string connectionString = "Database = a000; Data Source = 192.168.1.190; User Id = prueba; Password= qwerty";
-        
-        public static MySqlConnection conectar()
+        public static MySqlConnection conexionBD { get; set; }
+
+
+        public static async Task<MySqlConnection> conectar()
         {
-            MySqlConnection conexionBD = null;
+
             try
             {
                 conexionBD = new MySqlConnection(connectionString);
                 return conexionBD;
+                
             }
             catch (MySqlException ex)
             {

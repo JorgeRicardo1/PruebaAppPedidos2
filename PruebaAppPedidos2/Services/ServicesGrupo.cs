@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using MySqlConnector;
 using PruebaAppPedidos2.Data;
 using PruebaAppPedidos2.Models;
@@ -10,10 +11,15 @@ namespace PruebaAppPedidos2.Services
 {
     public class ServicesGrupo
     {
-        
-        public static ObservableCollection<ModelGrupo> extraerGrupos()
+        public static ObservableCollection<ModelGrupo> Grupos { get; set; }
+
+        ServicesGrupo() 
         {
-            var conexionBD = DataConexion.conectar();
+        }
+
+        public static async Task extraerGrupos()
+        {
+            var conexionBD = await DataConexion.conectar();
             
             try
             {
@@ -36,7 +42,7 @@ namespace PruebaAppPedidos2.Services
                 }
                 reader.Close();
                 conexionBD.Close();
-                return listGrupos;
+                Grupos = listGrupos;
 
             }
             catch (MySqlException ex)
@@ -44,7 +50,6 @@ namespace PruebaAppPedidos2.Services
                 Console.WriteLine(ex.Message);
                 //throw;
             }
-            return null;
         }
     }
 }
