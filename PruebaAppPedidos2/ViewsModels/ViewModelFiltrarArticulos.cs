@@ -58,8 +58,8 @@ namespace PruebaAppPedidos2.ViewsModels
         //PROCESOS
         public async Task filtrar()
         {
-            var articulosObtenido = await ServicesArticulos.obtenerTodoArticulos();
-            //ListGrupos = await ServicesGrupo.extraerGrupos(); Averiguar como
+            await ServicesArticulos.obtenerTodoArticulos();
+            var articulosObtenido = ServicesArticulos.Articulos;
             ListArticulos = new ObservableCollection<ModelArticulo> { };
             foreach (var item in articulosObtenido)
             {

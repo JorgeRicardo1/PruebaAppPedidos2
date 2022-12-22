@@ -11,8 +11,13 @@ namespace PruebaAppPedidos2.Services
 {
     public class ServicesGrupo
     {
-        
-        public static async Task<ObservableCollection<ModelGrupo>> extraerGrupos()
+        public static ObservableCollection<ModelGrupo> Grupos { get; set; }
+
+        ServicesGrupo() 
+        {
+        }
+
+        public static async Task extraerGrupos()
         {
             var conexionBD = await DataConexion.conectar();
             
@@ -37,7 +42,7 @@ namespace PruebaAppPedidos2.Services
                 }
                 reader.Close();
                 conexionBD.Close();
-                return listGrupos;
+                Grupos = listGrupos;
 
             }
             catch (MySqlException ex)
@@ -45,7 +50,6 @@ namespace PruebaAppPedidos2.Services
                 Console.WriteLine(ex.Message);
                 //throw;
             }
-            return null;
         }
     }
 }

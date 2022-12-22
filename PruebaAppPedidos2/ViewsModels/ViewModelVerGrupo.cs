@@ -55,9 +55,9 @@ namespace PruebaAppPedidos2.ViewsModels
         //PROCESOS
         public async Task obtenerGrupos()
         {
-            var grupoObtenido = ServicesGrupo.extraerGrupos();
+            await ServicesGrupo.extraerGrupos();
             //ListGrupos = await ServicesGrupo.extraerGrupos(); Averiguar como
-            ListGrupos = await grupoObtenido;
+            ListGrupos =  ServicesGrupo.Grupos;
         }
 
         public async Task irArticulosDeGrupo(ModelGrupo parametros)
