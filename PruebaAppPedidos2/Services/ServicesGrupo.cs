@@ -9,6 +9,7 @@ using PruebaAppPedidos2.Models;
 
 namespace PruebaAppPedidos2.Services
 {
+    //ESTO SOLO ES UN COMENTARIO DE PRUEBAS
     public class ServicesGrupo
     {
         public static ObservableCollection<ModelGrupo> Grupos { get; set; }
