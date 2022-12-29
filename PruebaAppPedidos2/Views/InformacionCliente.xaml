@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PruebaAppPedidos2.Views.InformacionCliente">
+    <Grid Margin="8">
+        <!-- Inicio de stackLayout principal-->
+        <StackLayout>
+            <Label Text="Cliente"
+                   FontAttributes="Bold"
+                   FontSize="Large"/>
+            <StackLayout Orientation="Horizontal">
+                <Entry Placeholder="NIT"
+                       HorizontalOptions="FillAndExpand"
+                       WidthRequest="100"/>
+                <Label Text="Telefono: "
+                       VerticalTextAlignment="Center"
+                       FontSize="Medium"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                <Frame HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="0">
+                    <Label Text="#######"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+            </StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Nombre: " Grid.Row="0" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Medium"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                <Frame Grid.Row="0" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="10">
+                    <Label Text="Nombre del cliente"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+                <Label Text="Correo: " Grid.Row="1" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Medium"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                <Frame Grid.Row="1" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="10">
+                    <Label Text="Correo del cliente"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+            </Grid>
+            
+        <!-- Fin de stackLayout principal-->
+        </StackLayout>
+    </Grid>
+</ContentPage>

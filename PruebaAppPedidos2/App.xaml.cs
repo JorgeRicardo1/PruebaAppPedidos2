@@ -10,7 +10,7 @@ namespace PruebaAppPedidos2
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new VerGrupos());
+            MainPage = new NavigationPage(new InformacionCliente());
         }
 
         protected override void OnStart()
