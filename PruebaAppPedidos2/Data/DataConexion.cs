@@ -8,7 +8,7 @@ namespace PruebaAppPedidos2.Data
 {
     public class DataConexion
     {
-        private static string connectionString = "Database = a000; Data Source = 192.168.1.190; User Id = prueba; Password= qwerty";
+        private static string connectionString = "Database = a000; Data Source = 192.168.1.108; User Id = pruebas; Password= qwerty";
         public static MySqlConnection conexionBD { get; set; }
 
 

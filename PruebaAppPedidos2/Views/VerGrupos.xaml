@@ -8,14 +8,13 @@
             <SearchBar TextChanged="SearchBar_TextChanged"  Placeholder="Buscar Grupo"></SearchBar>
             <Button Text="filtrar" HorizontalOptions="CenterAndExpand" Command="{Binding irAFiltrarcommand}"></Button>
         </StackLayout>
-        <CollectionView  ItemsSource="{Binding ListGrupos}" x:Name="grup_arti_list">
+        <CollectionView  ItemsSource="{Binding ListGrupos}" x:Name="grup_arti_list" EmptyView="No se encontraron los grupos">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
                         <Frame>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding nombre}" TextColor="Black"/>
-                                <Label Text="{Binding tipo}" TextColor="Black"/>
                             </StackLayout>
                         </Frame>
                         <StackLayout.GestureRecognizers>

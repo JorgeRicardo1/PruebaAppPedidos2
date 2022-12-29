@@ -38,6 +38,10 @@
                            Text="{Binding Palabra4}"
                            TextTransform="Uppercase"/>
                 </StackLayout>
+                <Button Text="Limpiar"
+                        HorizontalOptions="Center"
+                        WidthRequest="150"
+                        Command="{Binding limpiarBusquedaCommand}"/>
             </StackLayout>
         </Frame>
         <Button Text="Realizar Busqueda" Command="{Binding filtrarCommand}" Margin="10"/>

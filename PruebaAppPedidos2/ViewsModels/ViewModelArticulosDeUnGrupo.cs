@@ -21,7 +21,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public ViewModelArticulosDeUnGrupo(INavigation navigation, ModelGrupo grupoSeleccionado)
         {
             Navigation = navigation;
-            _grupoAMostrar = grupoSeleccionado;
+            _grupoAMostrar = grupoSeleccionado;    
             obtenerArticulos();
         }
 

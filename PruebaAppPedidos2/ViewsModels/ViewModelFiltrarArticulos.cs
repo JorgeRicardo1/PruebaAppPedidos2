@@ -34,7 +34,7 @@ namespace PruebaAppPedidos2.ViewsModels
             set { SetValue(ref _listArticulos, value); }
         }
 
-        public string  Palabra1
+        public string Palabra1
         {
             get { return _palabra1; }
             set { SetValue(ref _palabra1, value); }
@@ -58,42 +58,20 @@ namespace PruebaAppPedidos2.ViewsModels
         //PROCESOS
         public async Task filtrar()
         {
-            await ServicesArticulos.obtenerTodoArticulos();
-            var articulosObtenido = ServicesArticulos.Articulos;
-            ListArticulos = new ObservableCollection<ModelArticulo> { };
-            foreach (var item in articulosObtenido)
-            {
-                if (Palabra4 ==null && Palabra3 == null && Palabra2==null)
-                {
-                    if (item.artinomb.Contains(Palabra1.ToUpper()))
-                    {
-                        ListArticulos.Add(item);
-                    }
-                }
-                else if (Palabra4 == null && Palabra3 == null)
-                {
-                    if (item.artinomb.Contains(Palabra1.ToUpper() + " " + Palabra2.ToUpper()))
-                    {
-                        ListArticulos.Add(item);
-                    }
-                }
-                else if (Palabra4 == null)
-                {
-                    if (item.artinomb.Contains(Palabra1.ToUpper() + " " + Palabra2.ToUpper() + " " + Palabra3.ToUpper()))
-                    {
-                        ListArticulos.Add(item);
-                    }
-                }
-                else if (Palabra4 != null && Palabra3 != null && Palabra2 != null && Palabra1 != null)
-                {
-                    if (item.artinomb.Contains(Palabra1.ToUpper() + " " + Palabra2.ToUpper() + " " + Palabra3.ToUpper() + " " + Palabra4.ToUpper()))
-                    {
-                        ListArticulos.Add(item);
-                    }
-                }
-            }
+            List<string> palabras = new List<string> { Palabra1, Palabra2, Palabra3, Palabra4};
+            ListArticulos = await ServicesArticulos.filtrarArticulos(palabras);
+            
         }
+        public void limpiarBusqueda()
+        {
+            Palabra1 = "";
+            Palabra2 = "";
+            Palabra3 = "";
+            Palabra4 = "";
+        }
+
         //COMANDOS
         public ICommand filtrarCommand => new Command(async () => await filtrar());
+        public ICommand limpiarBusquedaCommand => new Command(limpiarBusqueda);
     }
 }
