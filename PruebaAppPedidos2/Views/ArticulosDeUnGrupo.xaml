@@ -7,7 +7,7 @@
                FontSize="Large"
                HorizontalOptions="Center"
                FontAttributes="Bold"/>
-        <CollectionView ItemsSource="{Binding ListArticulos}">
+        <CollectionView ItemsSource="{Binding ListArticulos}" EmptyView="No hay articulos disponibles">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
