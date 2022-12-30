@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PruebaAppPedidos2.Models
 {
-    class Modelxxx3ro
+    public class Modelxxx3ro
     {
         public string tronit { get; set; }
         public string tronombre { get; set; }

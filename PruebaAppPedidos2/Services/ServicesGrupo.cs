@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySqlConnector;
 using PruebaAppPedidos2.Data;
 using PruebaAppPedidos2.Models;
+using PruebaAppPedidos2.Services;     
 
 namespace PruebaAppPedidos2.Services
 {
