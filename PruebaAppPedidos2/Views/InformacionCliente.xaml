@@ -11,7 +11,8 @@
             <StackLayout Orientation="Horizontal">
                 <Entry Placeholder="NIT"
                        HorizontalOptions="FillAndExpand"
-                       WidthRequest="100"/>
+                       WidthRequest="100"
+                       Text="{Binding Tronit}"/>
                 <Label Text="Telefono: "
                        VerticalTextAlignment="Center"
                        FontSize="Medium"
@@ -20,7 +21,7 @@
                 <Frame HorizontalOptions="FillAndExpand"
                        CornerRadius="20"
                        Padding="0">
-                    <Label Text="#######"
+                    <Label Text="{Binding ClienteActual.trotelef}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -44,7 +45,7 @@
                        HorizontalOptions="FillAndExpand"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="Nombre del cliente"
+                    <Label Text="{Binding ClienteActual.tronombre}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -57,7 +58,7 @@
                        HorizontalOptions="FillAndExpand"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="Correo del cliente"
+                    <Label Text="{Binding ClienteActual.troemail}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -70,7 +71,7 @@
                        HorizontalOptions="FillAndExpand"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="Celular del cliente"
+                    <Label Text="{Binding ClienteActual.trocelular}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -87,14 +88,14 @@
                     <ColumnDefinition Width=".4*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Cupo: " Grid.Row="0" Grid.Column="0"
+                <Label Text="Escala: " Grid.Row="0" Grid.Column="0"
                        FontSize="Body"
                        VerticalTextAlignment="Center"                       
                        HorizontalOptions="Start"/>
                 <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="$$$"
+                    <Label Text="{Binding PrecioOtorgado}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -105,18 +106,7 @@
                 <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="3"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="$$$"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-                <Label Text="#Dias vigencia:" Grid.Row="1" Grid.Column="0"
-                       FontSize="Body"
-                       VerticalTextAlignment="Center"                       
-                       HorizontalOptions="Start"/>
-                <Frame HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1"
-                       CornerRadius="20"
-                       Padding="10">
-                    <Label Text="$$$"
+                    <Label Text="{Binding ClienteActual.troccsdovn}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -131,26 +121,30 @@
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
-                <Label Text="Tipo:" Grid.Row="2" Grid.Column="0"
+                <Label Text="?:" Grid.Row="2" Grid.Column="0"
                        FontSize="Body"
                        VerticalTextAlignment="Center"                       
                        HorizontalOptions="Start"/>
                 <Frame Grid.Row="2" Grid.Column="1"
                        Padding="10"
                        CornerRadius="20">
-                    <Label Text="C"
+                    <Label Text="?"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
-                <Frame Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+                <Label Text="Cupo:" Grid.Row="2" Grid.Column="2"
+                       FontSize="Body"
+                       VerticalTextAlignment="Center"                       
+                       HorizontalOptions="Start"/>
+                <Frame Grid.Row="2" Grid.Column="3" 
                        Padding="10"
                        CornerRadius="20">
-                    <Label Text="por mayor"
+                    <Label Text="{Binding ClienteActual.trocccupo}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
             </Grid>
-            <Button Text="actualizar" Command="{Binding actualizarCommand}"/>
+            <Button Text="actualizar" Command="{Binding obtenerClienteCommand}"/>
 
             <!-- Fin de stackLayout principal-->
         </StackLayout>

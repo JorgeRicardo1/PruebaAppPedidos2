@@ -18,7 +18,7 @@ namespace PruebaAppPedidos2.Services
             try
             {
                 Modelxxx3ro cliente = new Modelxxx3ro();
-                string query = $"SELECT * FROM xxxx3ros WHERE tronit={codigoCliente}";
+                string query = $"SELECT * FROM xxxx3ros WHERE tronit='{codigoCliente}'";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
@@ -31,6 +31,10 @@ namespace PruebaAppPedidos2.Services
                         cliente.trotelef = reader.GetString(9);
                         cliente.tronombre = reader.GetString(1);
                         cliente.troemail = reader.GetString(11);
+                        cliente.trocpcupo = reader.GetInt32(30);
+                        cliente.trotipo = reader.GetString(6);
+                        cliente.troprecio = reader.GetInt32(37);
+                        cliente.trocelular = reader.GetString(70);
                     }
                 }
                 conexionBD.Close();
