@@ -144,6 +144,71 @@
                            VerticalTextAlignment="Center"/>
                 </Frame>
             </Grid>
+            <Label Text="Despacho"
+                   FontAttributes="Bold"
+                   FontSize="Large"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".3*"/>
+                    <ColumnDefinition Width=".7*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Nombre Despacho: " Grid.Row="0" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                <Frame Grid.Row="0" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="10">
+                    <Label Text="{Binding DespachoActual.titular}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+                <Label Text="Direccion: " Grid.Row="1" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                <Frame Grid.Row="1" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="10">
+                    <Label Text="{Binding DespachoActual.titudire}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+                <Label Text="Cuidad: " Grid.Row="2" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                <Frame Grid.Row="2" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="10">
+                    <Label Text="{Binding DespachoActual.tituciud}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+                <Label Text="Tel: " Grid.Row="3" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                <Frame Grid.Row="3" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="10">
+                    <Label Text="{Binding DespachoActual.titutelf}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+            </Grid>
             <Button Text="actualizar" Command="{Binding obtenerClienteCommand}"/>
 
             <!-- Fin de stackLayout principal-->

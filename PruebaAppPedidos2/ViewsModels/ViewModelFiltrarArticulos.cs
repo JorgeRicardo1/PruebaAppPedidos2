@@ -68,6 +68,8 @@ namespace PruebaAppPedidos2.ViewsModels
             Palabra2 = "";
             Palabra3 = "";
             Palabra4 = "";
+            if(ListArticulos.Count != 0) { ListArticulos.Clear(); }
+            
         }
 
         //COMANDOS

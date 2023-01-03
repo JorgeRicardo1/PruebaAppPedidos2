@@ -31,7 +31,7 @@ namespace PruebaAppPedidos2.Services
                         cliente.trotelef = reader.GetString(9);
                         cliente.tronombre = reader.GetString(1);
                         cliente.troemail = reader.GetString(11);
-                        cliente.trocpcupo = reader.GetInt32(30);
+                        cliente.trocccupo = reader.GetInt32(31);
                         cliente.trotipo = reader.GetString(6);
                         cliente.troprecio = reader.GetInt32(37);
                         cliente.trocelular = reader.GetString(70);

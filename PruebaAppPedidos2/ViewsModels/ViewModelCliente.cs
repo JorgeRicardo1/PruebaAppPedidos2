@@ -15,6 +15,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public string _tronit;
         public string _precioOtorgado;
         public Modelxxx3ro _cliente;
+        public Modelxxxxvped _despacho;
 
         //CONSTRUCTOR
         public ViewModelCliente(INavigation navigation)
@@ -40,11 +41,19 @@ namespace PruebaAppPedidos2.ViewsModels
             set { SetValue(ref _cliente, value); }
         }
 
+        public Modelxxxxvped DespachoActual
+        {
+            get { return _despacho; }
+            set { SetValue(ref _despacho, value); }
+        }
+
         //PROCESOS
         public async Task obtenerCliente()
         {
             ClienteActual = await Servicesxxx3ro.extraerCliente(Tronit);
             PrecioOtorgado = obtenerPrecioCliente(ClienteActual);
+            DespachoActual = await Servicesxxxxvped.extraerInfoDespacho(Tronit);
+            //MessagingCenter.Send<>
         }
 
         public  string obtenerPrecioCliente(Modelxxx3ro cliente)
