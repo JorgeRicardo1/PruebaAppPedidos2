@@ -11,5 +11,4 @@
             NavigationPage.HasNavigationBar="False">
     <local:InformacionCliente Title="Cliente" IconImageSource="" />
     <local:GestionarArticulos Title="Articulos" IconImageSource="" />
-    <local:VerGrupos Title="Grupos" IconImageSource="" IsEnabled="True"/>
 </TabbedPage>

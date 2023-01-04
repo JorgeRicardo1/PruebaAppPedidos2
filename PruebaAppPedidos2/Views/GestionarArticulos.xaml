@@ -63,7 +63,8 @@
                                HorizontalTextAlignment="Center"/>
                     </Frame>
                     <ImageButton Source="lupa.png"
-                                 WidthRequest="25"/>
+                                 WidthRequest="25"
+                                 Command="{Binding irAVerGruposcommand}"/>
                 </StackLayout>
                 <Frame Grid.Row="1"
                        Grid.Column="1"

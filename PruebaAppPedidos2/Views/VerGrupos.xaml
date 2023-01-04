@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PruebaAppPedidos2.Views.VerGrupos"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="PruebaAppPedidos2.Views.VerGrupos">
     <StackLayout>
         <StackLayout Orientation="Horizontal">
             <SearchBar TextChanged="SearchBar_TextChanged"  Placeholder="Buscar Grupo"></SearchBar>
