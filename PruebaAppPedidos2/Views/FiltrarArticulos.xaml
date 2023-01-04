@@ -2,63 +2,65 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PruebaAppPedidos2.Views.FiltrarArticulos">
-    <StackLayout>
-        <Label Text="Ingrese su busqueda" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
-        <Frame CornerRadius="30" Margin="10">
-            <StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="1 :"
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Ingrese su busqueda" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+            <Frame CornerRadius="30" Margin="10">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="1 :"
                            VerticalOptions="Center"/>
-                    <Entry Placeholder="palabra 1"
+                        <Entry Placeholder="palabra 1"
                            HorizontalOptions="FillAndExpand"
                            Text="{Binding Palabra1}"
                            TextTransform="Uppercase"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="2 :"
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="2 :"
                            VerticalOptions="Center"/>
-                    <Entry Placeholder="palabra 2" 
+                        <Entry Placeholder="palabra 2" 
                            HorizontalOptions="FillAndExpand"
                            Text="{Binding Palabra2}"
                            TextTransform="Uppercase"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="3 :"
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="3 :"
                            VerticalOptions="Center"/>
-                    <Entry Placeholder="palabra 3"
+                        <Entry Placeholder="palabra 3"
                            HorizontalOptions="FillAndExpand"
                            Text="{Binding Palabra3}"
                            TextTransform="Uppercase"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="4 :"
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="4 :"
                            VerticalOptions="Center"/>
-                    <Entry Placeholder="palabra 4"
+                        <Entry Placeholder="palabra 4"
                            HorizontalOptions="FillAndExpand"
                            Text="{Binding Palabra4}"
                            TextTransform="Uppercase"/>
-                </StackLayout>
-                <Button Text="Limpiar"
+                    </StackLayout>
+                    <Button Text="Limpiar"
                         HorizontalOptions="Center"
                         WidthRequest="150"
                         Command="{Binding limpiarBusquedaCommand}"/>
-            </StackLayout>
-        </Frame>
-        <Button Text="Realizar Busqueda" Command="{Binding filtrarCommand}" Margin="10"/>
-        <CollectionView ItemsSource="{Binding ListArticulos}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Frame>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding artigrupo}"/>
-                                <Label Text="--" />
-                                <Label Text="{Binding artinomb}"/>
-                            </StackLayout>
-                        </Frame>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Button Text="Realizar Busqueda" Command="{Binding filtrarCommand}" Margin="10"/>
+            <CollectionView ItemsSource="{Binding ListArticulos}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding artigrupo}"/>
+                                    <Label Text="--" />
+                                    <Label Text="{Binding artinomb}"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

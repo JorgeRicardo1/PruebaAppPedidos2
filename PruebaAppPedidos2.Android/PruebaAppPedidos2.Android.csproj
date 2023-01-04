@@ -89,13 +89,19 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
+    <AndroidResource Include="Resources\drawable\eliminar.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PruebaAppPedidos2\PruebaAppPedidos2.csproj">
       <Project>{72CAED11-89E3-4146-8E5B-52D684EB9773}</Project>
       <Name>PruebaAppPedidos2</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\lupa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\lapiz.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

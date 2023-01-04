@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PruebaAppPedidos2.Views.InformacionCliente">
-    <Grid Margin="8">
-        <!-- Inicio de stackLayout principal-->
+    <ScrollView Margin="8">
         <StackLayout>
             <Label Text="Cliente"
                    FontAttributes="Bold"
@@ -11,11 +10,10 @@
             <StackLayout Orientation="Horizontal">
                 <Entry Placeholder="NIT"
                        HorizontalOptions="FillAndExpand"
-                       WidthRequest="100"
                        Text="{Binding Tronit}"/>
-                <Label Text="Telefono: "
+                <Label Text="Tel: "
                        VerticalTextAlignment="Center"
-                       FontSize="Medium"
+                       FontSize="Body"
                        HorizontalOptions="Start"
                        Margin="0,0,5,0"/>
                 <Frame HorizontalOptions="FillAndExpand"
@@ -78,17 +76,17 @@
             </Grid>
             <Grid>
                 <Grid.RowDefinitions >
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width=".4*"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width=".4*"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Escala: " Grid.Row="0" Grid.Column="0"
+                <Label Text="Escala" Grid.Row="0" Grid.Column="0"
                        FontSize="Body"
                        VerticalTextAlignment="Center"                       
                        HorizontalOptions="Start"/>
@@ -99,7 +97,7 @@
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
-                <Label Text="Saldo vencido: " Grid.Row="0" Grid.Column="2"
+                <Label Text="Saldo&#10;Vencido:" Grid.Row="0" Grid.Column="2"
                        FontSize="Body"
                        VerticalTextAlignment="Center"                       
                        HorizontalOptions="Start"/>
@@ -110,25 +108,14 @@
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
-                <Label Text="Saldo x cobrar:" Grid.Row="1" Grid.Column="2"
+                <Label Text="Factura X&#10;Cobrar:" Grid.Row="1" Grid.Column="2"
                        FontSize="Body"
                        VerticalTextAlignment="Center"                       
                        HorizontalOptions="Start"/>
                 <Frame HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="3"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="$$$"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-                <Label Text="?:" Grid.Row="2" Grid.Column="0"
-                       FontSize="Body"
-                       VerticalTextAlignment="Center"                       
-                       HorizontalOptions="Start"/>
-                <Frame Grid.Row="2" Grid.Column="1"
-                       Padding="10"
-                       CornerRadius="20">
-                    <Label Text="?"
+                    <Label Text="{Binding ClienteActual.troccsaldo}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -210,8 +197,6 @@
                 </Frame>
             </Grid>
             <Button Text="actualizar" Command="{Binding obtenerClienteCommand}"/>
-
-            <!-- Fin de stackLayout principal-->
         </StackLayout>
-    </Grid>
+    </ScrollView>
 </ContentPage>

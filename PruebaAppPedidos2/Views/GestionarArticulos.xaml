@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PruebaAppPedidos2.Views.GestionarArticulos">
+    <ScrollView Margin="8">
+        <StackLayout>
+            <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <Label Text="total" FontAttributes="Bold"
+                       VerticalTextAlignment="Center"/>
+                <Frame Padding="5"
+                       CornerRadius="10">
+                    <Label Text="$$$$$$$"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+                <Label Text="Cantidad" FontAttributes="Bold"
+                       VerticalTextAlignment="Center"/>
+                <Frame Padding="5"
+                       CornerRadius="10">
+                    <Label Text="###"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+                <Label Text="Peso" FontAttributes="Bold"
+                       VerticalTextAlignment="Center"/>
+                <Frame Padding="5"
+                       CornerRadius="10">
+                    <Label Text="Kg"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+            </StackLayout>
+            <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*">
+                <!-- fila 0-->
+                <Label Text="Cod Articulo"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="Uni&#10;Medida"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="Cantidad"
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="Valor&#10;Unidad"
+                       Grid.Row="0"
+                       Grid.Column="3"
+                       HorizontalTextAlignment="Center"/>
+                <!-- fila 1-->
+                <StackLayout Grid.Row="1"
+                             Grid.Column="0"
+                             Orientation="Horizontal">
+                    <Frame CornerRadius="5"
+                           Padding="2"
+                           HorizontalOptions="FillAndExpand">
+                        <Label Text="###"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"/>
+                    </Frame>
+                    <ImageButton Source="lupa.png"
+                                 WidthRequest="25"/>
+                </StackLayout>
+                <Frame Grid.Row="1"
+                       Grid.Column="1"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="##"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                </Frame>
+                <Frame Grid.Row="1"
+                       Grid.Column="2"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="##"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                </Frame>
+                <Frame Grid.Row="1"
+                       Grid.Column="3"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="$$$$"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                </Frame>
+                <!-- fila 2-->
+                <Label Text="Detalle Movimiento"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       VerticalTextAlignment="Center"/>
+                <Label Text="Valor Parcial"
+                       Grid.Row="2"
+                       Grid.Column="3"
+                       VerticalTextAlignment="Center"/>
+                <!-- fila 3-->
+                <Frame Grid.Row="3"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="Detalle del articulo"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                </Frame>
+                <Frame Grid.Row="3"
+                       Grid.Column="3"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="cantidad * valor unidad"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                </Frame>
+            </Grid>
+            <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
+            <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*">
+                <!-- fila 0-->
+                <Label Text="Descripcion Articulo"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"/>
+                <Label Text="Iva"
+                       Grid.Row="0"
+                       Grid.Column="2"/>
+                <Label Text="IC"
+                       Grid.Row="0"
+                       Grid.Column="3"/>
+                <!-- fila 1-->
+                <Frame Grid.Row="1"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="Descripcion movimiento"/>
+                </Frame>
+                <Frame Grid.Row="1"
+                       Grid.Column="2"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="####"/>
+                </Frame>
+                <Frame Grid.Row="1"
+                       Grid.Column="3"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="####"/>
+                </Frame>
+                <!-- fila 2 -->
+                <Label Text="Marca"
+                       Grid.Row="2"
+                       Grid.Column="0"/>
+                <Label Text="Codigo Alter"
+                       Grid.Row="2"
+                       Grid.Column="1"/>
+                <Label Text="Existencia"
+                       Grid.Row="2"
+                       Grid.Column="2"/>
+                <!-- fila 3 -->
+                <Frame Grid.Row="3"
+                       Grid.Column="0"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="marcaArticulo"/>
+                </Frame>
+                <Frame Grid.Row="3"
+                       Grid.Column="1"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="###"/>
+                </Frame>
+                <Frame Grid.Row="3"
+                       Grid.Column="2"
+                       Padding="2"
+                       CornerRadius="5">
+                    <Label Text="###"/>
+                </Frame>
+            </Grid>
+            <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="+"
+                        BackgroundColor="#26b232"
+                        TextColor="#c4e7c3"
+                        CornerRadius="20"
+                        TextTransform="None"
+                        WidthRequest="50"
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        Padding="-50"/>
+                <ImageButton Source="lapiz.png" 
+                             BackgroundColor="#F1BE2E"
+                             WidthRequest="50"
+                             CornerRadius="15"
+                             Padding="5"/>
+                <ImageButton Source="eliminar.png" 
+                             BackgroundColor="#B00020"
+                             WidthRequest="50"
+                             CornerRadius="15"
+                             Padding="10,5,5,5"/>
+                <Button Text="Finalizar"
+                        BackgroundColor="#007491"
+                        TextColor="White"
+                        CornerRadius="20"
+                        TextTransform="None"
+                        HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+            <Grid ColumnDefinitions="*,*,*,*,*" Background="#C3C3C3" Margin="0,0,0,-8">
+                <Label Text="Articulo" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Label Text="Cantidad" Grid.Column="2" />
+                <Label Text="Val.Unidad" Grid.Column="3" />
+                <Label Text="Parcial" Grid.Column="4" />
+            </Grid>
+            <CollectionView HeightRequest="300" BackgroundColor="#C3C3C3">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
