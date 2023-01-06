@@ -15,6 +15,8 @@ namespace PruebaAppPedidos2.ViewsModels
         //Variables
         public ModelArticulo _articuloSeleccionado;
         public ObservableCollection<ModelArticulo> _lstPedidoTemporal;
+        public string _cantidadArtiActual;
+        public string _valParcialArtiActual;
 
 
         //Constructor
@@ -36,6 +38,18 @@ namespace PruebaAppPedidos2.ViewsModels
             set { SetValue(ref _lstPedidoTemporal, value); }
         }
 
+        public string CantidadArtiActual
+        {
+            get { return _cantidadArtiActual; }
+            set { SetValue(ref _cantidadArtiActual, value); }
+        }
+
+        public string ValParcialArtiActual
+        {
+            get { return _cantidadArtiActual; }
+            set { SetValue(ref _cantidadArtiActual, value); }
+        }
+
         //Procesos
         public async Task irAVerGrupos()
         {
@@ -53,8 +67,22 @@ namespace PruebaAppPedidos2.ViewsModels
             await Navigation.PopToRootAsync();
         }
 
+        public async Task calcularValorParcial()
+        {
+            if(ArticuloSeleccionado.articodigo != null && CantidadArtiActual!="")
+            {
+                ValParcialArtiActual = await Task.Run(() => (Convert.ToInt32(CantidadArtiActual) * ArticuloSeleccionado.artivlr1_c).ToString());
+            }
+            if (CantidadArtiActual =="")
+            {
+                ValParcialArtiActual = "0";
+            }
+            
+        }
+
         //Comandos
         public ICommand irAVerGruposcommand => new Command(async () => await irAVerGrupos());
         public ICommand addArticuloPedidoTempcommand => new Command(async () => await addArticuloPedidoTemp());
+        public ICommand calcularValorParcialcommand => new Command(async () => await calcularValorParcial());
     }
 }
