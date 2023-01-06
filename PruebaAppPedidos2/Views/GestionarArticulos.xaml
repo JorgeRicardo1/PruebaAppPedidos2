@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PruebaAppPedidos2.Views.GestionarArticulos">
+             x:Class="PruebaAppPedidos2.Views.GestionarArticulos"
+             Title="Articulos">
     <ScrollView Margin="8">
         <StackLayout>
             <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
@@ -58,7 +59,7 @@
                     <Frame CornerRadius="5"
                            Padding="2"
                            HorizontalOptions="FillAndExpand">
-                        <Label Text="###"
+                        <Label Text="{Binding ArticuloSeleccionado.articodigo}"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"/>
                     </Frame>
@@ -70,7 +71,7 @@
                        Grid.Column="1"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="##"
+                    <Label Text="{Binding ArticuloSeleccionado.artiunidad}"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"/>
                 </Frame>
@@ -78,7 +79,7 @@
                        Grid.Column="2"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="##"
+                    <Entry Text=""
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"/>
                 </Frame>
@@ -86,7 +87,7 @@
                        Grid.Column="3"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="$$$$"
+                    <Label Text="{Binding ArticuloSeleccionado.artivlr1_c, StringFormat='${0:0}'}"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"/>
                 </Frame>
@@ -106,7 +107,7 @@
                        Grid.ColumnSpan="3"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="Detalle del articulo"
+                    <Label Text="{Binding ArticuloSeleccionado.artinomb}"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"/>
                 </Frame>
@@ -144,13 +145,13 @@
                        Grid.Column="2"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="####"/>
+                    <Label Text="{Binding ArticuloSeleccionado.artiiva, StringFormat='{0:0}%'}"/>
                 </Frame>
                 <Frame Grid.Row="1"
                        Grid.Column="3"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="####"/>
+                    <Label Text="iC?"/>
                 </Frame>
                 <!-- fila 2 -->
                 <Label Text="Marca"
@@ -167,19 +168,19 @@
                        Grid.Column="0"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="marcaArticulo"/>
+                    <Label Text="{Binding ArticuloSeleccionado.artimarca}"/>
                 </Frame>
                 <Frame Grid.Row="3"
                        Grid.Column="1"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="###"/>
+                    <Label Text="{Binding ArticuloSeleccionado.articodi2}"/>
                 </Frame>
                 <Frame Grid.Row="3"
                        Grid.Column="2"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="###"/>
+                    <Label Text="existenciaArti"/>
                 </Frame>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
@@ -192,7 +193,8 @@
                         WidthRequest="50"
                         FontAttributes="Bold"
                         FontSize="30"
-                        Padding="-50"/>
+                        Padding="-50"
+                        Command="{Binding addArticuloPedidoTempcommand}"/>
                 <ImageButton Source="lapiz.png" 
                              BackgroundColor="#F1BE2E"
                              WidthRequest="50"
@@ -216,10 +218,20 @@
                 <Label Text="Val.Unidad" Grid.Column="3" />
                 <Label Text="Parcial" Grid.Column="4" />
             </Grid>
-            <CollectionView HeightRequest="300" BackgroundColor="#C3C3C3">
+            <CollectionView ItemsSource="{Binding LstPedidoTemporal}" HeightRequest="300" BackgroundColor="#C3C3C3">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        
+                        <StackLayout>
+                            <Frame>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding artinomb}"/>
+                                    <Label Text="--"/>
+                                    <Label Text="{Binding artimarca}"/>
+                                    <Label Text="--"/>
+                                    <Label Text="{Binding articodi2}"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

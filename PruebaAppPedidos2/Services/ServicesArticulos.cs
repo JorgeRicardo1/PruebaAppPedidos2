@@ -19,7 +19,6 @@ namespace PruebaAppPedidos2.Services
             
         }
 
-
         public static async Task obtenerTodoArticulos()
         {
             var conexionBD =  await DataConexion.conectar();
@@ -60,7 +59,6 @@ namespace PruebaAppPedidos2.Services
                 reader.Close();
                 conexionBD.Close();
                 Articulos = listArticulos;
-
             }
             catch (MySqlException ex)
             {
@@ -68,6 +66,57 @@ namespace PruebaAppPedidos2.Services
                 //throw;
             }
         }
+
+        public static async Task<ObservableCollection<ModelArticulo>> obtenerArticulosDeGrupo(string codidoGrupo)
+        {
+            ObservableCollection<ModelArticulo> listArticulos = new ObservableCollection<ModelArticulo> { };
+            try
+            {
+                var conexionDB = await DataConexion.conectar();
+                string query = $"SELECT * FROM xxxxarti WHERE artigrupo = '{codidoGrupo}'";
+                MySqlCommand comando = new MySqlCommand(query);
+                MySqlDataReader reader = null;
+                comando.Connection = conexionDB;
+                conexionDB.Open();
+                reader = comando.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        ModelArticulo articulo = new ModelArticulo();
+                        articulo.articodigo = reader.GetString(0).ToString();
+                        articulo.artigrupo = reader.GetString(1).ToString();
+                        articulo.articodi2 = reader.GetString(2).ToString();
+                        articulo.artinomb = reader.GetString(3).ToString();
+                        articulo.artiunidad = reader.GetString(4).ToString();
+                        articulo.artiaplica = reader.GetString(5).ToString();
+                        articulo.artirefer = reader.GetString(6).ToString();
+                        articulo.articontie = reader.GetInt32(7);
+                        articulo.artipeso = reader.GetInt32(8);
+                        articulo.articolor = reader.GetString(9).ToString();
+                        articulo.artimarca = reader.GetString(10).ToString();
+                        articulo.artiinvima = reader.GetString(11).ToString();
+                        articulo.artinomb2 = reader.GetString(12).ToString();
+                        articulo.artiforma = reader.GetString(13).ToString();
+                        articulo.artiptoi = reader.GetInt32(14);
+                        articulo.artiptor = reader.GetInt32(15);
+                        articulo.artiptop1 = reader.GetInt32(16);
+                        articulo.artiptop2 = reader.GetInt32(17);
+                        await obtenerPrecioInfo(articulo);
+
+                        listArticulos.Add(articulo);
+                    }
+                    reader.Close();
+                    conexionDB.Close();
+                }
+                return listArticulos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static async Task<ObservableCollection<ModelArticulo>> filtrarArticulos(List<string> palabras)
         {
             ObservableCollection<ModelArticulo> articulosFiltrados = new ObservableCollection<ModelArticulo>();
@@ -109,8 +158,6 @@ namespace PruebaAppPedidos2.Services
                                 articulo.artiptor = reader.GetInt32(15);
                                 articulo.artiptop1 = reader.GetInt32(16);
                                 articulo.artiptop2 = reader.GetInt32(17);
-
-
                                 if (!articulosFiltrados.Contains(articulo))
                                 {
                                     articulosFiltrados.Add(articulo);
@@ -120,9 +167,34 @@ namespace PruebaAppPedidos2.Services
                     }
                     conexionDB.Close();
                 }
-                
                 return articulosFiltrados;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
+        public static async Task obtenerPrecioInfo(ModelArticulo articulo)
+        {
+            try
+            {
+                var conexionDB = await DataConexion.conectar();
+                conexionDB.Open();
+                string query = $"SELECT artinomb , artivlr1_c, artiiva FROM xxxxarti JOIN xxxxartv ON xxxxarti.articodigo = xxxxartv.artVcodigo WHERE xxxxarti.articodigo = '{articulo.articodigo}'";
+                MySqlCommand comando = new MySqlCommand(query);
+                MySqlDataReader reader = null;
+                comando.Connection = conexionDB;
+                reader = comando.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        articulo.artivlr1_c = reader.GetInt32(1);
+                        articulo.artiiva = reader.GetInt32(2);
+                    }
+                }
             }
             catch (Exception)
             {

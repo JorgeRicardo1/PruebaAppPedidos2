@@ -7,7 +7,7 @@
                FontSize="Large"
                HorizontalOptions="Center"
                FontAttributes="Bold"/>
-        <CollectionView ItemsSource="{Binding ListArticulos}" EmptyView="No hay articulos disponibles">
+        <CollectionView ItemsSource="{Binding ListArticulos}" x:Name="arti_list" EmptyView="No hay articulos disponibles">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
@@ -17,9 +17,14 @@
                                 <Label Text="--"/>
                                 <Label Text="{Binding artimarca}"/>
                                 <Label Text="--"/>
-                                <Label Text="{Binding articodi2}"/>
+                                <Label Text="{Binding artivlr1_c, StringFormat='${0:0}'}"/>
                             </StackLayout>
                         </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.irAGestionarArticuloscommand,
+                                                                    Source={x:Reference arti_list}}" 
+                                                                    CommandParameter="{Binding .}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

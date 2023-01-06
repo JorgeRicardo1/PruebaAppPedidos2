@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PruebaAppPedidos2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,12 @@ namespace PruebaAppPedidos2.Views
     {
         public Home()
         {
+            ModelArticulo articulo= new ModelArticulo();
+
             InitializeComponent();
+            Children.Add(new InformacionCliente());
+            Children.Add(new GestionarArticulos(articulo));
+            
         }
     }
 }
