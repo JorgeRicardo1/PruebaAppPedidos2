@@ -40,20 +40,36 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _cliente; }
             set { SetValue(ref _cliente, value); }
         }
-
         public Modelxxxxvped DespachoActual
         {
             get { return _despacho; }
             set { SetValue(ref _despacho, value); }
         }
-
+ 
         //PROCESOS
         public async Task obtenerCliente()
         {
-            ClienteActual = await Servicesxxx3ro.extraerCliente(Tronit);
-            PrecioOtorgado = obtenerPrecioCliente(ClienteActual);
-            DespachoActual = await Servicesxxxxvped.extraerInfoDespacho(Tronit);
-            //MessagingCenter.Send<>
+            if (Tronit != null)
+            {
+                ClienteActual = await Servicesxxx3ro.extraerCliente(Tronit);
+                PrecioOtorgado = obtenerPrecioCliente(ClienteActual);
+                DespachoActual = await Servicesxxxxvped.extraerInfoDespacho(Tronit);
+            }
+        }
+
+        public async Task continuarPedido()
+        {
+            try
+            {
+                if (ClienteActual.tronit != "")
+                {
+                    MessagingCenter.Send<Object, string>(this, "ContinuarPedido", Tronit);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                await DisplayAlert("Error", "Seleccione un cliente antes de continuar", "Ok");
+            }
         }
 
         public  string obtenerPrecioCliente(Modelxxx3ro cliente)
@@ -76,5 +92,7 @@ namespace PruebaAppPedidos2.ViewsModels
         }
         //COMANDOS
         public ICommand obtenerClienteCommand => new Command(async () => await obtenerCliente());
+        public ICommand continuarPedidoCommand => new Command(async () => await continuarPedido());
+
     }
 }

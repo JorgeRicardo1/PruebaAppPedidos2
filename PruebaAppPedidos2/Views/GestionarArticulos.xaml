@@ -6,7 +6,10 @@
              Title="Articulos">
     <ScrollView Margin="8">
         <StackLayout>
-            <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{Binding EncabezadoTem.nit}" />
+            </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                 <Label Text="total" FontAttributes="Bold"
                        VerticalTextAlignment="Center"/>

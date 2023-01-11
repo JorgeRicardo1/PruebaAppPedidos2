@@ -7,6 +7,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using PruebaAppPedidos2.Models;
 using System.Collections.ObjectModel;
+using PruebaAppPedidos2.ViewsModels;
+using PruebaAppPedidos2.Services;
 
 namespace PruebaAppPedidos2.ViewsModels
 {
@@ -14,6 +16,7 @@ namespace PruebaAppPedidos2.ViewsModels
     {
         //Variables
         public ModelArticulo _articuloSeleccionado;
+        public Modelxxxxvped _encabezadoTem;
         public ObservableCollection<ModelArticulo> _lstPedidoTemporal;
         public string _cantidadArtiActual;
         public string _valParcialArtiActual;
@@ -30,6 +33,12 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             get { return _articuloSeleccionado; }
             set { SetValue(ref _articuloSeleccionado, value); }
+        }
+
+        public Modelxxxxvped EncabezadoTem
+        {
+            get { return _encabezadoTem; }
+            set { SetValue(ref _encabezadoTem, value); }
         }
 
         public ObservableCollection<ModelArticulo> LstPedidoTemporal
@@ -80,9 +89,15 @@ namespace PruebaAppPedidos2.ViewsModels
             
         }
 
+        public async Task obtenerEncabezadoTemp()
+        {
+            EncabezadoTem = await Servicesxxxxvped.obtenerEncabezado();
+        }
         //Comandos
         public ICommand irAVerGruposcommand => new Command(async () => await irAVerGrupos());
         public ICommand addArticuloPedidoTempcommand => new Command(async () => await addArticuloPedidoTemp());
         public ICommand calcularValorParcialcommand => new Command(async () => await calcularValorParcial());
+
+        
     }
 }

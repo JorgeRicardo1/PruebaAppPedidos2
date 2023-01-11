@@ -12,6 +12,9 @@
                 <Entry Placeholder="NIT"
                        HorizontalOptions="FillAndExpand"
                        Text="{Binding Tronit}"/>
+                <ImageButton Source="lupa.png"
+                             WidthRequest="30"
+                             Command="{Binding obtenerClienteCommand}"/>
                 <Label Text="Tel: "
                        VerticalTextAlignment="Center"
                        FontSize="Body"
@@ -197,7 +200,7 @@
                            VerticalTextAlignment="Center"/>
                 </Frame>
             </Grid>
-            <Button Text="actualizar" Command="{Binding obtenerClienteCommand}"/>
+            <Button Text="Continuar" Command="{Binding continuarPedidoCommand}"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
