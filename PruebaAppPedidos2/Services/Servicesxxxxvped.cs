@@ -53,7 +53,7 @@ namespace PruebaAppPedidos2.Services
                 string query = $"INSERT INTO `a000`.`xxxxvpex` " +
                     $"(`nit`, `numero`, `fecha`, `dias`, `obra`, `transporte`, `fdigitar`, `hdigita`, `datos1`, `vendedor`, `valor`, `abono`, `saldo`, `terminal`, `vriva`, `desctos`, `neto`, `costo`, `titular`, `titudire`, `titutelf`, `tituciud`, `ped_fraxx`, `ped_envio`, `ped_estado`, `sucursal`, `operario`, `grupo`, `consumo`) " +
                     $"VALUES " +
-                    $"('{codigoCliente}', 'Temp', '{date}', '1', '0000', 'cpp66f', '{date}', '{time}', 'Prueba de agregar4', 'C00', '100000', '0', '125000', '000', '0', '0', '0', '0', 'Ventas', 'calle 2', '3333333', 'Pereura,Risaralda', '0', '1', '0', '000', 'a002', '0', '0')";
+                    $"('{codigoCliente}', 'Temp', '{date}', '1', '0000', 'cpp66f', '{date}', '{time}', 'Prueba de agregar5', 'C00', '100000', '0', '125000', '000', '0', '0', '0', '0', 'Ventas', 'calle 2', '3333333', 'Pereura,Risaralda', '0', '1', '0', '000', 'a002', '0', '0')";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;

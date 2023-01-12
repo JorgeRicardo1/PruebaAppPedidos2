@@ -1,4 +1,5 @@
-﻿using PruebaAppPedidos2.ViewsModels;
+﻿using PruebaAppPedidos2.Services;
+using PruebaAppPedidos2.ViewsModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,6 @@ namespace PruebaAppPedidos2.Views
 		{
 			InitializeComponent ();
             BindingContext = new ViewModelCliente(Navigation);
-            }
-	}
+        }
+    }
 }

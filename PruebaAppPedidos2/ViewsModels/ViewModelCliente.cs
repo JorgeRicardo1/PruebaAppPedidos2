@@ -64,6 +64,8 @@ namespace PruebaAppPedidos2.ViewsModels
                 if (ClienteActual.tronit != "")
                 {
                     MessagingCenter.Send<Object, string>(this, "ContinuarPedido", Tronit);
+                    App.encabezadoTemp = await Servicesxxxxvped.obtenerEncabezado();
+                    MessagingCenter.Send<Object>(this, "ContinuarPedido");
                 }
             }
             catch (NullReferenceException)

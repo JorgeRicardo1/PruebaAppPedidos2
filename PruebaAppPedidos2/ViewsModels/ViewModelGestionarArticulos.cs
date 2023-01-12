@@ -21,12 +21,19 @@ namespace PruebaAppPedidos2.ViewsModels
         public string _cantidadArtiActual;
         public string _valParcialArtiActual;
 
+        
 
         //Constructor
         public ViewModelGestionarArticulos(INavigation navigation, ModelArticulo articuloSeleccionado)
         {
             Navigation = navigation;
             _articuloSeleccionado = articuloSeleccionado;
+            EncabezadoTem = App.encabezadoTemp;
+
+            MessagingCenter.Subscribe<Object>(this, "ContinuarPedido", (sender) =>
+            {
+                EncabezadoTem = App.encabezadoTemp;
+            });
         }
         //Objetos
         public ModelArticulo ArticuloSeleccionado
@@ -89,10 +96,6 @@ namespace PruebaAppPedidos2.ViewsModels
             
         }
 
-        public async Task obtenerEncabezadoTemp()
-        {
-            EncabezadoTem = await Servicesxxxxvped.obtenerEncabezado();
-        }
         //Comandos
         public ICommand irAVerGruposcommand => new Command(async () => await irAVerGrupos());
         public ICommand addArticuloPedidoTempcommand => new Command(async () => await addArticuloPedidoTemp());

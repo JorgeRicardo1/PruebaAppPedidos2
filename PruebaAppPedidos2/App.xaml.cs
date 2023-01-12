@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PruebaAppPedidos2.Views;
+using PruebaAppPedidos2.Models;
 
 namespace PruebaAppPedidos2
 {
@@ -13,7 +14,7 @@ namespace PruebaAppPedidos2
             MainPage = new NavigationPage(new Home());
         }
 
-        protected override void OnStart()
+        protected override void OnStart()  
         {
         }
 
@@ -24,5 +25,8 @@ namespace PruebaAppPedidos2
         protected override void OnResume()
         {
         }
+
+        //Variable global para almacenar el encabezado del pedido
+        public static Modelxxxxvped encabezadoTemp { get; set; }
     }
 }

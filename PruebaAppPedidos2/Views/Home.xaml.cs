@@ -25,7 +25,11 @@ namespace PruebaAppPedidos2.Views
             //MENSAJE SUSCRIPTOR PARA CREAR EL ENCABEZADO TEMPORAL
             MessagingCenter.Subscribe<Object, string>(this, "ContinuarPedido", (sender, tronit) =>
             {
-                Task.Run(async () => await Servicesxxxxvped.crearEncabezadoTemp(tronit));
+                Task.Run(async () =>
+                {
+                    await Servicesxxxxvped.crearEncabezadoTemp(tronit);
+                    
+                });
                 CurrentPage = Children[1];
             });
         }

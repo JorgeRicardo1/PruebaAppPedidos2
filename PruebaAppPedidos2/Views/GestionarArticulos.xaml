@@ -8,7 +8,8 @@
         <StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
-                <Label Text="{Binding EncabezadoTem.nit}" />
+                <Label Text="{Binding EncabezadoTem.nit}" FontSize="Large"/>
+                <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Large"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                 <Label Text="total" FontAttributes="Bold"

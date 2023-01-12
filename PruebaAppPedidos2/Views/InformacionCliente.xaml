@@ -200,7 +200,7 @@
                            VerticalTextAlignment="Center"/>
                 </Frame>
             </Grid>
-            <Button Text="Continuar" Command="{Binding continuarPedidoCommand}"/>
+            <Button x:Name="Btn_continuarPedido" Text="Continuar" Command="{Binding continuarPedidoCommand}"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
