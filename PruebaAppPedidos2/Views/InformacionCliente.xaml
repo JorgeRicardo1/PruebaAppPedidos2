@@ -82,7 +82,6 @@
                 <Grid.RowDefinitions >
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -123,11 +122,11 @@
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
-                <Label Text="Cupo:" Grid.Row="2" Grid.Column="2"
+                <Label Text="Cupo:" Grid.Row="1" Grid.Column="0"
                        FontSize="Body"
                        VerticalTextAlignment="Center"                       
                        HorizontalOptions="Start"/>
-                <Frame Grid.Row="2" Grid.Column="3" 
+                <Frame Grid.Row="1" Grid.Column="1" 
                        Padding="10"
                        CornerRadius="20">
                     <Label Text="{Binding ClienteActual.trocccupo}"

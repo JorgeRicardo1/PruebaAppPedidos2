@@ -11,6 +11,7 @@
                 <Label Text="{Binding EncabezadoTem.nit}" FontSize="Large"/>
                 <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Large"/>
             </StackLayout>
+            <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                 <Label Text="total" FontAttributes="Bold"
                        VerticalTextAlignment="Center"/>
@@ -37,29 +38,28 @@
                            VerticalTextAlignment="Center"/>
                 </Frame>
             </StackLayout>
-            <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*">
+            <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
+            <Grid RowDefinitions="auto,45,*,45" ColumnDefinitions="*,*,*,*">
                 <!-- fila 0-->
-                <Label Text="Cod Articulo"
+                <Label Text="Codigo Articulo"
                        Grid.Row="0"
                        Grid.Column="0"
+                       Grid.ColumnSpan="2"
                        VerticalTextAlignment="Center"
-                       HorizontalTextAlignment="Center"/>
-                <Label Text="Uni&#10;Medida"
-                       Grid.Row="0"
-                       Grid.Column="1"
                        HorizontalTextAlignment="Center"/>
                 <Label Text="Cantidad"
                        Grid.Row="0"
                        Grid.Column="2"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center"/>
-                <Label Text="Valor&#10;Unidad"
+                <Label Text="Valor Unidad"
                        Grid.Row="0"
                        Grid.Column="3"
                        HorizontalTextAlignment="Center"/>
                 <!-- fila 1-->
                 <StackLayout Grid.Row="1"
                              Grid.Column="0"
+                             Grid.ColumnSpan="2"
                              Orientation="Horizontal">
                     <Frame CornerRadius="5"
                            Padding="2"
@@ -72,28 +72,28 @@
                                  WidthRequest="25"
                                  Command="{Binding irAVerGruposcommand}"/>
                 </StackLayout>
-                <Frame Grid.Row="1"
-                       Grid.Column="1"
-                       Padding="2"
-                       CornerRadius="5">
-                    <Label Text="{Binding ArticuloSeleccionado.artiunidad}"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Center"/>
-                </Frame>
-                <Frame Grid.Row="1"
-                       Grid.Column="2"
-                       Padding="2"
-                       CornerRadius="5">
-                    <Entry Text="{Binding CantidadArtiActual}"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Center">
-                        <Entry.Behaviors>
-                            <xct:EventToCommandBehavior
-                                EventName="TextChanged"
-                                Command="{Binding calcularValorParcialcommand}"/>
-                        </Entry.Behaviors>
-                    </Entry>
-                </Frame>
+                <StackLayout Grid.Row="1"
+                             Grid.Column="2"
+                             Padding="2"
+                             Orientation="Horizontal">
+                    <Frame Padding="0"
+                           HorizontalOptions="FillAndExpand">
+                        <Entry Text="{Binding CantidadArtiActual}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center">
+                            <Entry.Behaviors>
+                                <xct:EventToCommandBehavior
+                                    EventName="TextChanged"
+                                    Command="{Binding calcularValorParcialcommand}"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Frame>
+                    <Frame>
+                        <Label Text="{Binding ArticuloSeleccionado.artiunidad}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"/>
+                    </Frame>
+                </StackLayout>
                 <Frame Grid.Row="1"
                        Grid.Column="3"
                        Padding="2"
@@ -118,7 +118,7 @@
                        Grid.ColumnSpan="3"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="{Binding ArticuloSeleccionado.artinomb}"
+                    <Entry Text="Detalle  del movimiento"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"/>
                 </Frame>
@@ -137,58 +137,51 @@
                 <Label Text="Descripcion Articulo"
                        Grid.Row="0"
                        Grid.Column="0"
-                       Grid.ColumnSpan="2"/>
-                <Label Text="Iva"
-                       Grid.Row="0"
-                       Grid.Column="2"/>
-                <Label Text="IC"
+                       Grid.ColumnSpan="3"/>
+                <Label Text="Marca"
                        Grid.Row="0"
                        Grid.Column="3"/>
                 <!-- fila 1-->
                 <Frame Grid.Row="1"
                        Grid.Column="0"
-                       Grid.ColumnSpan="2"
+                       Grid.ColumnSpan="3"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="Descripcion movimiento"/>
-                </Frame>
-                <Frame Grid.Row="1"
-                       Grid.Column="2"
-                       Padding="2"
-                       CornerRadius="5">
-                    <Label Text="{Binding ArticuloSeleccionado.artiiva, StringFormat='{0:0}%'}"/>
+                    <Label Text="{Binding ArticuloSeleccionado.artinomb}"/>
                 </Frame>
                 <Frame Grid.Row="1"
                        Grid.Column="3"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="iC?"/>
+                    <Label Text="{Binding ArticuloSeleccionado.artimarca}"/>
                 </Frame>
                 <!-- fila 2 -->
-                <Label Text="Marca"
+                <Label Text="Peso"
                        Grid.Row="2"
                        Grid.Column="0"/>
                 <Label Text="Codigo Alter"
                        Grid.Row="2"
-                       Grid.Column="1"/>
-                <Label Text="Existencia"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"/>
+                <Label Text="Stock"
                        Grid.Row="2"
-                       Grid.Column="2"/>
+                       Grid.Column="3"/>
                 <!-- fila 3 -->
                 <Frame Grid.Row="3"
                        Grid.Column="0"
                        Padding="2"
                        CornerRadius="5">
-                    <Label Text="{Binding ArticuloSeleccionado.artimarca}"/>
+                    <Label Text="{Binding ArticuloSeleccionado.artipeso}"/>
                 </Frame>
                 <Frame Grid.Row="3"
                        Grid.Column="1"
+                       Grid.ColumnSpan="2"
                        Padding="2"
-                       CornerRadius="5">
+                       CornerRadius="5">  
                     <Label Text="{Binding ArticuloSeleccionado.articodi2}"/>
                 </Frame>
                 <Frame Grid.Row="3"
-                       Grid.Column="2"
+                       Grid.Column="3"
                        Padding="2"
                        CornerRadius="5">
                     <Label Text="existenciaArti"/>
