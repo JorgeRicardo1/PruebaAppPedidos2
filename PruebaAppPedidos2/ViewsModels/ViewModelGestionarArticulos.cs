@@ -7,7 +7,6 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using PruebaAppPedidos2.Models;
 using System.Collections.ObjectModel;
-using PruebaAppPedidos2.ViewsModels;
 using PruebaAppPedidos2.Services;
 
 namespace PruebaAppPedidos2.ViewsModels
@@ -17,11 +16,13 @@ namespace PruebaAppPedidos2.ViewsModels
         //Variables
         public ModelArticulo _articuloSeleccionado;
         public Modelxxxxvped _encabezadoTem;
-        public ObservableCollection<ModelArticulo> _lstPedidoTemporal;
+        public ObservableCollection<Modelxxxxvpax> _lstPedidoTemporal;
         public string _cantidadArtiActual;
         public string _valParcialArtiActual;
-
+        public bool _isRefreshing;
         
+
+
 
         //Constructor
         public ViewModelGestionarArticulos(INavigation navigation, ModelArticulo articuloSeleccionado)
@@ -48,7 +49,7 @@ namespace PruebaAppPedidos2.ViewsModels
             set { SetValue(ref _encabezadoTem, value); }
         }
 
-        public ObservableCollection<ModelArticulo> LstPedidoTemporal
+        public ObservableCollection<Modelxxxxvpax> LstPedidoTemporal
         {
             get { return _lstPedidoTemporal; }
             set { SetValue(ref _lstPedidoTemporal, value); }
@@ -62,8 +63,14 @@ namespace PruebaAppPedidos2.ViewsModels
 
         public string ValParcialArtiActual
         {
-            get { return _cantidadArtiActual; }
-            set { SetValue(ref _cantidadArtiActual, value); }
+            get { return _valParcialArtiActual; }
+            set { SetValue(ref _valParcialArtiActual, value); }
+        }
+
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set { SetValue(ref _isRefreshing, value); }
         }
 
         //Procesos
@@ -77,12 +84,28 @@ namespace PruebaAppPedidos2.ViewsModels
             ObservableCollection<ModelArticulo> lstAux = new ObservableCollection<ModelArticulo>();
             if (ArticuloSeleccionado.articodigo != null)
             {
-                lstAux.Add(ArticuloSeleccionado);
-                LstPedidoTemporal = lstAux;
+                await Servicesxxxxvpax.addMoviminetoPedidoTemp(ArticuloSeleccionado, EncabezadoTem, Convert.ToInt32(CantidadArtiActual), Convert.ToInt32(ValParcialArtiActual));
+                
             }
             await Navigation.PopToRootAsync();
         }
 
+        public async Task getMovimientos()
+        {
+            //if (IsRefreshing) { return; }
+            try
+            {
+                _isRefreshing = true;
+                LstPedidoTemporal = await Servicesxxxxvpax.getMovimientosPedidoTemp(EncabezadoTem.id_vtaped);
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { IsRefreshing = false; }
+        }
         public async Task calcularValorParcial()
         {
             if(ArticuloSeleccionado.articodigo != null && CantidadArtiActual!="")
@@ -100,7 +123,8 @@ namespace PruebaAppPedidos2.ViewsModels
         public ICommand irAVerGruposcommand => new Command(async () => await irAVerGrupos());
         public ICommand addArticuloPedidoTempcommand => new Command(async () => await addArticuloPedidoTemp());
         public ICommand calcularValorParcialcommand => new Command(async () => await calcularValorParcial());
+        public ICommand getMovimientoscommand => new Command(async () => await getMovimientos());
 
-        
+
     }
 }

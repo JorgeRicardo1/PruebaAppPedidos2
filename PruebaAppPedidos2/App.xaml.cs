@@ -8,6 +8,9 @@ namespace PruebaAppPedidos2
 {
     public partial class App : Application
     {
+        //Variable global para almacenar el encabezado del pedido
+        public static Modelxxxxvped encabezadoTemp { get; set; }
+
         public App()
         {
             InitializeComponent();
@@ -26,7 +29,5 @@ namespace PruebaAppPedidos2
         {
         }
 
-        //Variable global para almacenar el encabezado del pedido
-        public static Modelxxxxvped encabezadoTemp { get; set; }
     }
 }

@@ -42,7 +42,18 @@ namespace PruebaAppPedidos2.ViewsModels
 
         public async Task obtenerArticulos()
         {
-            ListArticulos = await ServicesArticulos.obtenerArticulosDeGrupo(GrupoAMostrar.codigo);
+            //ListArticulos = await ServicesArticulos.obtenerArticulosDeGrupo(GrupoAMostrar.codigo);
+            await ServicesArticulos.obtenerTodoArticulos();
+            ObservableCollection<ModelArticulo> artiDeGrupo = new ObservableCollection<ModelArticulo>();
+            var articulosObtenido = ServicesArticulos.Articulos;
+            foreach (var item in articulosObtenido)
+            {
+                if (item.artigrupo == GrupoAMostrar.codigo)
+                {
+                    artiDeGrupo.Add(item);
+                }
+            }
+            ListArticulos = artiDeGrupo;
         }
 
         public async Task irAGestionarArticulos(ModelArticulo parametros)

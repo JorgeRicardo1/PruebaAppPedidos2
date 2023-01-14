@@ -28,7 +28,7 @@ namespace PruebaAppPedidos2.Views
                 Task.Run(async () =>
                 {
                     await Servicesxxxxvped.crearEncabezadoTemp(tronit);
-                    
+                   
                 });
                 CurrentPage = Children[1];
             });
