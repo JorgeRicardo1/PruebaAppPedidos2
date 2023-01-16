@@ -72,8 +72,14 @@ namespace PruebaAppPedidos2.ViewsModels
             
         }
 
+        public async Task irAGestionarArticulos(ModelArticulo parametros)
+        {
+            await Navigation.PushAsync(new GestionarArticulos(parametros));
+        }
+
         //COMANDOS
         public ICommand filtrarCommand => new Command(async () => await filtrar());
         public ICommand limpiarBusquedaCommand => new Command(limpiarBusqueda);
+        public ICommand irAGestionarArticuloscommand => new Command<ModelArticulo>(async (p) => await irAGestionarArticulos(p));
     }
 }

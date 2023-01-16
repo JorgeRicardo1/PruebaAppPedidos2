@@ -12,7 +12,7 @@ namespace PruebaAppPedidos2.Services
 {
     public class Servicesxxxxvpax
     {
-        public static async Task addMoviminetoPedidoTemp(ModelArticulo artiSeleccioando, Modelxxxxvped encabezadoTemp, int cantidad, int neto)
+        public static async Task addMoviminetoPedidoTemp(ModelArticulo artiSeleccioando, Modelxxxxvped encabezadoTemp, int cantidad, int neto, string detalles)
         {
             var conexionBD = await DataConexion.conectar();
             try
@@ -22,7 +22,7 @@ namespace PruebaAppPedidos2.Services
                 string query = $"INSERT INTO `a000`.`xxxxvpax` " +
                     $"(`numero`, `fecha`, `tpcmbte`, `codigo`, `nit`, `punto`, `puntox`, `obra`, `detalle`, `medida`, `operario`, `hdigita`, `fdigitar`, `entregan`, `cantinic`, `cantidad`, `valor`, `costo`, `neto`, `dsct4`, `dsct2`, `desctos`, `iva`, `vriva`, `vrventa`, `consumo`, `compuesto`, `peso`, `anulado`, `id_vtaped`) " +
                     $"VALUES " +
-                    $"('TEMP', '{fecha}', 'V', 'SD-PRUEBA', '{encabezadoTemp.nit}', '000', '000', '0000', '{artiSeleccioando.artinomb}', '{artiSeleccioando.artiunidad}', 'A001', '{encabezadoTemp.hdigita}', '{fecha}', '0.00', '{cantidad}', '0', '{artiSeleccioando.artivlr1_c}', '0.0', '{neto}', '0.00', '0.00', '0.00', '{artiSeleccioando.artiiva}', '0', '20000', '0', '0', '{artiSeleccioando.artipeso}', '0', '{encabezadoTemp.id_vtaped}');";
+                    $"('TEMP', '{fecha}', 'V', 'SD-PRUEBA', '{encabezadoTemp.nit}', '000', '000', '0000', '{artiSeleccioando.artinomb} {detalles}', '{artiSeleccioando.artiunidad}', 'A001', '{encabezadoTemp.hdigita}', '{fecha}', '0.00', '{cantidad}', '0', '{artiSeleccioando.artivlr1_c}', '0.0', '{neto}', '0.00', '0.00', '0.00', '{artiSeleccioando.artiiva}', '0', '20000', '0', '0', '{artiSeleccioando.artipeso}', '0', '{encabezadoTemp.id_vtaped}');";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;

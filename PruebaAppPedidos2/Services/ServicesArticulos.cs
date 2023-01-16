@@ -26,7 +26,7 @@ namespace PruebaAppPedidos2.Services
             {
                 ObservableCollection<ModelArticulo> listArticulos = new ObservableCollection<ModelArticulo> { };
                 //string query = "SELECT * FROM xxxxarti";
-                string query = "SELECT articodigo,artigrupo,articodi2,artinomb,artiunidad,artiaplica,artirefer,articontie, artipeso, articolor,artimarca,artiinvima,artinomb2,artiforma, artiptoi,artiptor,artiptop1,artiptop2,artivlr1_c, artiiva " +
+                string query = "SELECT articodigo,artigrupo,articodi2,artinomb,artiunidad,artiaplica,artirefer,articontie, artipeso, articolor,artimarca,artiinvima,artinomb2,artiforma, artiptoi,artiptor,artiptop1,artiptop2,artivlr1_c, artiiva, articant " +
                     "FROM xxxxarti,xxxxartv " +
                     "where xxxxarti.articodigo=xxxxartv.artvcodigo";
                 MySqlCommand comando = new MySqlCommand(query);
@@ -58,6 +58,7 @@ namespace PruebaAppPedidos2.Services
                     articulo.artiptop2 = reader.GetInt32("artiptop2");
                     articulo.artivlr1_c = reader.GetInt32("artivlr1_c");
                     articulo.artiiva = reader.GetInt32("artiiva");
+                    articulo.articant = reader.GetInt32("articant");
 
                     listArticulos.Add(articulo);
                 }

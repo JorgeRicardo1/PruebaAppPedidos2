@@ -20,6 +20,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public string _cantidadArtiActual;
         public string _valParcialArtiActual;
         public bool _isRefreshing;
+        public string _detallesArti;
         
 
 
@@ -35,6 +36,12 @@ namespace PruebaAppPedidos2.ViewsModels
             {
                 EncabezadoTem = App.encabezadoTemp;
             });
+
+            if(ArticuloSeleccionado.articodigo != null)
+            {
+                _cantidadArtiActual = "1";
+                _ = calcularValorParcial();
+            }
         }
         //Objetos
         public ModelArticulo ArticuloSeleccionado
@@ -72,7 +79,11 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _isRefreshing; }
             set { SetValue(ref _isRefreshing, value); }
         }
-
+        public string DetallesArti
+        {
+            get { return _detallesArti; }
+            set { SetValue(ref _detallesArti, value); }
+        }
         //Procesos
         public async Task irAVerGrupos()
         {
@@ -84,7 +95,7 @@ namespace PruebaAppPedidos2.ViewsModels
             ObservableCollection<ModelArticulo> lstAux = new ObservableCollection<ModelArticulo>();
             if (ArticuloSeleccionado.articodigo != null)
             {
-                await Servicesxxxxvpax.addMoviminetoPedidoTemp(ArticuloSeleccionado, EncabezadoTem, Convert.ToInt32(CantidadArtiActual), Convert.ToInt32(ValParcialArtiActual));
+                await Servicesxxxxvpax.addMoviminetoPedidoTemp(ArticuloSeleccionado, EncabezadoTem, Convert.ToInt32(CantidadArtiActual), Convert.ToInt32(ValParcialArtiActual), DetallesArti);
                 
             }
             await Navigation.PopToRootAsync();

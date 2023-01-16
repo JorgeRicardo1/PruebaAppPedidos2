@@ -46,7 +46,7 @@
                 </StackLayout>
             </Frame>
             <Button Text="Realizar Busqueda" Command="{Binding filtrarCommand}" Margin="10"/>
-            <CollectionView ItemsSource="{Binding ListArticulos}">
+            <CollectionView ItemsSource="{Binding ListArticulos}" x:Name="arti_list">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -57,6 +57,11 @@
                                     <Label Text="{Binding artinomb}"/>
                                 </StackLayout>
                             </Frame>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.irAGestionarArticuloscommand,
+                                                                    Source={x:Reference arti_list}}" 
+                                                                    CommandParameter="{Binding .}"/>
+                            </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

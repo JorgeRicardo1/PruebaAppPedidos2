@@ -22,7 +22,7 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             Navigation = navigation;
             _grupoAMostrar = grupoSeleccionado;    
-            obtenerArticulos();
+            _ = obtenerArticulos();
         }
 
         //OBJETOS
