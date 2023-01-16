@@ -88,7 +88,8 @@
                             </Entry.Behaviors>
                         </Entry>
                     </Frame>
-                    <Frame>
+                    <Frame Padding="0"
+                           HorizontalOptions="EndAndExpand">
                         <Label Text="{Binding ArticuloSeleccionado.artiunidad}"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"/>

@@ -14,8 +14,9 @@ namespace PruebaAppPedidos2.ViewsModels
         //VARIABLES
         public string _tronit;
         public string _precioOtorgado;
+        public string _nombreCompleto;
         public Modelxxx3ro _cliente;
-        public Modelxxxxvped _despacho;
+        public ModelDespacho _despachoActual;
 
         //CONSTRUCTOR
         public ViewModelCliente(INavigation navigation)
@@ -34,16 +35,20 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _precioOtorgado; }
             set { SetValue(ref _precioOtorgado, value); }
         }
-
+        public string NombreCompleto
+        {
+            get { return _nombreCompleto;}
+            set { SetValue(ref _nombreCompleto, value); }
+        }
         public Modelxxx3ro ClienteActual
         {
             get { return _cliente; }
             set { SetValue(ref _cliente, value); }
         }
-        public Modelxxxxvped DespachoActual
+        public ModelDespacho DespachoActual
         {
-            get { return _despacho; }
-            set { SetValue(ref _despacho, value); }
+            get { return _despachoActual; }
+            set { SetValue(ref _despachoActual, value); }
         }
  
         //PROCESOS
@@ -52,8 +57,10 @@ namespace PruebaAppPedidos2.ViewsModels
             if (Tronit != null)
             {
                 ClienteActual = await Servicesxxx3ro.extraerCliente(Tronit);
+                NombreCompleto = $"{ClienteActual.tronombre} {ClienteActual.tronomb_2} {ClienteActual.troapel_1} {ClienteActual.troapel_2}";
                 PrecioOtorgado = obtenerPrecioCliente(ClienteActual);
-                DespachoActual = await Servicesxxxxvped.extraerInfoDespacho(Tronit);
+                DespachoActual = new ModelDespacho { };
+                //DespachoActual = await Servicesxxxxvped.extraerInfoDespacho(Tronit);
             }
         }
 
@@ -61,11 +68,19 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             try
             {
-                if (ClienteActual.tronit != "")
+                if (DespachoActual.titular == null || DespachoActual.titudire == null || DespachoActual.tituciud == null || DespachoActual.titutelf == null)
                 {
-                    MessagingCenter.Send<Object, string>(this, "ContinuarPedido", Tronit);
-                    App.encabezadoTemp = await Servicesxxxxvped.obtenerEncabezado();
-                    MessagingCenter.Send<Object>(this, "ContinuarPedido");
+                    await DisplayAlert("Error", "Llene la informacion del despacho", "Ok");
+                }
+                else
+                {
+                    if (ClienteActual.tronit != "")
+                    {
+                        await Servicesxxxxvped.crearEncabezadoTemp(Tronit, DespachoActual);
+                        App.encabezadoTemp = await Servicesxxxxvped.obtenerEncabezado();
+                        MessagingCenter.Send<Object>(this, "ContinuarPedido");
+                        MessagingCenter.Send<Object>(this, "ContinuarPedido2");
+                    }
                 }
             }
             catch (NullReferenceException)

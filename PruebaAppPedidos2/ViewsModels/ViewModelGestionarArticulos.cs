@@ -31,7 +31,7 @@ namespace PruebaAppPedidos2.ViewsModels
             _articuloSeleccionado = articuloSeleccionado;
             EncabezadoTem = App.encabezadoTemp;
 
-            MessagingCenter.Subscribe<Object>(this, "ContinuarPedido", (sender) =>
+            MessagingCenter.Subscribe<Object>(this, "ContinuarPedido2", (sender) =>
             {
                 EncabezadoTem = App.encabezadoTemp;
             });

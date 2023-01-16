@@ -45,5 +45,8 @@ namespace PruebaAppPedidos2.Models
         public int trostatus { get; set; }
         public int troprecio { get; set; }
         public  string trocelular { get; set; }
+        public string tronomb_2 { get; set;}
+        public string troapel_1 { get; set; }
+        public string troapel_2 { get; set; }
     }
 }
