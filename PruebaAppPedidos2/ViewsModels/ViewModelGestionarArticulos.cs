@@ -21,9 +21,8 @@ namespace PruebaAppPedidos2.ViewsModels
         public string _valParcialArtiActual;
         public bool _isRefreshing;
         public string _detallesArti;
-        
-
-
+        public bool _isVisible;
+        public Modelxxxxvpax _movimientoSeleccionado; 
 
         //Constructor
         public ViewModelGestionarArticulos(INavigation navigation, ModelArticulo articuloSeleccionado)
@@ -31,6 +30,7 @@ namespace PruebaAppPedidos2.ViewsModels
             Navigation = navigation;
             _articuloSeleccionado = articuloSeleccionado;
             EncabezadoTem = App.encabezadoTemp;
+            _=getMovimientos();
 
             MessagingCenter.Subscribe<Object>(this, "ContinuarPedido2", (sender) =>
             {
@@ -49,31 +49,26 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _articuloSeleccionado; }
             set { SetValue(ref _articuloSeleccionado, value); }
         }
-
         public Modelxxxxvped EncabezadoTem
         {
             get { return _encabezadoTem; }
             set { SetValue(ref _encabezadoTem, value); }
         }
-
         public ObservableCollection<Modelxxxxvpax> LstPedidoTemporal
         {
             get { return _lstPedidoTemporal; }
             set { SetValue(ref _lstPedidoTemporal, value); }
         }
-
         public string CantidadArtiActual
         {
             get { return _cantidadArtiActual; }
             set { SetValue(ref _cantidadArtiActual, value); }
         }
-
         public string ValParcialArtiActual
         {
             get { return _valParcialArtiActual; }
             set { SetValue(ref _valParcialArtiActual, value); }
         }
-
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -83,6 +78,16 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             get { return _detallesArti; }
             set { SetValue(ref _detallesArti, value); }
+        }
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set { SetValue(ref _isVisible, value); }
+        }
+        public Modelxxxxvpax MovimientoSeleccionado
+        {
+            get { return _movimientoSeleccionado; }
+            set { SetValue(ref _movimientoSeleccionado, value); }
         }
         //Procesos
         public async Task irAVerGrupos()
@@ -106,9 +111,9 @@ namespace PruebaAppPedidos2.ViewsModels
             //if (IsRefreshing) { return; }
             try
             {
+                IsVisible = false;
                 _isRefreshing = true;
                 LstPedidoTemporal = await Servicesxxxxvpax.getMovimientosPedidoTemp(EncabezadoTem.id_vtaped);
-                
             }
             catch (Exception)
             {
@@ -127,7 +132,36 @@ namespace PruebaAppPedidos2.ViewsModels
             {
                 ValParcialArtiActual = "0";
             }
-            
+        }
+        public void activarBotones()
+        {
+            try
+            {
+                
+                IsVisible= true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            //finally { IsVisible = false; }
+        }
+        public async Task borrarMovimiento()
+        {
+            Modelxxxxvpax movimientoAborrar = MovimientoSeleccionado;
+            await Servicesxxxxvpax.borrarMovimiento(movimientoAborrar.Id_vpar);
+            await DisplayAlert("Aviso", $"Se borro el articulo {movimientoAborrar.detalle} con exito", "ok");
+            await getMovimientos();   
+        }
+
+        public async Task editarMovimiento()
+        {
+            Modelxxxxvpax movimientoAeditar = MovimientoSeleccionado;
+            await Servicesxxxxvpax.borrarMovimiento(movimientoAeditar.Id_vpar);
+            await DisplayAlert("Aviso", $"Se editara el producto {movimientoAeditar.detalle}, una vez finalizado darle agregar", "ok");
+            //await Navigation.PushAsync(new GestionarArticulos(movimientoAeditar));
+
         }
 
         //Comandos
@@ -135,6 +169,8 @@ namespace PruebaAppPedidos2.ViewsModels
         public ICommand addArticuloPedidoTempcommand => new Command(async () => await addArticuloPedidoTemp());
         public ICommand calcularValorParcialcommand => new Command(async () => await calcularValorParcial());
         public ICommand getMovimientoscommand => new Command(async () => await getMovimientos());
+        public ICommand activarBotonescommand => new Command(() =>  activarBotones());
+        public ICommand borrarMovimientocommand => new Command(async () => await borrarMovimiento());
 
 
     }

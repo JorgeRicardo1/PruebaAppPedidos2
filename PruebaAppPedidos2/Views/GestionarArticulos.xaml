@@ -4,6 +4,23 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="PruebaAppPedidos2.Views.GestionarArticulos"
              Title="Articulos">
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                            Value="#b4e2d2" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
     <ScrollView Margin="8">
         <StackLayout>
             <StackLayout Orientation="Horizontal">
@@ -204,12 +221,15 @@
                              BackgroundColor="#F1BE2E"
                              WidthRequest="50"
                              CornerRadius="15"
-                             Padding="5"/>
+                             Padding="5"
+                             IsVisible="{Binding IsVisible}"/>
                 <ImageButton Source="eliminar.png" 
                              BackgroundColor="#B00020"
                              WidthRequest="50"
                              CornerRadius="15"
-                             Padding="10,5,5,5"/>
+                             Padding="10,5,5,5"
+                             IsVisible="{Binding IsVisible}"
+                             Command="{Binding borrarMovimientocommand}"/>
                 <Button Text="Finalizar"
                         BackgroundColor="#007491"
                         TextColor="White"
@@ -225,19 +245,18 @@
             </Grid>
             <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding getMovimientoscommand}">
                 <CollectionView ItemsSource="{Binding LstPedidoTemporal}" HeightRequest="300" BackgroundColor="#C3C3C3"
-                            x:Name="list_pedido_temp">
+                                x:Name="list_pedido_temp" SelectionMode="Single" SelectionChangedCommand="{Binding activarBotonescommand}"
+                                SelectedItem="{Binding MovimientoSeleccionado}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout>
-                                <Frame>
-                                    <Grid ColumnDefinitions="*,*,*,*,*" Background="white" Margin="0,0,0,-8">
-                                        <Label Text="{Binding detalle}" Grid.Column="0" Grid.ColumnSpan="2"/>
-                                        <Label Text="{Binding cantinic}" Grid.Column="2" />
-                                        <Label Text="{Binding valor}" Grid.Column="3" />
-                                        <Label Text="{Binding neto}" Grid.Column="4" />
-                                    </Grid>
-                                </Frame>
-                            </StackLayout>
+                            <Frame>
+                                <Grid ColumnDefinitions="*,*,*,*,*"  Margin="0,0,0,-8">
+                                    <Label Text="{Binding detalle}" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <Label Text="{Binding cantinic}" Grid.Column="2" />
+                                    <Label Text="{Binding valor}" Grid.Column="3" />
+                                    <Label Text="{Binding neto}" Grid.Column="4" />
+                                </Grid>
+                            </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
