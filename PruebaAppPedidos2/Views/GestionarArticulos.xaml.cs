@@ -21,6 +21,12 @@ namespace PruebaAppPedidos2.Views
             BindingContext = new ViewModelGestionarArticulos(Navigation, parametros);
 		}
 
+        public GestionarArticulos(Modelxxxxvpax movimiento)
+        {
+            InitializeComponent();
+            BindingContext = new ViewModelGestionarArticulos(Navigation,movimiento);
+        }
+
         protected override void OnAppearing()
         {
 			

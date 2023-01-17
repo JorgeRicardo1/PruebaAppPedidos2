@@ -52,9 +52,11 @@
                         <StackLayout>
                             <Frame>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding artigrupo}"/>
-                                    <Label Text="--" />
                                     <Label Text="{Binding artinomb}"/>
+                                    <Label Text="--"/>
+                                    <Label Text="{Binding artimarca}"/>
+                                    <Label Text="--"/>
+                                    <Label Text="{Binding artivlr1_c, StringFormat='${0:0}'}"/>
                                 </StackLayout>
                             </Frame>
                             <StackLayout.GestureRecognizers>

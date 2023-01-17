@@ -135,7 +135,10 @@ namespace PruebaAppPedidos2.Services
                     if(palabra != "" && palabra != null)
                     {
                         conexionDB.Open();
-                        string query = $"SELECT * FROM xxxxarti WHERE artinomb like '%{palabra}%' OR  artimarca like '%{palabra}%' OR articodi2 like '{palabra}%'";
+                        string query = $"SELECT articodigo,artigrupo,articodi2,artinomb,artiunidad,artiaplica,artirefer,articontie, artipeso, articolor,artimarca,artiinvima,artinomb2,artiforma, artiptoi,artiptor,artiptop1, artiptop2,artivlr1_c, artiiva, articant " +
+                            $"FROM xxxxarti,xxxxartv  " +
+                            $"WHERE xxxxarti.articodigo=xxxxartv.artvcodigo " +
+                            $"AND artinomb like '%{palabra}%' OR  artimarca like '%{palabra}%' OR articodi2 like '%{palabra}%'";
                         MySqlCommand comando = new MySqlCommand(query);
                         MySqlDataReader reader = null;
                         comando.Connection = conexionDB;
@@ -146,24 +149,27 @@ namespace PruebaAppPedidos2.Services
                             while(reader.Read())
                             {
                                 ModelArticulo articulo = new ModelArticulo();
-                                articulo.articodigo = reader.GetString(0).ToString();
-                                articulo.artigrupo = reader.GetString(1).ToString();
-                                articulo.articodi2 = reader.GetString(2).ToString();
-                                articulo.artinomb = reader.GetString(3).ToString();
-                                articulo.artiunidad = reader.GetString(4).ToString();
-                                articulo.artiaplica = reader.GetString(5).ToString();
-                                articulo.artirefer = reader.GetString(6).ToString();
-                                articulo.articontie = reader.GetInt32(7);
-                                articulo.artipeso = reader.GetInt32(8);
-                                articulo.articolor = reader.GetString(9).ToString();
-                                articulo.artimarca = reader.GetString(10).ToString();
-                                articulo.artiinvima = reader.GetString(11).ToString();
-                                articulo.artinomb2 = reader.GetString(12).ToString();
-                                articulo.artiforma = reader.GetString(13).ToString();
-                                articulo.artiptoi = reader.GetInt32(14);
-                                articulo.artiptor = reader.GetInt32(15);
-                                articulo.artiptop1 = reader.GetInt32(16);
-                                articulo.artiptop2 = reader.GetInt32(17);
+                                articulo.articodigo = reader.GetString("articodigo").ToString();
+                                articulo.artigrupo = reader.GetString("artigrupo").ToString();
+                                articulo.articodi2 = reader.GetString("articodi2").ToString();
+                                articulo.artinomb = reader.GetString("artinomb").ToString();
+                                articulo.artiunidad = reader.GetString("artiunidad").ToString();
+                                articulo.artiaplica = reader.GetString("artiaplica").ToString();
+                                articulo.artirefer = reader.GetString("artirefer").ToString();
+                                articulo.articontie = reader.GetInt32("articontie");
+                                articulo.artipeso = reader.GetInt32("artipeso");
+                                articulo.articolor = reader.GetString("articolor").ToString();
+                                articulo.artimarca = reader.GetString("artimarca").ToString();
+                                articulo.artiinvima = reader.GetString("artiinvima").ToString();
+                                articulo.artinomb2 = reader.GetString("artinomb2").ToString();
+                                articulo.artiforma = reader.GetString("artiforma").ToString();
+                                articulo.artiptoi = reader.GetInt32("artiptoi");
+                                articulo.artiptor = reader.GetInt32("artiptor");
+                                articulo.artiptop1 = reader.GetInt32("artiptop1");
+                                articulo.artiptop2 = reader.GetInt32("artiptop2");
+                                articulo.artivlr1_c = reader.GetInt32("artivlr1_c");
+                                articulo.artiiva = reader.GetInt32("artiiva");
+                                articulo.articant = reader.GetInt32("articant");
                                 if (!articulosFiltrados.Contains(articulo))
                                 {
                                     articulosFiltrados.Add(articulo);

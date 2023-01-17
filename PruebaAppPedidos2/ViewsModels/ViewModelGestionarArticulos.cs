@@ -22,7 +22,10 @@ namespace PruebaAppPedidos2.ViewsModels
         public bool _isRefreshing;
         public string _detallesArti;
         public bool _isVisible;
-        public Modelxxxxvpax _movimientoSeleccionado; 
+        public Modelxxxxvpax _movimientoSeleccionado;
+        public bool _isEditing;
+        public string _valUnidad;
+        public Modelxxxxvpax _movAEditar;
 
         //Constructor
         public ViewModelGestionarArticulos(INavigation navigation, ModelArticulo articuloSeleccionado)
@@ -30,7 +33,8 @@ namespace PruebaAppPedidos2.ViewsModels
             Navigation = navigation;
             _articuloSeleccionado = articuloSeleccionado;
             EncabezadoTem = App.encabezadoTemp;
-            _=getMovimientos();
+            _isEditing = false;
+            _ =getMovimientos();
 
             MessagingCenter.Subscribe<Object>(this, "ContinuarPedido2", (sender) =>
             {
@@ -40,9 +44,23 @@ namespace PruebaAppPedidos2.ViewsModels
             if(ArticuloSeleccionado.articodigo != null)
             {
                 _cantidadArtiActual = "1";
+                _valUnidad = articuloSeleccionado.artivlr1_c.ToString();
                 _ = calcularValorParcial();
             }
         }
+        //CONSTRUCTOR PARA EDITAR UN MOVIMIENTO
+        public ViewModelGestionarArticulos(INavigation navigation,Modelxxxxvpax movimientoSeleccionado)
+        {
+            Navigation = navigation;
+            EncabezadoTem = App.encabezadoTemp;
+            _movAEditar = movimientoSeleccionado;
+            _cantidadArtiActual = movimientoSeleccionado.cantinic.ToString();
+            _detallesArti = movimientoSeleccionado.detalle;
+            _valParcialArtiActual = movimientoSeleccionado.neto.ToString();
+            _valUnidad = movimientoSeleccionado.valor.ToString();
+            _isEditing = true;
+        }
+
         //Objetos
         public ModelArticulo ArticuloSeleccionado
         {
@@ -89,6 +107,21 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _movimientoSeleccionado; }
             set { SetValue(ref _movimientoSeleccionado, value); }
         }
+        public bool IsEditing
+        {
+            get { return _isEditing; }
+            set { SetValue(ref _isEditing, value); }
+        }
+        public string ValUnidad
+        {
+            get { return _valUnidad; }
+            set { SetValue(ref _valUnidad, value); }
+        }
+        public Modelxxxxvpax MovAEditar
+        {
+            get { return _movAEditar; }
+            set { SetValue(ref _movAEditar, value); }
+        }
         //Procesos
         public async Task irAVerGrupos()
         {
@@ -98,12 +131,19 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task addArticuloPedidoTemp()
         {
             ObservableCollection<ModelArticulo> lstAux = new ObservableCollection<ModelArticulo>();
-            if (ArticuloSeleccionado.articodigo != null)
+            if (!IsEditing)
             {
-                await Servicesxxxxvpax.addMoviminetoPedidoTemp(ArticuloSeleccionado, EncabezadoTem, Convert.ToInt32(CantidadArtiActual), Convert.ToInt32(ValParcialArtiActual), DetallesArti);
-                
+                if (ArticuloSeleccionado.articodigo != null)
+                {
+                    await Servicesxxxxvpax.addMoviminetoPedidoTemp(ArticuloSeleccionado, EncabezadoTem, Convert.ToInt32(CantidadArtiActual), Convert.ToInt32(ValParcialArtiActual), DetallesArti);
+                }
             }
-            await Navigation.PopToRootAsync();
+            else
+            {
+                await Servicesxxxxvpax.modificarMovimineto(MovAEditar.Id_vpar, _detallesArti, _cantidadArtiActual) ;
+            }
+             
+            await Navigation.PopToRootAsync();   
         }
 
         public async Task getMovimientos()
@@ -124,9 +164,9 @@ namespace PruebaAppPedidos2.ViewsModels
         }
         public async Task calcularValorParcial()
         {
-            if(ArticuloSeleccionado.articodigo != null && CantidadArtiActual!="")
+            if( CantidadArtiActual!="")
             {
-                ValParcialArtiActual = await Task.Run(() => (Convert.ToInt32(CantidadArtiActual) * ArticuloSeleccionado.artivlr1_c).ToString());
+                ValParcialArtiActual = await Task.Run(() => (Convert.ToInt32(CantidadArtiActual) * Convert.ToUInt32(ValUnidad)).ToString());
             }
             if (CantidadArtiActual =="")
             {
@@ -137,8 +177,10 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             try
             {
-                
-                IsVisible= true;
+                if (ArticuloSeleccionado.articodigo == null)
+                {
+                    IsVisible = true;
+                }
             }
             catch (Exception)
             {
@@ -158,10 +200,8 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task editarMovimiento()
         {
             Modelxxxxvpax movimientoAeditar = MovimientoSeleccionado;
-            await Servicesxxxxvpax.borrarMovimiento(movimientoAeditar.Id_vpar);
             await DisplayAlert("Aviso", $"Se editara el producto {movimientoAeditar.detalle}, una vez finalizado darle agregar", "ok");
-            //await Navigation.PushAsync(new GestionarArticulos(movimientoAeditar));
-
+            await Navigation.PushAsync(new GestionarArticulos(movimientoAeditar));
         }
 
         //Comandos
@@ -171,6 +211,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public ICommand getMovimientoscommand => new Command(async () => await getMovimientos());
         public ICommand activarBotonescommand => new Command(() =>  activarBotones());
         public ICommand borrarMovimientocommand => new Command(async () => await borrarMovimiento());
+        public ICommand editarMovimientocommand => new Command(async () => await editarMovimiento());
 
 
     }
