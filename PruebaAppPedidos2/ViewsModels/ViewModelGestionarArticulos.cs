@@ -26,6 +26,9 @@ namespace PruebaAppPedidos2.ViewsModels
         public bool _isEditing;
         public string _valUnidad;
         public Modelxxxxvpax _movAEditar;
+        public int _precioTotalPedido;
+        public int _cantidadTotalPedido;
+        public int _pesoTotalPedido;
 
         //Constructor
         public ViewModelGestionarArticulos(INavigation navigation, ModelArticulo articuloSeleccionado)
@@ -122,12 +125,27 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _movAEditar; }
             set { SetValue(ref _movAEditar, value); }
         }
+        public int PrecioTotalPedido
+        {
+            get { return _precioTotalPedido; }
+            set { SetValue(ref _precioTotalPedido, value); }
+        }
+        public int CantidadTotalPedido
+        {
+            get { return _cantidadTotalPedido; }
+            set { SetValue(ref _cantidadTotalPedido, value); }
+        }
+        public int PesoTotalPedido
+        {
+            get { return _pesoTotalPedido; }
+            set { SetValue(ref _pesoTotalPedido, value); }
+        }
+        
         //Procesos
         public async Task irAVerGrupos()
         {
             await Navigation.PushAsync(new VerGrupos());
         }
-
         public async Task addArticuloPedidoTemp()
         {
             ObservableCollection<ModelArticulo> lstAux = new ObservableCollection<ModelArticulo>();
@@ -145,7 +163,6 @@ namespace PruebaAppPedidos2.ViewsModels
              
             await Navigation.PopToRootAsync();   
         }
-
         public async Task getMovimientos()
         {
             //if (IsRefreshing) { return; }
@@ -154,6 +171,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 IsVisible = false;
                 _isRefreshing = true;
                 LstPedidoTemporal = await Servicesxxxxvpax.getMovimientosPedidoTemp(EncabezadoTem.id_vtaped);
+                calcularTotalesPedido();
             }
             catch (Exception)
             {
@@ -196,12 +214,26 @@ namespace PruebaAppPedidos2.ViewsModels
             await DisplayAlert("Aviso", $"Se borro el articulo {movimientoAborrar.detalle} con exito", "ok");
             await getMovimientos();   
         }
-
         public async Task editarMovimiento()
         {
             Modelxxxxvpax movimientoAeditar = MovimientoSeleccionado;
             await DisplayAlert("Aviso", $"Se editara el producto {movimientoAeditar.detalle}, una vez finalizado darle agregar", "ok");
             await Navigation.PushAsync(new GestionarArticulos(movimientoAeditar));
+        }
+        public void calcularTotalesPedido()
+        {
+            PrecioTotalPedido = 0;
+            CantidadTotalPedido = 0;
+            PesoTotalPedido = 0;
+            if (!IsEditing && LstPedidoTemporal.Count > 0)
+            {
+                foreach (var movimiento in LstPedidoTemporal)
+                {
+                    PrecioTotalPedido += movimiento.neto;
+                    CantidadTotalPedido += movimiento.cantinic;
+                    PesoTotalPedido += movimiento.peso;
+                }
+            }
         }
 
         //Comandos
@@ -212,7 +244,6 @@ namespace PruebaAppPedidos2.ViewsModels
         public ICommand activarBotonescommand => new Command(() =>  activarBotones());
         public ICommand borrarMovimientocommand => new Command(async () => await borrarMovimiento());
         public ICommand editarMovimientocommand => new Command(async () => await editarMovimiento());
-
-
+        public ICommand calcularTotalesPedidocommand => new Command(() => calcularTotalesPedido());
     }
 }

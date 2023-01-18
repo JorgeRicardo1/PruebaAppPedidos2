@@ -17,7 +17,7 @@
                                 <Label Text="--"/>
                                 <Label Text="{Binding artimarca}"/>
                                 <Label Text="--"/>
-                                <Label Text="{Binding artivlr1_c, StringFormat='${0:0}'}"/>
+                                <Label Text="{Binding artivlr1_c, StringFormat='${0:#,#}'}"/>
                             </StackLayout>
                         </Frame>
                         <StackLayout.GestureRecognizers>
