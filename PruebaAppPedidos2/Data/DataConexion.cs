@@ -14,7 +14,6 @@ namespace PruebaAppPedidos2.Data
 
         public static async Task<MySqlConnection> conectar()
         {
-
             try
             {
                 conexionBD = new MySqlConnection(connectionString);

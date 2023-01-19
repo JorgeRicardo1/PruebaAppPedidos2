@@ -15,13 +15,14 @@ namespace PruebaAppPedidos2.ViewsModels
         public string _tronit;
         public string _precioOtorgado;
         public string _nombreCompleto;
-        public Modelxxx3ro _cliente;
+        public Modelxxx3ro _clienteActual;
         public ModelDespacho _despachoActual;
 
         //CONSTRUCTOR
         public ViewModelCliente(INavigation navigation)
         {
             Navigation = navigation;
+            DespachoActual = new ModelDespacho { };
         }
 
         //OBJETOS
@@ -42,8 +43,8 @@ namespace PruebaAppPedidos2.ViewsModels
         }
         public Modelxxx3ro ClienteActual
         {
-            get { return _cliente; }
-            set { SetValue(ref _cliente, value); }
+            get { return _clienteActual; }
+            set { SetValue(ref _clienteActual, value); }
         }
         public ModelDespacho DespachoActual
         {
@@ -57,35 +58,46 @@ namespace PruebaAppPedidos2.ViewsModels
             if (Tronit != null)
             {
                 ClienteActual = await Servicesxxx3ro.extraerCliente(Tronit);
+                if (ClienteActual == null)
+                {
+                    await DisplayAlert("Aviso", $"No existe un cliente con nit {Tronit}", "Ok");
+                    return;
+                }
                 NombreCompleto = $"{ClienteActual.tronombre} {ClienteActual.tronomb_2} {ClienteActual.troapel_1} {ClienteActual.troapel_2}";
                 PrecioOtorgado = obtenerPrecioCliente(ClienteActual);
-                DespachoActual = new ModelDespacho { };
+                
                 //DespachoActual = await Servicesxxxxvped.extraerInfoDespacho(Tronit);
+            }
+            else
+            {
+                await DisplayAlert("Aviso", $"No se ha escrito un nit para buscar", "Ok");
             }
         }
 
         public async Task continuarPedido()
         {
-            try
+            if (App.encabezadoTemp != null)
             {
-                if (DespachoActual.titular == null || DespachoActual.titudire == null || DespachoActual.tituciud == null || DespachoActual.titutelf == null)
-                {
-                    await DisplayAlert("Error", "Llene la informacion del despacho", "Ok");
-                }
-                else
-                {
-                    if (ClienteActual.tronit != "")
-                    {
-                        await Servicesxxxxvped.crearEncabezadoTemp(Tronit, DespachoActual);
-                        App.encabezadoTemp = await Servicesxxxxvped.obtenerEncabezado();
-                        MessagingCenter.Send<Object>(this, "ContinuarPedido"); //Mensaje para cambiar la currentTabPage, en Home 
-                        MessagingCenter.Send<Object>(this, "ContinuarPedido2"); //Mensaje para actualizar el encabezado en ViewModelGestionarArti
-                    }
-                }
+                await DisplayAlert("Aviso","Ya tiene un pedido en proceso, para empezar uno nuevo, primero reinicie el pedido actual","Ok");
+                return;
             }
-            catch (NullReferenceException)
+
+            if (ClienteActual != null)
+            {
+                await Servicesxxxxvped.crearEncabezadoTemp(Tronit, DespachoActual);
+                App.encabezadoTemp = await Servicesxxxxvped.obtenerEncabezado();
+                MessagingCenter.Send<Object>(this, "ContinuarPedido"); //Mensaje para cambiar la currentTabPage, en Home 
+                MessagingCenter.Send<Object>(this, "ContinuarPedido2"); //Mensaje para actualizar el encabezado en ViewModelGestionarArti
+            }
+            else
             {
                 await DisplayAlert("Error", "Seleccione un cliente antes de continuar", "Ok");
+                return;
+            }
+            if (DespachoActual.titular == null || DespachoActual.titudire == null || DespachoActual.tituciud == null || DespachoActual.titutelf == null)
+            {
+                await DisplayAlert("Error", "Llene la informacion del despacho", "Ok");
+                return;
             }
         }
 

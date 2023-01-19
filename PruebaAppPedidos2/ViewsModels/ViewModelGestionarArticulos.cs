@@ -153,6 +153,11 @@ namespace PruebaAppPedidos2.ViewsModels
         //Procesos
         public async Task irAVerGrupos()
         {
+            if (IsEditing)
+            {
+                await DisplayAlert("Aviso","Se esta editando un movimiento","Ok");
+                return;
+            }
             if (App.encabezadoTemp == null)
             {
                 await DisplayAlert("Error", "Seleccione un cliente y luego darle continuar", "Ok");
@@ -183,7 +188,7 @@ namespace PruebaAppPedidos2.ViewsModels
             }
             else
             {
-                await Servicesxxxxvpax.modificarMovimineto(MovAEditar.Id_vpar, _detallesArti, _cantidadArtiActual) ;
+                await Servicesxxxxvpax.modificarMovimineto(MovAEditar.Id_vpar, _detallesArti, _cantidadArtiActual,_valParcialArtiActual) ;
             }
              
             await Navigation.PopToRootAsync();   
@@ -191,12 +196,16 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task getMovimientos()
         {
             //if (IsRefreshing) { return; }
+            
             try
             {
                 IsVisible = false;
                 _isRefreshing = true;
-                LstPedidoTemporal = await Servicesxxxxvpax.getMovimientosPedidoTemp(EncabezadoTem.id_vtaped);
-                calcularTotalesPedido();
+                if (EncabezadoTem != null) 
+                {
+                    LstPedidoTemporal = await Servicesxxxxvpax.getMovimientosPedidoTemp(EncabezadoTem.id_vtaped);
+                    calcularTotalesPedido();
+                }
             }
             catch (Exception)
             {

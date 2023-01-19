@@ -41,6 +41,11 @@ namespace PruebaAppPedidos2.Services
 
                     }
                 }
+                else
+                {
+                    conexionBD.Close();
+                    return null;
+                }
                 conexionBD.Close();
                 return cliente;
             }
