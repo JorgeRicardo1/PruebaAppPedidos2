@@ -146,5 +146,26 @@ namespace PruebaAppPedidos2.Services
                 throw;
             }
         }
+
+        //NO SE ESTA USANDO 
+        public static async Task borrarAllMovimientos(string idEncabezado)
+        {
+            var conexionBD = await DataConexion.conectar();
+            try
+            {
+                string query = $"DELETE FROM `a000`.`xxxxvpax` WHERE `id_vtaped` = '{idEncabezado}'";
+                MySqlCommand comando = new MySqlCommand(query);
+                MySqlDataReader reader = null;
+                comando.Connection = conexionBD;
+                conexionBD.Open();
+                reader = comando.ExecuteReader();
+                conexionBD.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

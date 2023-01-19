@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using PruebaAppPedidos2.Models;
 using System.Collections.ObjectModel;
 using PruebaAppPedidos2.Services;
+using System.ComponentModel;
 
 namespace PruebaAppPedidos2.ViewsModels
 {
@@ -30,6 +31,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public int _cantidadTotalPedido;
         public int _pesoTotalPedido;
 
+
         //Constructor
         public ViewModelGestionarArticulos(INavigation navigation, ModelArticulo articuloSeleccionado)
         {
@@ -37,6 +39,7 @@ namespace PruebaAppPedidos2.ViewsModels
             _articuloSeleccionado = articuloSeleccionado;
             EncabezadoTem = App.encabezadoTemp;
             _isEditing = false;
+
             _ =getMovimientos();
 
             MessagingCenter.Subscribe<Object>(this, "ContinuarPedido2", (sender) =>
@@ -44,13 +47,19 @@ namespace PruebaAppPedidos2.ViewsModels
                 EncabezadoTem = App.encabezadoTemp;
             });
 
-            if(ArticuloSeleccionado.articodigo != null)
+            if(ArticuloSeleccionado != null)
             {
                 _cantidadArtiActual = "1";
                 _valUnidad = articuloSeleccionado.artivlr1_c.ToString();
                 _ = calcularValorParcial();
             }
+
+            MessagingCenter.Subscribe<Object>(this, "ReinicarPedido", (sender) =>
+            {
+                EncabezadoTem = App.encabezadoTemp;
+            });
         }
+
         //CONSTRUCTOR PARA EDITAR UN MOVIMIENTO
         public ViewModelGestionarArticulos(INavigation navigation,Modelxxxxvpax movimientoSeleccionado)
         {
@@ -140,17 +149,33 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _pesoTotalPedido; }
             set { SetValue(ref _pesoTotalPedido, value); }
         }
-        
+
         //Procesos
         public async Task irAVerGrupos()
         {
+            if (App.encabezadoTemp == null)
+            {
+                await DisplayAlert("Error", "Seleccione un cliente y luego darle continuar", "Ok");
+                return;
+            }
             await Navigation.PushAsync(new VerGrupos());
         }
         public async Task addArticuloPedidoTemp()
         {
             ObservableCollection<ModelArticulo> lstAux = new ObservableCollection<ModelArticulo>();
+            if (App.encabezadoTemp == null)
+            {
+                await DisplayAlert("Error","Seleccione un cliente y luego darle continuar", "Ok");
+                return;
+            }
+            
             if (!IsEditing)
             {
+                if (ArticuloSeleccionado == null)
+                {
+                    await DisplayAlert("Aviso", "No se ha seleccionado un articulo a agregar", "Ok");
+                    return;
+                }
                 if (ArticuloSeleccionado.articodigo != null)
                 {
                     await Servicesxxxxvpax.addMoviminetoPedidoTemp(ArticuloSeleccionado, EncabezadoTem, Convert.ToInt32(CantidadArtiActual), Convert.ToInt32(ValParcialArtiActual), DetallesArti);
@@ -195,7 +220,7 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             try
             {
-                if (ArticuloSeleccionado.articodigo == null)
+                if (ArticuloSeleccionado == null)
                 {
                     IsVisible = true;
                 }
@@ -210,8 +235,11 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task borrarMovimiento()
         {
             Modelxxxxvpax movimientoAborrar = MovimientoSeleccionado;
-            await Servicesxxxxvpax.borrarMovimiento(movimientoAborrar.Id_vpar);
-            await DisplayAlert("Aviso", $"Se borro el articulo {movimientoAborrar.detalle} con exito", "ok");
+            bool respuesta = await DisplayAlert("Aviso", $"Seguro que quiere borrar el articulo {movimientoAborrar.detalle} ?", "yes", "no");
+            if (respuesta)
+            {
+                await Servicesxxxxvpax.borrarMovimiento(movimientoAborrar.Id_vpar);
+            }
             await getMovimientos();   
         }
         public async Task editarMovimiento()
@@ -235,6 +263,26 @@ namespace PruebaAppPedidos2.ViewsModels
                 }
             }
         }
+        public async Task reiniciarPedido()
+        {
+            if (App.encabezadoTemp != null)
+            {
+                bool respuesta = await DisplayAlert("Aviso", "Seguro desea borrar todo el pedido actual?", "yes", "no");
+                if (respuesta)
+                {
+                    await Servicesxxxxvped.borrarEncabezado(App.encabezadoTemp.id_vtaped);
+                    App.encabezadoTemp = null;
+                    MessagingCenter.Send<Object>(this, "ReinicarPedido"); //Mensaje a Home, para volver a la pagina Cliente
+
+                }
+            }
+            else
+            {
+                await DisplayAlert("Aviso", "No hay un pedido para reiniciar", "Ok");
+                return;
+            }
+            
+        }
 
         //Comandos
         public ICommand irAVerGruposcommand => new Command(async () => await irAVerGrupos());
@@ -245,5 +293,6 @@ namespace PruebaAppPedidos2.ViewsModels
         public ICommand borrarMovimientocommand => new Command(async () => await borrarMovimiento());
         public ICommand editarMovimientocommand => new Command(async () => await editarMovimiento());
         public ICommand calcularTotalesPedidocommand => new Command(() => calcularTotalesPedido());
+        public ICommand reiniciarPedidocommand => new Command(async () => await reiniciarPedido());
     }
 }

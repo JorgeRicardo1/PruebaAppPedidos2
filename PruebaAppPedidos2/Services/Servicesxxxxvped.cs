@@ -89,7 +89,7 @@ namespace PruebaAppPedidos2.Services
                         encabezadoTemp.dias = reader.GetInt16(3);
                         encabezadoTemp.obra = reader.GetString(4);
                         encabezadoTemp.transporte = reader.GetString(5);
-                        encabezadoTemp.fultima = safeGetDate(reader, "fultima");
+                        encabezadoTemp.fultima = Lector.safeGetDate(reader, "fultima");
                         encabezadoTemp.fdigitar = reader.GetDateTime(7);
                         encabezadoTemp.hdigita = reader.GetString(8);
                         encabezadoTemp.factura = reader.GetString(9);
@@ -111,12 +111,12 @@ namespace PruebaAppPedidos2.Services
                         encabezadoTemp.ped_envio = reader.GetInt32(25);
                         encabezadoTemp.ped_estado = reader.GetInt32(26);
                         encabezadoTemp.ped_estadn = reader.GetString(27);
-                        encabezadoTemp.ped_closed = safeGetDate(reader, "ped_closed");
+                        encabezadoTemp.ped_closed = Lector.safeGetDate(reader, "ped_closed");
                         encabezadoTemp.ped_closet = reader.GetString("ped_closet");
                         encabezadoTemp.sucursal = reader.GetString("sucursal");
                         encabezadoTemp.term_pedi = reader.GetString("term_pedi");
                         encabezadoTemp.grupo = reader.GetInt32("grupo");
-                        encabezadoTemp.fventa = safeGetDate(reader, "fventa");
+                        encabezadoTemp.fventa = Lector.safeGetDate(reader, "fventa");
                         encabezadoTemp.id_vtaped = reader.GetInt32("id_vtaped");
                         encabezadoTemp.desp_nomb = reader.GetString("desp_nomb");
                         encabezadoTemp.desp_direc = reader.GetString("desp_direc");
@@ -135,18 +135,22 @@ namespace PruebaAppPedidos2.Services
             }
         }
 
-        //FUNCION PARA OBTENER LAS FECHAS NULL DE UNA MANERA SEGURA
-        public static DateTime safeGetDate(MySqlDataReader reader, string colName)
+        public static async Task borrarEncabezado(int idEncabezado)
         {
-            int colIndex = reader.GetOrdinal(colName);
-
-            if (!reader.IsDBNull(colIndex))
+            var conexionBD = await DataConexion.conectar();
+            try
             {
-                return reader.GetDateTime(colIndex);
+                string query = $"DELETE FROM `a000`.`xxxxvpex` WHERE(`id_vtaped` = '{idEncabezado}')";
+                MySqlCommand comando = new MySqlCommand(query);
+                MySqlDataReader reader = null;
+                comando.Connection = conexionBD;
+                conexionBD.Open();
+                reader = comando.ExecuteReader();
+                conexionBD.Close();
             }
-            else
+            catch (Exception)
             {
-                return new DateTime(1999, 09, 19);
+                throw;
             }
         }
     }

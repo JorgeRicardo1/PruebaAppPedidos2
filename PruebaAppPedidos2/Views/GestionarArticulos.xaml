@@ -27,6 +27,7 @@
                 <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
                 <Label Text="{Binding EncabezadoTem.nit}" FontSize="Large"/>
                 <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Large"/>
+                <Button Text="Reiniciar" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}"/>
             </StackLayout>
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
@@ -107,7 +108,7 @@
                         </Entry>
                     </Frame>
                     <Frame Padding="0"
-                           HorizontalOptions="EndAndExpand">
+                           HorizontalOptions="FillAndExpand">
                         <Label Text="{Binding ArticuloSeleccionado.artiunidad}"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"/>

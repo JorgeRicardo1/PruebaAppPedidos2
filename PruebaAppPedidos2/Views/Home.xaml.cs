@@ -16,7 +16,7 @@ namespace PruebaAppPedidos2.Views
     {
         public Home()
         {
-            ModelArticulo articulo = new ModelArticulo();
+            ModelArticulo articulo = null; 
 
             InitializeComponent();
             Children.Add(new InformacionCliente());
@@ -27,6 +27,14 @@ namespace PruebaAppPedidos2.Views
             {
                 CurrentPage = Children[1];
             });
+
+            //Mensaje suscriptor para reiniciar el pedido
+            MessagingCenter.Subscribe<Object>(this, "ReinicarPedido", (sender) =>
+            {
+                CurrentPage = Children[0];
+            });
+
+            
         }
     }
 }

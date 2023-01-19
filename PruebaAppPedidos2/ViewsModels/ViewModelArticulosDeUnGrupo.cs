@@ -56,9 +56,9 @@ namespace PruebaAppPedidos2.ViewsModels
             ListArticulos = artiDeGrupo;
         }
 
-        public async Task irAGestionarArticulos(ModelArticulo parametros)
+        public async Task irAGestionarArticulos(ModelArticulo articuloSeleccionado)
         {
-            await Navigation.PushAsync(new GestionarArticulos(parametros));
+            await Navigation.PushAsync(new GestionarArticulos(articuloSeleccionado));
         }
         //COMANDOS
         public ICommand obtenerArticuloscommand => new Command(async () => await obtenerArticulos());
