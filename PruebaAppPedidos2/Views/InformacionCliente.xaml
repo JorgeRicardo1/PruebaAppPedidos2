@@ -114,7 +114,7 @@
                 <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="3"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="{Binding ClienteActual.troccsdovn}"
+                    <Label Text="{Binding ClienteActual.troccsdovn, StringFormat='${0:#,#}'}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -125,7 +125,7 @@
                 <Frame HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="3"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="{Binding ClienteActual.troccsaldo}"
+                    <Label Text="{Binding ClienteActual.trocpsaldo, StringFormat='${0:#,#}'}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -136,7 +136,7 @@
                 <Frame Grid.Row="1" Grid.Column="1" 
                        Padding="10"
                        CornerRadius="20">
-                    <Label Text="{Binding ClienteActual.trocccupo}"
+                    <Label Text="{Binding ClienteActual.trocccupo, StringFormat='${0:#,#}'}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>

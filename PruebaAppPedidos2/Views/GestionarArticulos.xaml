@@ -25,9 +25,12 @@
         <StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
-                <Label Text="{Binding EncabezadoTem.nit}" FontSize="Large"/>
-                <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Large"/>
-                <Button Text="Reiniciar" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}"/>
+                <Label Text="Cliente:" FontSize="Body" VerticalOptions="Center"/>
+                <Label Text="{Binding EncabezadoTem.nit}" FontSize="Body" VerticalOptions="Center"/>
+                <Label Text="#Pedido:" FontSize="Body" VerticalOptions="Center"/>
+                <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Body" VerticalOptions="Center"/>
+                <Button Text="Reset" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}" HorizontalOptions="EndAndExpand"
+                        Background="#D20103" CornerRadius="25"/>
             </StackLayout>
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
@@ -238,7 +241,9 @@
                         TextColor="White"
                         CornerRadius="20"
                         TextTransform="None"
-                        HorizontalOptions="EndAndExpand"/>
+                        HorizontalOptions="EndAndExpand"
+                        IsVisible="{Binding IsVisibleFinalizar}"
+                        Command="{Binding enviarCorreocommand}"/>
             </StackLayout>
             <Grid ColumnDefinitions="*,*,*,*,*" Background="#C3C3C3" Margin="0,0,0,-8">
                 <Label Text="Articulo" Grid.Column="0" Grid.ColumnSpan="2"/>

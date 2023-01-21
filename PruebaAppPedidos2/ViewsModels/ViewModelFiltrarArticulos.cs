@@ -25,7 +25,12 @@ namespace PruebaAppPedidos2.ViewsModels
         public ViewModelFiltrarArticulos(INavigation navigation)
         {
             Navigation = navigation;
-        }
+            Palabra1 = "";
+            Palabra2 = "";
+            Palabra3 = "" ;
+            Palabra4 = "";
+            ListArticulos = new ObservableCollection<ModelArticulo> { };
+    }
 
         //OBJETOS
         public ObservableCollection<ModelArticulo> ListArticulos
@@ -58,9 +63,26 @@ namespace PruebaAppPedidos2.ViewsModels
         //PROCESOS
         public async Task filtrar()
         {
+            ListArticulos.Clear();
             List<string> palabras = new List<string> { Palabra1, Palabra2, Palabra3, Palabra4};
-            ListArticulos = await ServicesArticulos.filtrarArticulos(palabras);
-            
+            await ServicesArticulos.obtenerTodoArticulos();
+            ObservableCollection<ModelArticulo> articulos = ServicesArticulos.Articulos;
+            foreach (var articulo in articulos)
+            {
+                foreach (var palabra in palabras)
+                {
+                    if (palabra != "")
+                    {
+                        if (articulo.artinomb.Contains(palabra.ToUpper()) || articulo.artimarca.Contains(palabra.ToUpper()) || articulo.articodi2.Contains(palabra.ToUpper()))
+                        {
+                            if (!ListArticulos.Contains(articulo))
+                            {
+                                ListArticulos.Add(articulo);
+                            } 
+                        }
+                    }
+                }
+            }
         }
         public void limpiarBusqueda()
         {

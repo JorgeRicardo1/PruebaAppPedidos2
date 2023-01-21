@@ -28,17 +28,20 @@ namespace PruebaAppPedidos2.Services
                 {
                     while (reader.Read())
                     {
-                        cliente.trotelef = reader.GetString("trotelef");
+                        cliente.tronit = reader.GetString("tronit");
                         cliente.tronombre = reader.GetString("tronombre");
+                        cliente.trozona = reader.GetString("trozona");
+                        cliente.trociudad = reader.GetString("trociudad");
+                        cliente.trotelef = reader.GetString("trotelef");
                         cliente.troemail = reader.GetString("troemail");
                         cliente.trocccupo = reader.GetInt32("trocccupo");
                         cliente.trotipo = reader.GetString("trotipo");
-                        cliente.troprecio = reader.GetInt32("troprecio");
                         cliente.trocelular = reader.GetString("trocelular");
                         cliente.tronomb_2 = reader.GetString("tronomb_2");
                         cliente.troapel_1 = reader.GetString("troapel_1");
                         cliente.troapel_2 = reader.GetString("troapel_2");
-
+                        cliente.trocpsaldo = reader.GetInt32("trocpsaldo");
+                        cliente.troprecio = reader.GetInt32("troprecio");
                     }
                 }
                 else

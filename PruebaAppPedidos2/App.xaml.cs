@@ -10,6 +10,7 @@ namespace PruebaAppPedidos2
     {
         //Variable global para almacenar el encabezado del pedido
         public static Modelxxxxvped encabezadoTemp { get; set; }
+        public static Modelxxx3ro clienteActual { get; set; }
 
         public App()
         {

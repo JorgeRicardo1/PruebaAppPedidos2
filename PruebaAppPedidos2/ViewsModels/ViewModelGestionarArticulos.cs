@@ -9,6 +9,7 @@ using PruebaAppPedidos2.Models;
 using System.Collections.ObjectModel;
 using PruebaAppPedidos2.Services;
 using System.ComponentModel;
+using Xamarin.Essentials;
 
 namespace PruebaAppPedidos2.ViewsModels
 {
@@ -30,6 +31,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public int _precioTotalPedido;
         public int _cantidadTotalPedido;
         public int _pesoTotalPedido;
+        public bool _isVisibleFinalizar;
 
 
         //Constructor
@@ -39,6 +41,8 @@ namespace PruebaAppPedidos2.ViewsModels
             _articuloSeleccionado = articuloSeleccionado;
             EncabezadoTem = App.encabezadoTemp;
             _isEditing = false;
+            _isVisibleFinalizar = true;
+            LstPedidoTemporal= new ObservableCollection<Modelxxxxvpax>();
 
             _ =getMovimientos();
 
@@ -71,6 +75,7 @@ namespace PruebaAppPedidos2.ViewsModels
             _valParcialArtiActual = movimientoSeleccionado.neto.ToString();
             _valUnidad = movimientoSeleccionado.valor.ToString();
             _isEditing = true;
+            _isVisibleFinalizar = false;
         }
 
         //Objetos
@@ -148,6 +153,11 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             get { return _pesoTotalPedido; }
             set { SetValue(ref _pesoTotalPedido, value); }
+        }
+        public bool IsVisibleFinalizar
+        {
+            get { return _isVisibleFinalizar; }
+            set { SetValue(ref _isVisibleFinalizar, value); }
         }
 
         //Procesos
@@ -281,6 +291,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 {
                     await Servicesxxxxvped.borrarEncabezado(App.encabezadoTemp.id_vtaped);
                     App.encabezadoTemp = null;
+                    LstPedidoTemporal = null;
                     MessagingCenter.Send<Object>(this, "ReinicarPedido"); //Mensaje a Home, para volver a la pagina Cliente
 
                 }
@@ -291,6 +302,58 @@ namespace PruebaAppPedidos2.ViewsModels
                 return;
             }
             
+        }
+        public async Task enviarCorreo()
+        {
+            if (App.encabezadoTemp == null || LstPedidoTemporal.Count == 0)
+            {
+                await DisplayAlert("Aviso", "No hay ningun pedido o articulo para enviar", "Ok");
+                return;
+            }
+            bool respuesta = await DisplayAlert("Finalizar", "Esta seguro que quiere finalizar el pedido?", "No", "Si");
+            if (respuesta)
+            {
+                try
+                {
+                    //Propiedades del mensaje
+                    var message = new EmailMessage
+                    {
+                        Subject = "Informacion Pedido",
+                        Body = crearBodyMensaje(),
+                        To = { App.clienteActual.troemail },
+                    };
+
+                    //API que se encarga de abrir el cliente como el Gmail, Outlook u otros para realizar el envío del mensaje
+                    await Email.ComposeAsync(message);
+                }
+                catch (FeatureNotSupportedException fnsEx)
+                {
+                    // Email is not supported on this device
+                    await DisplayAlert("Error", fnsEx.ToString(), "OK");
+                }
+                catch (Exception ex)
+                {
+                    // Some other exception occurred
+                    await DisplayAlert("Error", ex.ToString(), "OK");
+                }
+                App.encabezadoTemp = null;
+                App.clienteActual = null;
+                LstPedidoTemporal.Clear();
+            }
+        }
+        public string crearBodyMensaje()
+        {
+            string body = "";
+            int i = 1;
+            foreach (var movimiento  in LstPedidoTemporal)
+            {
+                body += $"-{i} \t {movimiento.detalle}\t Cantidad:{movimiento.cantinic}\t Neto:${movimiento.neto}\n";
+                body += "\n";
+                i++;
+            }
+            body += "----------------------------------------";
+            body += $"\nTotal=${PrecioTotalPedido}";
+            return body;
         }
 
         //Comandos
@@ -303,5 +366,6 @@ namespace PruebaAppPedidos2.ViewsModels
         public ICommand editarMovimientocommand => new Command(async () => await editarMovimiento());
         public ICommand calcularTotalesPedidocommand => new Command(() => calcularTotalesPedido());
         public ICommand reiniciarPedidocommand => new Command(async () => await reiniciarPedido());
+        public ICommand enviarCorreocommand => new Command(async () => await enviarCorreo());
     }
 }
