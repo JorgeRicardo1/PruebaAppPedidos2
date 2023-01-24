@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PruebaAppPedidos2.Views.ValidacionView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout>
+                <Label Text="foto"/>
+            </StackLayout>
+            <Frame Grid.Row="1" HasShadow="True" Margin="10" BackgroundColor="White" Opacity="0.8" CornerRadius="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0">
+                        <Label Text="Comuniquese con su provedor" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="1" Text="ID:" HorizontalOptions="Start" TextColor="Black" FontAttributes="Bold" />
+                            <Label Grid.Column="1" x:Name="IdInfo" HorizontalOptions="End" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold" />
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Frame Grid.Row="0" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
+                                <Entry x:Name="Activar" Placeholder="CONTRASEÑA" IsPassword="True" TextColor="White" PlaceholderColor="White"/>
+                            </Frame>
+                            <Frame Grid.Row="1" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
+                                <Entry x:Name="CodeEmpresa" Placeholder="CODIGO" TextColor="White" PlaceholderColor="White"/>
+                            </Frame>
+                            <Frame Grid.Row="2" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
+                                <Entry x:Name="IpServer" Placeholder="IP"  TextColor="White" PlaceholderColor="White"/>
+                            </Frame>
+                            <Frame Grid.Row="3" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
+                                <Entry x:Name="Usuario" Placeholder="USER" TextColor="White" PlaceholderColor="White"/>
+                            </Frame>
+                            <Frame Grid.Row="4" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
+                                <Entry x:Name="ServerPassword" Placeholder="SERVER PASSWORD" IsPassword="True" TextColor="White" PlaceholderColor="White"/>
+                            </Frame>
+                            <Button  x:Name="BtnGuardar" Grid.Row="5" Text="Enviar" CornerRadius="15" Clicked="BtnGuardar_Clicked"/>
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

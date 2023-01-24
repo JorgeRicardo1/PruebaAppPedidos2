@@ -114,7 +114,7 @@
                 <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="3"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="{Binding ClienteActual.troccsdovn, StringFormat='${0:#,#}'}"
+                    <Label Text="{Binding ClienteActual.troccvnc, StringFormat='${0:#,#}'}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>

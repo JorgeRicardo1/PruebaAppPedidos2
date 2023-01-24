@@ -6,6 +6,7 @@ using PruebaAppPedidos2.Models;
 using PruebaAppPedidos2.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 
 namespace PruebaAppPedidos2.ViewsModels
 {
@@ -55,12 +56,15 @@ namespace PruebaAppPedidos2.ViewsModels
         //PROCESOS
         public async Task obtenerCliente()
         {
+            UserDialogs.Instance.ShowLoading("Buscando");
+            await Task.Delay(1000);
             if (Tronit != null)
             {
                 ClienteActual = await Servicesxxx3ro.extraerCliente(Tronit);
                 if (ClienteActual == null)
                 {
                     await DisplayAlert("Aviso", $"No existe un cliente con nit {Tronit}", "Ok");
+                    UserDialogs.Instance.HideLoading();
                     return;
                 }
                 NombreCompleto = $"{ClienteActual.tronombre} {ClienteActual.tronomb_2} {ClienteActual.troapel_1} {ClienteActual.troapel_2}";
@@ -72,6 +76,7 @@ namespace PruebaAppPedidos2.ViewsModels
             {
                 await DisplayAlert("Aviso", $"No se ha escrito un nit para buscar", "Ok");
             }
+            UserDialogs.Instance.HideLoading();
         }
 
         public async Task continuarPedido()
@@ -81,7 +86,11 @@ namespace PruebaAppPedidos2.ViewsModels
                 await DisplayAlert("Aviso","Ya tiene un pedido en proceso, para empezar uno nuevo, primero reinicie el pedido actual","Ok");
                 return;
             }
-
+            if (DespachoActual.titular == null || DespachoActual.titudire == null || DespachoActual.tituciud == null || DespachoActual.titutelf == null)
+            {
+                await DisplayAlert("Error", "Llene la informacion del despacho", "Ok");
+                return;
+            }
             if (ClienteActual != null)
             {
                 await Servicesxxxxvped.crearEncabezadoTemp(Tronit, DespachoActual);
@@ -93,11 +102,6 @@ namespace PruebaAppPedidos2.ViewsModels
             else
             {
                 await DisplayAlert("Error", "Seleccione un cliente antes de continuar", "Ok");
-                return;
-            }
-            if (DespachoActual.titular == null || DespachoActual.titudire == null || DespachoActual.tituciud == null || DespachoActual.titutelf == null)
-            {
-                await DisplayAlert("Error", "Llene la informacion del despacho", "Ok");
                 return;
             }
         }

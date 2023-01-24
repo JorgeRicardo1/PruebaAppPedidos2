@@ -310,7 +310,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 await DisplayAlert("Aviso", "No hay ningun pedido o articulo para enviar", "Ok");
                 return;
             }
-            bool respuesta = await DisplayAlert("Finalizar", "Esta seguro que quiere finalizar el pedido?", "No", "Si");
+            bool respuesta = await DisplayAlert("Finalizar", "Esta seguro que quiere finalizar el pedido?", "Si", "No");
             if (respuesta)
             {
                 try
@@ -338,6 +338,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 }
                 App.encabezadoTemp = null;
                 App.clienteActual = null;
+                EncabezadoTem = App.encabezadoTemp;
                 LstPedidoTemporal.Clear();
             }
         }
