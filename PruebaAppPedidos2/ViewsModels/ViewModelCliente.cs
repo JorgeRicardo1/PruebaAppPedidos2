@@ -18,6 +18,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public string _nombreCompleto;
         public Modelxxx3ro _clienteActual;
         public ModelDespacho _despachoActual;
+        public string _detallesExtras;
 
         //CONSTRUCTOR
         public ViewModelCliente(INavigation navigation)
@@ -52,7 +53,12 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _despachoActual; }
             set { SetValue(ref _despachoActual, value); }
         }
- 
+        public string DetallesExtras
+        {
+            get { return _detallesExtras; }
+            set { SetValue(ref _detallesExtras, value); }
+        }
+
         //PROCESOS
         public async Task obtenerCliente()
         {
@@ -93,7 +99,7 @@ namespace PruebaAppPedidos2.ViewsModels
             }
             if (ClienteActual != null)
             {
-                await Servicesxxxxvped.crearEncabezadoTemp(Tronit, DespachoActual);
+                await Servicesxxxxvped.crearEncabezadoTemp(ClienteActual.tronit, DespachoActual,DetallesExtras);
                 App.clienteActual= ClienteActual;
                 App.encabezadoTemp = await Servicesxxxxvped.obtenerEncabezado();
                 MessagingCenter.Send<Object>(this, "ContinuarPedido"); //Mensaje para cambiar la currentTabPage, en Home 

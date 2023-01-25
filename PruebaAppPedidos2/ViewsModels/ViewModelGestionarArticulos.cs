@@ -32,6 +32,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public int _cantidadTotalPedido;
         public int _pesoTotalPedido;
         public bool _isVisibleFinalizar;
+        public bool _isEnableCantidad;
 
 
         //Constructor
@@ -42,10 +43,11 @@ namespace PruebaAppPedidos2.ViewsModels
             EncabezadoTem = App.encabezadoTemp;
             _isEditing = false;
             _isVisibleFinalizar = true;
-            LstPedidoTemporal= new ObservableCollection<Modelxxxxvpax>();
+            IsEnableCantidad = false;
+            LstPedidoTemporal = new ObservableCollection<Modelxxxxvpax>();
 
             _ =getMovimientos();
-
+            //Mensaje suscriptor para actualizar el encabezado del pedido (ClienteViewModel)
             MessagingCenter.Subscribe<Object>(this, "ContinuarPedido2", (sender) =>
             {
                 EncabezadoTem = App.encabezadoTemp;
@@ -56,8 +58,9 @@ namespace PruebaAppPedidos2.ViewsModels
                 _cantidadArtiActual = "1";
                 _valUnidad = articuloSeleccionado.artivlr1_c.ToString();
                 _ = calcularValorParcial();
+                IsEnableCantidad = true;
             }
-
+            //Mensaje suscriptor para reiniciar el pedido 
             MessagingCenter.Subscribe<Object>(this, "ReinicarPedido", (sender) =>
             {
                 EncabezadoTem = App.encabezadoTemp;
@@ -158,6 +161,11 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             get { return _isVisibleFinalizar; }
             set { SetValue(ref _isVisibleFinalizar, value); }
+        }
+        public bool IsEnableCantidad
+        {
+            get { return _isEnableCantidad; }
+            set { SetValue(ref _isEnableCantidad, value); }
         }
 
         //Procesos

@@ -23,21 +23,26 @@
     </ContentPage.Resources>
     <ScrollView Margin="8">
         <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
-                <Label Text="Cliente:" FontSize="Body" VerticalOptions="Center"/>
-                <Label Text="{Binding EncabezadoTem.nit}" FontSize="Body" VerticalOptions="Center"/>
-                <Label Text="#Pedido:" FontSize="Body" VerticalOptions="Center"/>
-                <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Body" VerticalOptions="Center"/>
-                <Button Text="Reset" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}" HorizontalOptions="EndAndExpand"
-                        Background="#D20103" CornerRadius="25"/>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
+                    <Button Text="Reiniciar" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}" HorizontalOptions="EndAndExpand"
+                        Background="#D20103" CornerRadius="25" TextTransform="None"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="0,-15,0,0">
+                    <Label Text="Cc/Nit:" FontSize="Body" VerticalOptions="Center"/>
+                    <Label Text="{Binding EncabezadoTem.nit}" FontSize="Body" VerticalOptions="Center"/>
+                    <Label Text="Fech#:" FontSize="Body" VerticalOptions="Center"/>
+                    <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Body" VerticalOptions="Center"/>
+                </StackLayout>
             </StackLayout>
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                <Label Text="total" FontAttributes="Bold"
+                <Label Text="Total" FontAttributes="Bold"
                        VerticalTextAlignment="Center"/>
                 <Frame Padding="5"
-                       CornerRadius="10">
+                       CornerRadius="10"
+                       BackgroundColor="#EBD978">
                     <Label Text="{Binding PrecioTotalPedido, StringFormat='${0:#,#}'}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
@@ -45,15 +50,17 @@
                 <Label Text="Cantidad" FontAttributes="Bold"
                        VerticalTextAlignment="Center"/>
                 <Frame Padding="5"
-                       CornerRadius="10">
+                       CornerRadius="10"
+                       BackgroundColor="#EBD978">
                     <Label Text="{Binding CantidadTotalPedido}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
-                <Label Text="Peso" FontAttributes="Bold"
+                <Label Text="Kg" FontAttributes="Bold"
                        VerticalTextAlignment="Center"/>
                 <Frame Padding="5"
-                       CornerRadius="10">
+                       CornerRadius="10"
+                       BackgroundColor="#EBD978">
                     <Label Text="{Binding PesoTotalPedido}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
@@ -102,7 +109,8 @@
                         <Entry Text="{Binding CantidadArtiActual}"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"
-                               Keyboard="Numeric">
+                               Keyboard="Numeric"
+                               IsEnabled="{Binding IsEnableCantidad}">
                             <Entry.Behaviors>
                                 <xct:EventToCommandBehavior
                                     EventName="TextChanged"
@@ -126,7 +134,7 @@
                            HorizontalTextAlignment="Center"/>
                 </Frame>
                 <!-- fila 2-->
-                <Label Text="Detalle Movimiento"
+                <Label Text="Detalle Movimiento(Opcional)"
                        Grid.Row="2"
                        Grid.Column="0"
                        Grid.ColumnSpan="3"
@@ -212,16 +220,12 @@
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
             <StackLayout Orientation="Horizontal">
-                <Button Text="+"
-                        BackgroundColor="#26b232"
-                        TextColor="#c4e7c3"
-                        CornerRadius="20"
-                        TextTransform="None"
-                        WidthRequest="50"
-                        FontAttributes="Bold"
-                        FontSize="30"
-                        Padding="-50"
-                        Command="{Binding addArticuloPedidoTempcommand}"/>
+                <ImageButton Source="check.png" 
+                             BackgroundColor="#26b232"
+                             WidthRequest="50"
+                             CornerRadius="15"
+                             Padding="5"
+                             Command="{Binding addArticuloPedidoTempcommand}"/>
                 <ImageButton Source="lapiz.png" 
                              BackgroundColor="#F1BE2E"
                              WidthRequest="50"

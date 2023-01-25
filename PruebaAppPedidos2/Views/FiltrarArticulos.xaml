@@ -59,7 +59,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Frame>
+                            <Frame Margin="5">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding artinomb}"/>
                                     <Label Text="--"/>

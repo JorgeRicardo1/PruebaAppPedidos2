@@ -150,6 +150,7 @@
                     <RowDefinition Height="45"/>
                     <RowDefinition Height="45"/>
                     <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".3*"/>
@@ -204,6 +205,19 @@
                        CornerRadius="20"
                        Padding="5,0,5,0">
                     <Entry Text="{Binding DespachoActual.titutelf}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+                <Label Text="Detalles extras (Opcional): " Grid.Row="4" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                <Frame Grid.Row="4" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="5,0,5,0">
+                    <Entry Text="{Binding DetallesExtras}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
