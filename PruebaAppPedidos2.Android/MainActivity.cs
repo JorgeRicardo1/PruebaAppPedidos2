@@ -8,11 +8,14 @@ using Acr.UserDialogs;
 using Android.Content;
 using System.Security;
 using Java.Security;
+using static Android.Provider.Settings;
+using static PruebaAppPedidos2.Droid.MainActivity;
 
+[assembly: Xamarin.Forms.Dependency(typeof(GetInfoImplement))]
 namespace PruebaAppPedidos2.Droid
 {
     [Activity(Label = "PruebaAppPedidos2", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity , IDevice
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static ContentResolver myContentResolver;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -30,16 +33,17 @@ namespace PruebaAppPedidos2.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        [System.Obsolete]
-        public string DeviceID()
+
+        
+        public class GetInfoImplement : IDevice
         {
-            string deviceID = Build.Serial?.ToString();
-            if(string.IsNullOrEmpty(deviceID) || deviceID.ToUpper() == "UNKNOW")
+            string IDevice.DeviceID()
             {
-                ContentResolver myContentResolver = MainActivity.myContentResolver;
-                deviceID = Android.Provider.Settings.Secure.GetString(Android.App.Application.Context.ContentResolver, Android.Provider.Settings.Secure.AndroidId);
+                var context = Android.App.Application.Context;
+                string id = Android.Provider.Settings.Secure.GetString(context.ContentResolver, Secure.AndroidId);
+
+                return id;
             }
-            return deviceID;
         }
     }
 }

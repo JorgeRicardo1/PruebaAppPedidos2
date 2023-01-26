@@ -18,6 +18,7 @@ namespace PruebaAppPedidos2.Views
         public ValidacionView(EmpresaModel empresa)
         {
             InitializeComponent();
+            IdInfo.Text = DependencyService.Get<PruebaAppPedidos2.IDevice>().DeviceID();
             if (empresa == null)
             {
                 func = false;

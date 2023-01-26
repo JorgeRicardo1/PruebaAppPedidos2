@@ -79,6 +79,7 @@ namespace PruebaAppPedidos2.ViewsModels
             _valUnidad = movimientoSeleccionado.valor.ToString();
             _isEditing = true;
             _isVisibleFinalizar = false;
+            IsEnableCantidad = true;
         }
 
         //Objetos

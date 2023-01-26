@@ -50,7 +50,7 @@ namespace PruebaAppPedidos2.Services
             var conexionBD = await DataConexion.conectar();
             try
             {
-                string query = $"INSERT INTO `a000`.`xxxxvpex` " +
+                string query = $"INSERT INTO `xxxxvpex` " +
                     $"(`nit`, `numero`, `fecha`, `dias`, `obra`, `transporte`, `fdigitar`, `hdigita`, `datos1`, `vendedor`, `valor`, `abono`, `saldo`, `terminal`, `vriva`, `desctos`, `neto`, `costo`, `titular`, `titudire`, `titutelf`, `tituciud`, `ped_fraxx`, `ped_envio`, `ped_estado`, `sucursal`, `operario`, `grupo`, `consumo`) " +
                     $"VALUES " +
                     $"('{codigoCliente}', 'Temp', '{date}', '1', '0000', 'trans', '{date}', '{time}', '{datos1}', 'vend', '0', '0', '0', 'ter', '0', '0', '0', '0', '{despacho.titular}', '{despacho.titudire}', '{despacho.titutelf}', '{despacho.tituciud}', '0', '1', '0', 'suc', 'ope', '0', '0')";
@@ -84,44 +84,44 @@ namespace PruebaAppPedidos2.Services
                     while (reader.Read())
                     {
                         encabezadoTemp.nit = reader.GetString("nit");
-                        encabezadoTemp.numero = reader.GetString(1);
-                        encabezadoTemp.fecha = reader.GetDateTime(2);
-                        encabezadoTemp.dias = reader.GetInt16(3);
-                        encabezadoTemp.obra = reader.GetString(4);
-                        encabezadoTemp.transporte = reader.GetString(5);
+                        encabezadoTemp.numero = reader.GetString("numero");
+                        encabezadoTemp.fecha = reader.GetDateTime("fecha");
+                        encabezadoTemp.dias = reader.GetInt16("dias");
+                        encabezadoTemp.obra = reader.GetString("obra");
+                        encabezadoTemp.transporte = reader.GetString("transporte");
                         encabezadoTemp.fultima = Lector.safeGetDate(reader, "fultima");
-                        encabezadoTemp.fdigitar = reader.GetDateTime(7);
-                        encabezadoTemp.hdigita = reader.GetString(8);
-                        encabezadoTemp.factura = reader.GetString(9);
-                        encabezadoTemp.datos1 = reader.GetString(10);
-                        encabezadoTemp.vendedor = reader.GetString(11);
-                        encabezadoTemp.valor = reader.GetInt32(12);
-                        encabezadoTemp.abono = reader.GetInt32(13);
-                        encabezadoTemp.saldo = reader.GetInt32(14);
-                        encabezadoTemp.terminal = reader.GetString(15);
-                        encabezadoTemp.vriva = reader.GetInt32(16);
-                        encabezadoTemp.desctos = reader.GetInt32(17);
-                        encabezadoTemp.neto = reader.GetInt32(18);
-                        encabezadoTemp.costo = reader.GetInt32(19);
-                        encabezadoTemp.titular = reader.GetString(20);
-                        encabezadoTemp.titudire = reader.GetString(21);
-                        encabezadoTemp.titutelf = reader.GetString(22);
-                        encabezadoTemp.tituciud = reader.GetString(23);
-                        encabezadoTemp.ped_fraxx = reader.GetInt32(24);
-                        encabezadoTemp.ped_envio = reader.GetInt32(25);
-                        encabezadoTemp.ped_estado = reader.GetInt32(26);
-                        encabezadoTemp.ped_estadn = reader.GetString(27);
+                        encabezadoTemp.fdigitar = reader.GetDateTime("fdigitar");
+                        encabezadoTemp.hdigita = reader.GetString("hdigita");
+                        encabezadoTemp.factura = reader.GetString("factura");
+                        encabezadoTemp.datos1 = reader.GetString("datos1");
+                        encabezadoTemp.vendedor = reader.GetString("vendedor");
+                        encabezadoTemp.valor = reader.GetInt32("valor");
+                        encabezadoTemp.abono = reader.GetInt32("abono");
+                        encabezadoTemp.saldo = reader.GetInt32("saldo");
+                        encabezadoTemp.terminal = reader.GetString("terminal");
+                        encabezadoTemp.vriva = reader.GetInt32("vriva");
+                        encabezadoTemp.desctos = reader.GetInt32("desctos");
+                        encabezadoTemp.neto = reader.GetInt32("neto");
+                        encabezadoTemp.costo = reader.GetInt32("costo");
+                        encabezadoTemp.titular = reader.GetString("titular");
+                        encabezadoTemp.titudire = reader.GetString("titudire");
+                        encabezadoTemp.titutelf = reader.GetString("titutelf");
+                        encabezadoTemp.tituciud = reader.GetString("tituciud");
+                        encabezadoTemp.ped_fraxx = reader.GetInt32("ped_fraxx");
+                        encabezadoTemp.ped_envio = reader.GetInt32("ped_envio");
+                        encabezadoTemp.ped_estado = reader.GetInt32("ped_estado");
+                        encabezadoTemp.ped_estadn = reader.GetString("ped_estadn");
                         encabezadoTemp.ped_closed = Lector.safeGetDate(reader, "ped_closed");
                         encabezadoTemp.ped_closet = reader.GetString("ped_closet");
                         encabezadoTemp.sucursal = reader.GetString("sucursal");
-                        encabezadoTemp.term_pedi = reader.GetString("term_pedi");
+                        encabezadoTemp.term_pedi = Lector.safeGetString(reader, "term_pedi");
                         encabezadoTemp.grupo = reader.GetInt32("grupo");
                         encabezadoTemp.fventa = Lector.safeGetDate(reader, "fventa");
                         encabezadoTemp.id_vtaped = reader.GetInt32("id_vtaped");
-                        encabezadoTemp.desp_nomb = reader.GetString("desp_nomb");
-                        encabezadoTemp.desp_direc = reader.GetString("desp_direc");
-                        encabezadoTemp.desp_telf = reader.GetString("desp_telf");
-                        encabezadoTemp.desp_city = reader.GetString("desp_city");
+                        //encabezadoTemp.desp_nomb = Lector.safeGetString(reader, "desp_nomb");
+                        //encabezadoTemp.desp_direc = Lector.safeGetString(reader, "desp_direc");
+                        //encabezadoTemp.desp_telf = Lector.safeGetString(reader, "desp_telf");
+                        //encabezadoTemp.desp_city = Lector.safeGetString(reader, "desp_city");
                         encabezadoTemp.consumo = reader.GetInt32("consumo");
                     }
                 }
@@ -140,7 +140,7 @@ namespace PruebaAppPedidos2.Services
             var conexionBD = await DataConexion.conectar();
             try
             {
-                string query = $"DELETE FROM `a000`.`xxxxvpex` WHERE(`id_vtaped` = '{idEncabezado}')";
+                string query = $"DELETE FROM `xxxxvpex` WHERE(`id_vtaped` = '{idEncabezado}')";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;

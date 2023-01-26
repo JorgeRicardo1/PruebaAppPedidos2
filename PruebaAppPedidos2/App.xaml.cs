@@ -24,6 +24,7 @@ namespace PruebaAppPedidos2
             InitializeComponent();
             InitializeDatabase();
             //MainPage = new NavigationPage(new Home());
+            
         }
         private void InitializeDatabase()
         {
@@ -35,13 +36,14 @@ namespace PruebaAppPedidos2
         protected override void OnStart()  
         {
 
-            //var id = DependencyService.Get<PruebaAppPedidos2.IDevice>().DeviceID();
-            var id = "celular002";
+            var id = DependencyService.Get<PruebaAppPedidos2.IDevice>().DeviceID();
+            //var id = "celular004";
             Task.Run(async () =>
             {
                 try
                 {
                     var empresa = await App.Context.getEmpresaAsync();
+                    DataConexion.getConnectionString(empresa);
                     if (empresa.Count == 0)
                     {
                         func = false;
@@ -54,6 +56,7 @@ namespace PruebaAppPedidos2
                             var empre = await Servicesllequipo.validar(id, empresa[0].empresa);
                             if (empre != null && empre.modulos.Equals("M800") && empre.activar.Equals(empresa[0].activar))
                             {
+                                
                                 MainPage = new NavigationPage(new Home());
                             }
                             else
@@ -65,8 +68,16 @@ namespace PruebaAppPedidos2
                 }
                 catch (Exception)
                 {
-
-                    throw;
+                    var empresa = await App.Context.getEmpresaAsync();
+                    if (empresa.Count == 0)
+                    {
+                        func = false;
+                        MainPage = new NavigationPage(new ValidacionView(null));
+                    }
+                    else 
+                    {
+                        MainPage = new NavigationPage(new ValidacionView(empresa[0]));
+                    }
                 }
             }).GetAwaiter().GetResult();
         }

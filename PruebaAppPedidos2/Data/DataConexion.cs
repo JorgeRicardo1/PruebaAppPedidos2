@@ -1,4 +1,5 @@
 ﻿using MySqlConnector;
+using PruebaAppPedidos2.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,11 @@ namespace PruebaAppPedidos2.Data
 {
     public class DataConexion
     {
-        private static string connectionString = "Database = a000; Data Source = 192.168.1.108; User Id = pruebas; Password= qwerty";
+        //private static string connectionString = "Database = a000; Data Source = 192.168.1.108; User Id = pruebas; Password= qwerty";
         public static MySqlConnection conexionBD { get; set; }
+        private static string connectionString { get; set; }
 
+        
 
         public static async Task<MySqlConnection> conectar()
         {
@@ -26,6 +29,11 @@ namespace PruebaAppPedidos2.Data
                 //throw;
             }
             return null;
+        }
+        public static void getConnectionString(List<EmpresaModel> empresa)
+        {
+            connectionString = $"Database = {empresa[0].empresa}; Data Source = {empresa[0].ipserver}; User Id = {empresa[0].usuario}; Password= {empresa[0].serverPassword}";
+            //connectionString = "Database = a000; Data Source = 192.168.1.108; User Id = pruebas; Password= qwerty";
         }
     }
 }

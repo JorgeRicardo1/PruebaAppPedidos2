@@ -125,7 +125,7 @@
                 <Frame HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="3"
                        CornerRadius="20"
                        Padding="10">
-                    <Label Text="{Binding ClienteActual.trocpsaldo, StringFormat='${0:#,#}'}"
+                    <Label Text="{Binding ClienteActual.troccsaldo, StringFormat='${0:#,#}'}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
                 </Frame>
@@ -167,7 +167,13 @@
                        Padding="5,0,5,0">
                     <Entry Text="{Binding DespachoActual.titular}"
                            HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
+                           VerticalTextAlignment="Center">
+                        <Entry.Behaviors>
+                            <xct:EventToCommandBehavior
+                                    EventName="TextChanged"
+                                    Command="{Binding HabilitarInfoDespachocommand}"/>
+                        </Entry.Behaviors>
+                    </Entry>
                 </Frame>
                 <Label Text="Dirección: " Grid.Row="1" Grid.Column="0"
                        VerticalTextAlignment="Center"
@@ -180,7 +186,8 @@
                        Padding="5,0,5,0">
                     <Entry Text="{Binding DespachoActual.titudire}"
                            HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
+                           VerticalTextAlignment="Center"
+                           IsEnabled="{Binding IsEnableInfoDespacho}"/>
                 </Frame>
                 <Label Text="Cuidad: " Grid.Row="2" Grid.Column="0"
                        VerticalTextAlignment="Center"
@@ -193,7 +200,8 @@
                        Padding="5,0,5,0">
                     <Entry Text="{Binding DespachoActual.tituciud}"
                            HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
+                           VerticalTextAlignment="Center"
+                           IsEnabled="{Binding IsEnableInfoDespacho}"/>
                 </Frame>
                 <Label Text="Telefóno: " Grid.Row="3" Grid.Column="0"
                        VerticalTextAlignment="Center"
@@ -206,7 +214,8 @@
                        Padding="5,0,5,0">
                     <Entry Text="{Binding DespachoActual.titutelf}"
                            HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
+                           VerticalTextAlignment="Center"
+                           IsEnabled="{Binding IsEnableInfoDespacho}"/>
                 </Frame>
                 <Label Text="Detalles extras (Opcional): " Grid.Row="4" Grid.Column="0"
                        VerticalTextAlignment="Center"

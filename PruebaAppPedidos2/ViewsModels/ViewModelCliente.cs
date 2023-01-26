@@ -19,12 +19,18 @@ namespace PruebaAppPedidos2.ViewsModels
         public Modelxxx3ro _clienteActual;
         public ModelDespacho _despachoActual;
         public string _detallesExtras;
+        public bool _isEnableInfoDespacho;
 
         //CONSTRUCTOR
         public ViewModelCliente(INavigation navigation)
         {
             Navigation = navigation;
-            DespachoActual = new ModelDespacho { };
+            DespachoActual = new ModelDespacho {
+                titular = "",
+                tituciud = "",
+                titudire = "",
+                titutelf = ""
+            };
         }
 
         //OBJETOS
@@ -57,6 +63,11 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             get { return _detallesExtras; }
             set { SetValue(ref _detallesExtras, value); }
+        }
+        public bool IsEnableInfoDespacho
+        {
+            get { return _isEnableInfoDespacho; }
+            set { SetValue(ref _isEnableInfoDespacho, value); }
         }
 
         //PROCESOS
@@ -92,10 +103,13 @@ namespace PruebaAppPedidos2.ViewsModels
                 await DisplayAlert("Aviso","Ya tiene un pedido en proceso, para empezar uno nuevo, primero reinicie el pedido actual","Ok");
                 return;
             }
-            if (DespachoActual.titular == null || DespachoActual.titudire == null || DespachoActual.tituciud == null || DespachoActual.titutelf == null)
+            if (IsEnableInfoDespacho)
             {
-                await DisplayAlert("Error", "Llene la informacion del despacho", "Ok");
-                return;
+                if (DespachoActual.titudire == "" || DespachoActual.tituciud == "" || DespachoActual.titutelf == "")
+                {
+                    await DisplayAlert("Error", "Llene la informacion del despacho", "Ok");
+                    return;
+                }
             }
             if (ClienteActual != null)
             {
@@ -109,6 +123,22 @@ namespace PruebaAppPedidos2.ViewsModels
             {
                 await DisplayAlert("Error", "Seleccione un cliente antes de continuar", "Ok");
                 return;
+            }
+        }
+
+        public async Task HabilitarInfoDespacho()
+        {
+            if (DespachoActual.titular == "")
+            {
+                DespachoActual.titudire = "";
+                DespachoActual.tituciud = "";
+                DespachoActual.titutelf = "";
+                OnPropertyChanged(nameof(DespachoActual));
+                IsEnableInfoDespacho = false;
+            }
+            else
+            {
+                IsEnableInfoDespacho = true;
             }
         }
 
@@ -133,6 +163,7 @@ namespace PruebaAppPedidos2.ViewsModels
         //COMANDOS
         public ICommand obtenerClienteCommand => new Command(async () => await obtenerCliente());
         public ICommand continuarPedidoCommand => new Command(async () => await continuarPedido());
+        public ICommand HabilitarInfoDespachocommand => new Command(async () => await HabilitarInfoDespacho());
 
     }
 }

@@ -43,6 +43,7 @@ namespace PruebaAppPedidos2.Services
                         cliente.trocpsaldo = reader.GetInt32("trocpsaldo");
                         cliente.troprecio = reader.GetInt32("troprecio");
                         cliente.troccvnc = reader.GetInt32("troccvnc");
+                        cliente.troccsaldo = reader.GetInt32("troccsaldo");
                     }
                 }
                 else

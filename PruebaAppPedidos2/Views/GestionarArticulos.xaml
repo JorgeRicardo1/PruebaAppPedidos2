@@ -151,7 +151,8 @@
                        CornerRadius="5">
                     <Entry Text="{Binding DetallesArti}"
                            VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Center"/>
+                           HorizontalTextAlignment="Center"
+                           IsEnabled="{Binding IsEnableCantidad}"/>
                 </Frame>
                 <Frame Grid.Row="3"
                        Grid.Column="3"

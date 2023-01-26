@@ -19,7 +19,7 @@ namespace PruebaAppPedidos2.Services
             {
                 string fecha = encabezadoTemp.fecha.ToString("yyyy-MM-dd");
 
-                string query = $"INSERT INTO `a000`.`xxxxvpax` " +
+                string query = $"INSERT INTO `xxxxvpax` " +
                     $"(`numero`, `fecha`, `tpcmbte`, `codigo`, `nit`, `punto`, `puntox`, `obra`, `detalle`, `medida`, `operario`, `hdigita`, `fdigitar`, `entregan`, `cantinic`, `cantidad`, `valor`, `costo`, `neto`, `dsct4`, `dsct2`, `desctos`, `iva`, `vriva`, `vrventa`, `consumo`, `compuesto`, `peso`, `anulado`, `id_vtaped`) " +
                     $"VALUES " +
                     $"('TEMP', '{fecha}', 'V', 'SD-PRUEBA', '{encabezadoTemp.nit}', '000', '000', '0000', '{artiSeleccioando.artinomb} {detalles}', '{artiSeleccioando.artiunidad}', 'A001', '{encabezadoTemp.hdigita}', '{fecha}', '0.00', '{cantidad}', '0', '{artiSeleccioando.artivlr1_c}', '0.0', '{neto}', '0.00', '0.00', '0.00', '{artiSeleccioando.artiiva}', '0', '20000', '0', '0', '{artiSeleccioando.artipeso}', '0', '{encabezadoTemp.id_vtaped}');";
@@ -41,7 +41,7 @@ namespace PruebaAppPedidos2.Services
             var conexionBD = await DataConexion.conectar();
             try
             {
-                string query = $"DELETE FROM `a000`.`xxxxvpax` WHERE `Id_vpar` = '{id}'";
+                string query = $"DELETE FROM `xxxxvpax` WHERE `Id_vpar` = '{id}'";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
@@ -61,7 +61,7 @@ namespace PruebaAppPedidos2.Services
             var conexionBD = await DataConexion.conectar();
             try
             {
-                string query = $"UPDATE `a000`.`xxxxvpax` SET `detalle` = '{detalle}', `cantinic` = '{cantidad}', `neto` = '{neto}' WHERE `Id_vpar` = '{id}'";
+                string query = $"UPDATE `xxxxvpax` SET `detalle` = '{detalle}', `cantinic` = '{cantidad}', `neto` = '{neto}' WHERE `Id_vpar` = '{id}'";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
