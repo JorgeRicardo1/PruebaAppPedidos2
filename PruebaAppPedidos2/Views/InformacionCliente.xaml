@@ -5,233 +5,235 @@
              x:Class="PruebaAppPedidos2.Views.InformacionCliente"
              Title="Cliente">
     <ScrollView Margin="8">
-        <StackLayout>
-            <Label Text="Cliente"
+        <Grid>
+            <StackLayout>
+                <Label Text="Cliente"
                    FontAttributes="Bold"
                    FontSize="Large"/>
-            <StackLayout Orientation="Horizontal">
-                <Entry Placeholder="NIT"
+                <StackLayout Orientation="Horizontal">
+                    <Entry Placeholder="NIT"
                        HorizontalOptions="FillAndExpand"
                        Text="{Binding Tronit}">
-                    <Entry.Behaviors>
-                        <xct:EventToCommandBehavior
-                                    EventName="Completed"
-                                    Command="{Binding obtenerClienteCommand}"/>
-                    </Entry.Behaviors>
-                </Entry>
-                <ImageButton Source="lupa.png"
-                             WidthRequest="30"
-                             Command="{Binding obtenerClienteCommand}"/>
-                <Label Text="Tel: "
-                       VerticalTextAlignment="Center"
-                       FontSize="Body"
-                       HorizontalOptions="Start"
-                       Margin="0,0,5,0"/>
-                <Frame HorizontalOptions="FillAndExpand"
-                       CornerRadius="20"
-                       Padding="0">
-                    <Label Text="{Binding ClienteActual.trotelef}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-            </StackLayout>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label Text="Nombre: " Grid.Row="0" Grid.Column="0"
-                       VerticalTextAlignment="Center"
-                       FontSize="Medium"
-                       HorizontalOptions="Start"
-                       Margin="0,0,5,0"/>
-                <Frame Grid.Row="0" Grid.Column="1" 
-                       HorizontalOptions="FillAndExpand"
-                       CornerRadius="20"
-                       Padding="10">
-                    <Label Text="{Binding NombreCompleto}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-                <Label Text="Correo: " Grid.Row="1" Grid.Column="0"
-                       VerticalTextAlignment="Center"
-                       FontSize="Medium"
-                       HorizontalOptions="Start"
-                       Margin="0,0,5,0"/>
-                <Frame Grid.Row="1" Grid.Column="1" 
-                       HorizontalOptions="FillAndExpand"
-                       CornerRadius="20"
-                       Padding="10">
-                    <Label Text="{Binding ClienteActual.troemail}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-                <Label Text="Celular: " Grid.Row="2" Grid.Column="0"
-                       VerticalTextAlignment="Center"
-                       FontSize="Medium"
-                       HorizontalOptions="Start"
-                       Margin="0,0,5,0"/>
-                <Frame Grid.Row="2" Grid.Column="1" 
-                       HorizontalOptions="FillAndExpand"
-                       CornerRadius="20"
-                       Padding="10">
-                    <Label Text="{Binding ClienteActual.trocelular}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-            </Grid>
-            <Grid>
-                <Grid.RowDefinitions >
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label Text="Escala" Grid.Row="0" Grid.Column="0"
-                       FontSize="Body"
-                       VerticalTextAlignment="Center"                       
-                       HorizontalOptions="Start"/>
-                <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1"
-                       CornerRadius="20"
-                       Padding="10">
-                    <Label Text="{Binding PrecioOtorgado}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-                <Label Text="Saldo&#10;Vencido:" Grid.Row="0" Grid.Column="2"
-                       FontSize="Body"
-                       VerticalTextAlignment="Center"                       
-                       HorizontalOptions="Start"/>
-                <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="3"
-                       CornerRadius="20"
-                       Padding="10">
-                    <Label Text="{Binding ClienteActual.troccvnc, StringFormat='${0:#,#}'}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-                <Label Text="Factura X&#10;Cobrar:" Grid.Row="1" Grid.Column="2"
-                       FontSize="Body"
-                       VerticalTextAlignment="Center"                       
-                       HorizontalOptions="Start"/>
-                <Frame HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="3"
-                       CornerRadius="20"
-                       Padding="10">
-                    <Label Text="{Binding ClienteActual.troccsaldo, StringFormat='${0:#,#}'}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-                <Label Text="Cupo:" Grid.Row="1" Grid.Column="0"
-                       FontSize="Body"
-                       VerticalTextAlignment="Center"                       
-                       HorizontalOptions="Start"/>
-                <Frame Grid.Row="1" Grid.Column="1" 
-                       Padding="10"
-                       CornerRadius="20">
-                    <Label Text="{Binding ClienteActual.trocccupo, StringFormat='${0:#,#}'}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
-                </Frame>
-            </Grid>
-            <Label Text="Despacho"
-                   FontAttributes="Bold"
-                   FontSize="Large"/>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width=".3*"/>
-                    <ColumnDefinition Width=".7*"/>
-                </Grid.ColumnDefinitions>
-                <Label Text="Nombre Despacho: " Grid.Row="0" Grid.Column="0"
-                       VerticalTextAlignment="Center"
-                       FontSize="Body"
-                       HorizontalOptions="Start"
-                       Margin="0,0,5,0"/>
-                <Frame Grid.Row="0" Grid.Column="1" 
-                       HorizontalOptions="FillAndExpand"
-                       CornerRadius="20"
-                       Padding="5,0,5,0">
-                    <Entry Text="{Binding DespachoActual.titular}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center">
                         <Entry.Behaviors>
                             <xct:EventToCommandBehavior
-                                    EventName="TextChanged"
-                                    Command="{Binding HabilitarInfoDespachocommand}"/>
+                                    EventName="Completed"
+                                    Command="{Binding obtenerClienteCommand}"/>
                         </Entry.Behaviors>
                     </Entry>
-                </Frame>
-                <Label Text="Dirección: " Grid.Row="1" Grid.Column="0"
+                    <ImageButton Source="lupa.png"
+                             WidthRequest="30"
+                             Command="{Binding obtenerClienteCommand}"/>
+                    <Label Text="Tel: "
                        VerticalTextAlignment="Center"
                        FontSize="Body"
                        HorizontalOptions="Start"
                        Margin="0,0,5,0"/>
-                <Frame Grid.Row="1" Grid.Column="1" 
-                       HorizontalOptions="FillAndExpand"
+                    <Frame HorizontalOptions="FillAndExpand"
                        CornerRadius="20"
-                       Padding="5,0,5,0">
-                    <Entry Text="{Binding DespachoActual.titudire}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           IsEnabled="{Binding IsEnableInfoDespacho}"/>
-                </Frame>
-                <Label Text="Cuidad: " Grid.Row="2" Grid.Column="0"
-                       VerticalTextAlignment="Center"
-                       FontSize="Body"
-                       HorizontalOptions="Start"
-                       Margin="0,0,5,0"/>
-                <Frame Grid.Row="2" Grid.Column="1" 
-                       HorizontalOptions="FillAndExpand"
-                       CornerRadius="20"
-                       Padding="5,0,5,0">
-                    <Entry Text="{Binding DespachoActual.tituciud}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           IsEnabled="{Binding IsEnableInfoDespacho}"/>
-                </Frame>
-                <Label Text="Telefóno: " Grid.Row="3" Grid.Column="0"
-                       VerticalTextAlignment="Center"
-                       FontSize="Body"
-                       HorizontalOptions="Start"
-                       Margin="0,0,5,0"/>
-                <Frame Grid.Row="3" Grid.Column="1" 
-                       HorizontalOptions="FillAndExpand"
-                       CornerRadius="20"
-                       Padding="5,0,5,0">
-                    <Entry Text="{Binding DespachoActual.titutelf}"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           IsEnabled="{Binding IsEnableInfoDespacho}"/>
-                </Frame>
-                <Label Text="Detalles extras (Opcional): " Grid.Row="4" Grid.Column="0"
-                       VerticalTextAlignment="Center"
-                       FontSize="Body"
-                       HorizontalOptions="Start"
-                       Margin="0,0,5,0"/>
-                <Frame Grid.Row="4" Grid.Column="1" 
-                       HorizontalOptions="FillAndExpand"
-                       CornerRadius="20"
-                       Padding="5,0,5,0">
-                    <Entry Text="{Binding DetallesExtras}"
+                       Padding="0">
+                        <Label Text="{Binding ClienteActual.trotelef}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
-                </Frame>
-            </Grid>
-            <Button x:Name="Btn_continuarPedido" Text="Continuar" Command="{Binding continuarPedidoCommand}"/>
-        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Nombre: " Grid.Row="0" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Medium"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                    <Frame Grid.Row="0" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="10">
+                        <Label Text="{Binding NombreCompleto}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    </Frame>
+                    <Label Text="Correo: " Grid.Row="1" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Medium"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                    <Frame Grid.Row="1" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="10">
+                        <Label Text="{Binding ClienteActual.troemail}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    </Frame>
+                    <Label Text="Celular: " Grid.Row="2" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Medium"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                    <Frame Grid.Row="2" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="10">
+                        <Label Text="{Binding ClienteActual.trocelular}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    </Frame>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Escala" Grid.Row="0" Grid.Column="0"
+                       FontSize="Body"
+                       VerticalTextAlignment="Center"                       
+                       HorizontalOptions="Start"/>
+                    <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1"
+                       CornerRadius="20"
+                       Padding="10">
+                        <Label Text="{Binding PrecioOtorgado}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    </Frame>
+                    <Label Text="Saldo&#10;Vencido:" Grid.Row="0" Grid.Column="2"
+                       FontSize="Body"
+                       VerticalTextAlignment="Center"                       
+                       HorizontalOptions="Start"/>
+                    <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="3"
+                       CornerRadius="20"
+                       Padding="10">
+                        <Label Text="{Binding ClienteActual.troccvnc, StringFormat='${0:#,#}'}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    </Frame>
+                    <Label Text="Factura X&#10;Cobrar:" Grid.Row="1" Grid.Column="2"
+                       FontSize="Body"
+                       VerticalTextAlignment="Center"                       
+                       HorizontalOptions="Start"/>
+                    <Frame HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="3"
+                       CornerRadius="20"
+                       Padding="10">
+                        <Label Text="{Binding ClienteActual.troccsaldo, StringFormat='${0:#,#}'}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    </Frame>
+                    <Label Text="Cupo:" Grid.Row="1" Grid.Column="0"
+                       FontSize="Body"
+                       VerticalTextAlignment="Center"                       
+                       HorizontalOptions="Start"/>
+                    <Frame Grid.Row="1" Grid.Column="1" 
+                       Padding="10"
+                       CornerRadius="20">
+                        <Label Text="{Binding ClienteActual.trocccupo, StringFormat='${0:#,#}'}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    </Frame>
+                </Grid>
+                <Label Text="Despacho"
+                   FontAttributes="Bold"
+                   FontSize="Large"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".3*"/>
+                        <ColumnDefinition Width=".7*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Nombre Despacho: " Grid.Row="0" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                    <Frame Grid.Row="0" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="5,0,5,0">
+                        <Entry Text="{Binding DespachoActual.titular}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center">
+                            <Entry.Behaviors>
+                                <xct:EventToCommandBehavior
+                                    EventName="TextChanged"
+                                    Command="{Binding HabilitarInfoDespachocommand}"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Frame>
+                    <Label Text="Dirección: " Grid.Row="1" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                    <Frame Grid.Row="1" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="5,0,5,0">
+                        <Entry Text="{Binding DespachoActual.titudire}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           IsEnabled="{Binding IsEnableInfoDespacho}"/>
+                    </Frame>
+                    <Label Text="Cuidad: " Grid.Row="2" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                    <Frame Grid.Row="2" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="5,0,5,0">
+                        <Entry Text="{Binding DespachoActual.tituciud}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           IsEnabled="{Binding IsEnableInfoDespacho}"/>
+                    </Frame>
+                    <Label Text="Telefóno: " Grid.Row="3" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                    <Frame Grid.Row="3" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="5,0,5,0">
+                        <Entry Text="{Binding DespachoActual.titutelf}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           IsEnabled="{Binding IsEnableInfoDespacho}"/>
+                    </Frame>
+                    <Label Text="Detalles extras (Opcional): " Grid.Row="4" Grid.Column="0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Body"
+                       HorizontalOptions="Start"
+                       Margin="0,0,5,0"/>
+                    <Frame Grid.Row="4" Grid.Column="1" 
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="20"
+                       Padding="5,0,5,0">
+                        <Entry Text="{Binding DetallesExtras}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    </Frame>
+                </Grid>
+                <Button x:Name="Btn_continuarPedido" Text="Continuar" Command="{Binding continuarPedidoCommand}"/>
+            </StackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

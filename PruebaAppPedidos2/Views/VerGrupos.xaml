@@ -4,7 +4,7 @@
              x:Class="PruebaAppPedidos2.Views.VerGrupos">
     <StackLayout>
         <StackLayout Orientation="Horizontal" Margin="5">
-            <SearchBar TextChanged="SearchBar_TextChanged" HorizontalOptions="FillAndExpand" Placeholder="Buscar Grupo"></SearchBar>
+            <SearchBar TextChanged="SearchBar_TextChanged" Placeholder="Buscar Grupo"></SearchBar>
             <Button Text="filtrar" HorizontalOptions="End" Command="{Binding irAFiltrarcommand}"></Button>
         </StackLayout>
         <CollectionView  ItemsSource="{Binding ListGrupos}" x:Name="grup_arti_list" EmptyView="No se encontraron los grupos">
