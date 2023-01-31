@@ -108,7 +108,7 @@ namespace PruebaAppPedidos2.Services
                         articulo.artiptor = reader.GetInt32(15);
                         articulo.artiptop1 = reader.GetInt32(16);
                         articulo.artiptop2 = reader.GetInt32(17);
-                        await obtenerPrecioInfo(articulo);
+                        //await obtenerPrecioInfo(articulo);
 
                         listArticulos.Add(articulo);
                     }
@@ -122,7 +122,6 @@ namespace PruebaAppPedidos2.Services
                 throw;
             }
         }
-
         public static async Task<ObservableCollection<ModelArticulo>> filtrarArticulos(List<string> palabras)
         {
             ObservableCollection<ModelArticulo> articulosFiltrados = new ObservableCollection<ModelArticulo>();
@@ -186,7 +185,6 @@ namespace PruebaAppPedidos2.Services
                 throw;
             }
         }
-
         public static async Task obtenerPrecioInfo(ModelArticulo articulo)
         {
             try

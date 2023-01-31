@@ -24,7 +24,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public ViewModelVerGrupo(INavigation navigation)
         {
             Navigation= navigation;
-            obtenerGrupos();
+            _ = obtenerGrupos();
         }
 
         //OBJETOS

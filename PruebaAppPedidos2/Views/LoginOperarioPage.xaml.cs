@@ -1,5 +1,4 @@
-﻿using PruebaAppPedidos2.ViewsModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace PruebaAppPedidos2.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class HistorialPedidos : ContentPage
+	public partial class LoginOperarioPage : ContentPage
 	{
-		public HistorialPedidos ()
+		public LoginOperarioPage ()
 		{
 			InitializeComponent ();
-            BindingContext = new ViewModelHistorialPedidos(Navigation);
+		}
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+			Application.Current.MainPage = new NavigationPage(new MainPage());
         }
-	}
+    }
 }

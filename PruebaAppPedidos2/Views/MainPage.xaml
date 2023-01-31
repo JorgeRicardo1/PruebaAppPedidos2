@@ -3,7 +3,7 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="PruebaAppPedidos2.Views.MainPage"
             xmlns:local="clr-namespace:PruebaAppPedidos2.Views"
-            Title="Menu">
+            NavigationPage.HasNavigationBar="False">
     <FlyoutPage.Flyout>
         <local:FlyoutMenuPage x:Name="flyout"/>
     </FlyoutPage.Flyout>

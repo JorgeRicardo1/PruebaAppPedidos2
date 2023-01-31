@@ -1,4 +1,5 @@
-﻿using PruebaAppPedidos2.ViewsModels;
+﻿using PruebaAppPedidos2.Models;
+using PruebaAppPedidos2.ViewsModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace PruebaAppPedidos2.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class HistorialPedidos : ContentPage
+	public partial class DetallesPedidoVendedor : ContentPage
 	{
-		public HistorialPedidos ()
+		public DetallesPedidoVendedor (Modelxxxxvped Pedido)
 		{
 			InitializeComponent ();
-            BindingContext = new ViewModelHistorialPedidos(Navigation);
+            BindingContext = new ViewModelDetallesPedidoVend(Navigation, Pedido);
         }
 	}
 }

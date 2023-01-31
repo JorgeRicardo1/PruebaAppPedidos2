@@ -57,7 +57,7 @@ namespace PruebaAppPedidos2
                             if (empre != null && empre.modulos.Equals("M800") && empre.activar.Equals(empresa[0].activar))
                             {
                                 
-                                MainPage = new NavigationPage(new MainPage());
+                                MainPage = new NavigationPage(new LoginOperarioPage());
                             }
                             else
                             {
