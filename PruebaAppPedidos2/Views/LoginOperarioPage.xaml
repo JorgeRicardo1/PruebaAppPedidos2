@@ -29,15 +29,15 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Frame Grid.Row="0" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
-                                <Entry Placeholder="Nombre Operario" IsPassword="True" TextColor="White" PlaceholderColor="White"/>
+                                <Entry Placeholder="Nombre Operario" TextColor="White" PlaceholderColor="White" Text="{Binding NombreOperario}"/>
                             </Frame>
                             <Frame Grid.Row="1" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
-                                <Entry Placeholder="Clave" TextColor="White" PlaceholderColor="White"/>
+                                <Entry Placeholder="Clave" TextColor="White" IsPassword="True" PlaceholderColor="White" Text="{Binding ClaveOperario}"/>
                             </Frame>
                             <Frame Grid.Row="2" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
                                 <Entry Placeholder="Vendedor"  TextColor="White" PlaceholderColor="White"/>
                             </Frame>
-                            <Button   Grid.Row="3" Text="Entrar" CornerRadius="15" Clicked="Button_Clicked"/>
+                            <Button   Grid.Row="3" Text="Entrar" CornerRadius="15" Command="{Binding validarOperariocommand}"/>
                         </Grid>
                     </StackLayout>
                 </Grid>

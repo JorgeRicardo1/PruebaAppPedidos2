@@ -20,11 +20,13 @@ namespace PruebaAppPedidos2.ViewsModels
         public ModelDespacho _despachoActual;
         public string _detallesExtras;
         public bool _isEnableInfoDespacho;
+        public string _operarioActual;
 
         //CONSTRUCTOR
         public ViewModelCliente(INavigation navigation)
         {
             Navigation = navigation;
+            OperarioActual = App.Operario.nombre;
             DespachoActual = new ModelDespacho {
                 titular = "",
                 tituciud = "",
@@ -68,6 +70,11 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             get { return _isEnableInfoDespacho; }
             set { SetValue(ref _isEnableInfoDespacho, value); }
+        }
+        public string OperarioActual
+        {
+            get { return _operarioActual; }
+            set { SetValue(ref _operarioActual, value); }
         }
 
         //PROCESOS

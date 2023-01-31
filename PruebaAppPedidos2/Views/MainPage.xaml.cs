@@ -29,5 +29,11 @@ namespace PruebaAppPedidos2.Views
 				IsPresented= false;
 			}
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
     }
 }

@@ -17,6 +17,7 @@ namespace PruebaAppPedidos2
         public static Modelxxx3ro clienteActual { get; set; }
         public static DataBase Context { get; set; }
         public static SQLiteAsyncConnection Connection { get; set; }
+        public static Modelxxxxciao Operario { get; set; }
         private bool func = true;
 
         public App()

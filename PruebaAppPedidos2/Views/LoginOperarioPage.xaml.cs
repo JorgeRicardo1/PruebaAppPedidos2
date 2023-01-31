@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PruebaAppPedidos2.ViewsModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,9 @@ namespace PruebaAppPedidos2.Views
 		public LoginOperarioPage ()
 		{
 			InitializeComponent ();
-		}
+			BindingContext = new ViewModelLoginOperario();
 
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-			Application.Current.MainPage = new NavigationPage(new MainPage());
         }
+		
     }
 }

@@ -7,9 +7,11 @@
     <ScrollView Margin="8">
         <Grid>
             <StackLayout>
-                <Label Text="Cliente"
-                   FontAttributes="Bold"
-                   FontSize="Large"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Cliente" FontAttributes="Bold" FontSize="Large" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="Operario:"  FontSize="Medium"/>
+                    <Label Text="{Binding OperarioActual}" FontSize="Medium"/>
+                </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Entry Placeholder="NIT"
                        HorizontalOptions="FillAndExpand"
