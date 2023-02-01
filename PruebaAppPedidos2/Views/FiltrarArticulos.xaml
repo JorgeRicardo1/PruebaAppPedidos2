@@ -55,18 +55,21 @@
                     </StackLayout>
                 </StackLayout>
             </Frame>
-            <CollectionView ItemsSource="{Binding ListArticulos}" x:Name="arti_list">
+            <CollectionView ItemsSource="{Binding ListArticulos}" x:Name="arti_list" EmptyView="No hay articulos disponibles">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Frame Margin="5">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding artinomb}"/>
-                                    <Label Text="--"/>
-                                    <Label Text="{Binding artimarca}"/>
-                                    <Label Text="--"/>
-                                    <Label Text="{Binding artivlr1_c, StringFormat='${0:#,#}'}"/>
-                                </StackLayout>
+                            <Frame Margin="5" Padding="0,20,0,20">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding artinomb}"  Grid.Column="0" VerticalTextAlignment="Center" />
+                                    <Label Text="{Binding artimarca}"  Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding artivlr1_c, StringFormat='${0:#,#}'}" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                </Grid>
                             </Frame>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=BindingContext.irAGestionarArticuloscommand,

@@ -92,9 +92,10 @@
                     <Frame CornerRadius="5"
                            Padding="2"
                            HorizontalOptions="FillAndExpand">
-                        <Label Text="{Binding ArticuloSeleccionado.articodigo}"
+                        <Entry Text="{Binding CodArtiABuscar}"
                                VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"/>
+                               HorizontalTextAlignment="Center"
+                               IsEnabled="{Binding IsEnabledTxtCodArti}"/>
                     </Frame>
                     <ImageButton Source="lupa.png"
                                  WidthRequest="25"

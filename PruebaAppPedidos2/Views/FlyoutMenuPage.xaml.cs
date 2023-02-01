@@ -15,6 +15,9 @@ namespace PruebaAppPedidos2.Views
 		public FlyoutMenuPage ()
 		{
 			InitializeComponent ();
+			BindingContext= this;
+			txtOperarioActual.Text = App.Operario.nombre;
 		}
+
 	}
 }

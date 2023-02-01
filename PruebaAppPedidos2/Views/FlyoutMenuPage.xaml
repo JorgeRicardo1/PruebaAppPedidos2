@@ -6,10 +6,16 @@
              Title="FlyoutMenu"
              x:Class="PruebaAppPedidos2.Views.FlyoutMenuPage">
     <StackLayout>
+        <StackLayout HeightRequest="100" BackgroundColor="#72ca73">
+            <Label Text="Operario Actual" HorizontalOptions="Center" VerticalOptions="Center"
+                   FontAttributes="Bold" FontSize="Title"/>
+            <Label Text="{Binding OperarioActual}" HorizontalOptions="Center" VerticalOptions="Center"
+                   FontAttributes="Bold" FontSize="Title" x:Name="txtOperarioActual" TextColor="White"/>
+        </StackLayout>
         <ListView x:Name="listMenuLateral" x:FieldModifier="public">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:FlyoutItemPage}">
-                    <local:FlyoutItemPage title="Home" iconSource="" targetPage="{x:Type local2:Home}"/>
+                    <local:FlyoutItemPage title="Pedido" iconSource="" targetPage="{x:Type local2:Home}"/>
                     <local:FlyoutItemPage title="Historial" iconSource="" targetPage="{x:Type local2:HistorialPedidos}"/>
                 </x:Array>
             </ListView.ItemsSource>
@@ -18,11 +24,11 @@
                     <ViewCell>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="33"/>
+                                <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="{Binding iconSource}"/>
-                            <Label Grid.Column="1" Text="{Binding title}" />
+                            <Label Grid.Column="1" Text="{Binding title}" FontSize="Medium" VerticalTextAlignment="Center"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

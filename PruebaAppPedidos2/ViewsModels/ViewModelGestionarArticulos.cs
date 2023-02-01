@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using PruebaAppPedidos2.Services;
 using System.ComponentModel;
 using Xamarin.Essentials;
+using Acr.UserDialogs;
 
 namespace PruebaAppPedidos2.ViewsModels
 {
@@ -33,6 +34,8 @@ namespace PruebaAppPedidos2.ViewsModels
         public int _pesoTotalPedido;
         public bool _isVisibleFinalizar;
         public bool _isEnableCantidad;
+        public string _codArtiABuscar;
+        public bool _isEnabledTxtCodArti;
 
 
         //Constructor
@@ -44,6 +47,7 @@ namespace PruebaAppPedidos2.ViewsModels
             _isEditing = false;
             _isVisibleFinalizar = true;
             IsEnableCantidad = false;
+            IsEnabledTxtCodArti = true;
             LstPedidoTemporal = new ObservableCollection<Modelxxxxvpax>();
 
             _ =getMovimientos();
@@ -59,6 +63,8 @@ namespace PruebaAppPedidos2.ViewsModels
                 _valUnidad = articuloSeleccionado.artivlr1_c.ToString();
                 _ = calcularValorParcial();
                 IsEnableCantidad = true;
+                IsEnabledTxtCodArti = false;
+                CodArtiABuscar = ArticuloSeleccionado.articodigo;
             }
             //Mensaje suscriptor para reiniciar el pedido 
             MessagingCenter.Subscribe<Object>(this, "ReinicarPedido", (sender) =>
@@ -168,24 +174,56 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _isEnableCantidad; }
             set { SetValue(ref _isEnableCantidad, value); }
         }
+        public string CodArtiABuscar
+        {
+            get { return _codArtiABuscar; }
+            set { SetValue(ref _codArtiABuscar, value); }
+        }
+        public bool IsEnabledTxtCodArti
+        {
+            get { return _isEnabledTxtCodArti; }
+            set { SetValue(ref _isEnabledTxtCodArti, value); }
+        }
 
         //Procesos
         public async Task irAVerGrupos()
         {
-            if (IsEditing)
+            if (ArticuloSeleccionado == null)
             {
-                await DisplayAlert("Aviso","Se esta editando un movimiento","Ok");
-                return;
+                if (IsEditing)
+                {
+                    await DisplayAlert("Aviso", "Se esta editando un movimiento", "Ok");
+                    return;
+                }
+                if (App.encabezadoTemp == null)
+                {
+                    await DisplayAlert("Error", "Seleccione un cliente y luego darle continuar", "Ok");
+                    return;
+                }
+                if (CodArtiABuscar != null && CodArtiABuscar != "")
+                {
+                    var articuloSeleccionado = await ServicesArticulos.getArticulo(CodArtiABuscar);
+                    if (articuloSeleccionado == null)
+                    {
+                        await DisplayAlert("Aviso",$"No existe un articolo con el codigo: {CodArtiABuscar}","Ok");
+                        return;
+                    }
+                    await Navigation.PushAsync(new GestionarArticulos(articuloSeleccionado));
+                }
+                else
+                {
+                    await Navigation.PushAsync(new VerGrupos());
+                }
             }
-            if (App.encabezadoTemp == null)
+            else
             {
-                await DisplayAlert("Error", "Seleccione un cliente y luego darle continuar", "Ok");
-                return;
+                await DisplayAlert("Aviso", "Ya tiene un articulo seleccionado para añadir", "Ok");
             }
-            await Navigation.PushAsync(new VerGrupos());
         }
         public async Task addArticuloPedidoTemp()
         {
+            UserDialogs.Instance.ShowLoading("Agregando");
+            await Task.Delay(500);
             ObservableCollection<ModelArticulo> lstAux = new ObservableCollection<ModelArticulo>();
             if (App.encabezadoTemp == null)
             {
@@ -198,6 +236,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 if (ArticuloSeleccionado == null)
                 {
                     await DisplayAlert("Aviso", "No se ha seleccionado un articulo a agregar", "Ok");
+                    UserDialogs.Instance.HideLoading();
                     return;
                 }
                 if (ArticuloSeleccionado.articodigo != null)
@@ -209,7 +248,7 @@ namespace PruebaAppPedidos2.ViewsModels
             {
                 await Servicesxxxxvpax.modificarMovimineto(MovAEditar.Id_vpar, _detallesArti, _cantidadArtiActual,_valParcialArtiActual) ;
             }
-             
+            UserDialogs.Instance.HideLoading();
             await Navigation.PopToRootAsync();   
         }
         public async Task getMovimientos()
@@ -301,6 +340,10 @@ namespace PruebaAppPedidos2.ViewsModels
                     await Servicesxxxxvped.borrarEncabezado(App.encabezadoTemp.id_vtaped);
                     App.encabezadoTemp = null;
                     LstPedidoTemporal = null;
+                    PrecioTotalPedido = 0;
+                    CantidadTotalPedido = 0;
+                    PesoTotalPedido = 0;
+
                     MessagingCenter.Send<Object>(this, "ReinicarPedido"); //Mensaje a Home, para volver a la pagina Cliente
 
                 }
