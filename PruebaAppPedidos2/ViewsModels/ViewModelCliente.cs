@@ -110,14 +110,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 await DisplayAlert("Aviso","Ya tiene un pedido en proceso, para empezar uno nuevo, primero reinicie el pedido actual","Ok");
                 return;
             }
-            if (IsEnableInfoDespacho)
-            {
-                if (DespachoActual.titudire == "" || DespachoActual.tituciud == "" || DespachoActual.titutelf == "")
-                {
-                    await DisplayAlert("Error", "Llene la informacion del despacho", "Ok");
-                    return;
-                }
-            }
+            
             if (ClienteActual != null)
             {
                 await Servicesxxxxvped.crearEncabezadoTemp(ClienteActual.tronit, DespachoActual,DetallesExtras);

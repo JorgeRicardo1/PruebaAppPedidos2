@@ -13,7 +13,7 @@ namespace PruebaAppPedidos2.Data
         public DataBase(string dbPath, SQLiteAsyncConnection liteConnection)
         {
             liteConnection = new SQLiteAsyncConnection(dbPath);
-            liteConnection .CreateTableAsync<EmpresaModel>().Wait();
+            liteConnection.CreateTableAsync<EmpresaModel>().Wait();
             Connection = liteConnection;
         }
 

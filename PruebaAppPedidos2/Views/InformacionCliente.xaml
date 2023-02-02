@@ -157,7 +157,7 @@
                         <ColumnDefinition Width=".3*"/>
                         <ColumnDefinition Width=".7*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Text="Nombre Despacho: " Grid.Row="0" Grid.Column="0"
+                    <Label Text="Nombre quien recibe(Opcional): " Grid.Row="0" Grid.Column="0"
                        VerticalTextAlignment="Center"
                        FontSize="Body"
                        HorizontalOptions="Start"

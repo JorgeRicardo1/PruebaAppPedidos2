@@ -36,6 +36,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public bool _isEnableCantidad;
         public string _codArtiABuscar;
         public bool _isEnabledTxtCodArti;
+        public bool _isVisibleReiniciar;
 
 
         //Constructor
@@ -49,6 +50,7 @@ namespace PruebaAppPedidos2.ViewsModels
             IsEnableCantidad = false;
             IsEnabledTxtCodArti = true;
             LstPedidoTemporal = new ObservableCollection<Modelxxxxvpax>();
+            IsVisibleReiniciar = true;
 
             _ =getMovimientos();
             //Mensaje suscriptor para actualizar el encabezado del pedido (ClienteViewModel)
@@ -65,6 +67,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 IsEnableCantidad = true;
                 IsEnabledTxtCodArti = false;
                 CodArtiABuscar = ArticuloSeleccionado.articodigo;
+                IsVisibleReiniciar = false;
             }
             //Mensaje suscriptor para reiniciar el pedido 
             MessagingCenter.Subscribe<Object>(this, "ReinicarPedido", (sender) =>
@@ -183,6 +186,11 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             get { return _isEnabledTxtCodArti; }
             set { SetValue(ref _isEnabledTxtCodArti, value); }
+        }
+        public bool IsVisibleReiniciar
+        {
+            get { return _isVisibleReiniciar; }
+            set { SetValue(ref _isVisibleReiniciar, value); }
         }
 
         //Procesos
@@ -334,7 +342,7 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             if (App.encabezadoTemp != null)
             {
-                bool respuesta = await DisplayAlert("Aviso", "Seguro desea borrar todo el pedido actual?", "yes", "no");
+                bool respuesta = await DisplayAlert("Aviso", "Seguro desea borrar todo el pedido actual?", "Si", "No");
                 if (respuesta)
                 {
                     await Servicesxxxxvped.borrarEncabezado(App.encabezadoTemp.id_vtaped);

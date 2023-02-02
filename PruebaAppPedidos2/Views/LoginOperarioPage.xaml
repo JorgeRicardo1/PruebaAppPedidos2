@@ -18,7 +18,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <StackLayout Grid.Row="0">
-                        <Label Text="Ingrese su operario y clave" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="Bienvenido" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
                     </StackLayout>
                     <StackLayout Grid.Row="1">
                         <Grid>
@@ -27,17 +27,21 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
-                            <Frame Grid.Row="0" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
-                                <Entry Placeholder="Nombre Operario" TextColor="White" PlaceholderColor="White" Text="{Binding NombreOperario}"/>
-                            </Frame>
+                            <Label Text="Seleccione el operario" TextColor="Black" FontAttributes="Bold"/>
                             <Frame Grid.Row="1" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
-                                <Entry Placeholder="Clave" TextColor="White" IsPassword="True" PlaceholderColor="White" Text="{Binding ClaveOperario}"/>
+                                <Picker TextColor="White" Title="Sellecione Operario" ItemsSource="{Binding OperariosPedidos}" ItemDisplayBinding="{Binding nombre}"
+                                        SelectedItem="{Binding OperarioSeleccionado}">
+                                </Picker>
                             </Frame>
                             <Frame Grid.Row="2" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
+                                <Entry Placeholder="Clave" TextColor="White" IsPassword="True" PlaceholderColor="White" Text="{Binding ClaveOperario}"/>
+                            </Frame>
+                            <Frame Grid.Row="3" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
                                 <Entry Placeholder="Vendedor"  TextColor="White" PlaceholderColor="White"/>
                             </Frame>
-                            <Button   Grid.Row="3" Text="Entrar" CornerRadius="15" Command="{Binding validarOperariocommand}"/>
+                            <Button   Grid.Row="4" Text="Entrar" CornerRadius="15" Command="{Binding validarOperariocommand}"/>
                         </Grid>
                     </StackLayout>
                 </Grid>
