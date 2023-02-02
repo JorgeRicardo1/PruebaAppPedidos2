@@ -25,9 +25,11 @@
         <StackLayout>
             <StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Articulos" FontAttributes="Bold" FontSize="Large"/>
-                    <Button Text="Reiniciar" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}" HorizontalOptions="EndAndExpand"
-                        Background="#D20103" CornerRadius="25" TextTransform="None"/>
+                    <Label Text="Articulos" FontAttributes="Bold" FontSize="Large" HorizontalOptions="StartAndExpand"/>
+                    <Button Text="Cod.Barras" Command="{Binding leerCodigoDeBarrascommand}" IsVisible="true" Background="#4c62be" CornerRadius="25" 
+                            TextTransform="None" HorizontalOptions="End" TextColor="White"/>
+                    <Button Text="Reiniciar" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}" HorizontalOptions="End"
+                            Background="#91002b" CornerRadius="25" TextTransform="None" TextColor="White"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="0,-15,0,0">
                     <Label Text="Cc/Nit:" FontSize="Body" VerticalOptions="Center"/>
@@ -42,7 +44,7 @@
                        VerticalTextAlignment="Center"/>
                 <Frame Padding="5"
                        CornerRadius="10"
-                       BackgroundColor="#EBD978">
+                       BackgroundColor="#9dd89c">
                     <Label Text="{Binding PrecioTotalPedido, StringFormat='${0:#,#}'}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
@@ -51,7 +53,7 @@
                        VerticalTextAlignment="Center"/>
                 <Frame Padding="5"
                        CornerRadius="10"
-                       BackgroundColor="#EBD978">
+                       BackgroundColor="#9dd89c">
                     <Label Text="{Binding CantidadTotalPedido}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
@@ -60,7 +62,7 @@
                        VerticalTextAlignment="Center"/>
                 <Frame Padding="5"
                        CornerRadius="10"
-                       BackgroundColor="#EBD978">
+                       BackgroundColor="#9dd89c">
                     <Label Text="{Binding PesoTotalPedido}"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"/>
@@ -165,7 +167,7 @@
                 </Frame>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
-            <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*">
+            <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*" Opacity="{Binding OpacityInfoArti}">
                 <!-- fila 0-->
                 <Label Text="Descripcion Articulo"
                        Grid.Row="0"
@@ -227,6 +229,7 @@
                              WidthRequest="50"
                              CornerRadius="15"
                              Padding="5"
+                             IsVisible="{Binding IsVisibleAdd}"
                              Command="{Binding addArticuloPedidoTempcommand}"/>
                 <ImageButton Source="lapiz.png" 
                              BackgroundColor="#F1BE2E"

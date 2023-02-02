@@ -11,6 +11,7 @@ using PruebaAppPedidos2.Services;
 using System.ComponentModel;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
+using ZXing.Net.Mobile.Forms;
 
 namespace PruebaAppPedidos2.ViewsModels
 {
@@ -37,6 +38,8 @@ namespace PruebaAppPedidos2.ViewsModels
         public string _codArtiABuscar;
         public bool _isEnabledTxtCodArti;
         public bool _isVisibleReiniciar;
+        public double _opacityInfoArti;
+        public bool _isVisibleAdd;
 
 
         //Constructor
@@ -51,6 +54,8 @@ namespace PruebaAppPedidos2.ViewsModels
             IsEnabledTxtCodArti = true;
             LstPedidoTemporal = new ObservableCollection<Modelxxxxvpax>();
             IsVisibleReiniciar = true;
+            OpacityInfoArti = 0.5;
+            IsVisibleAdd = false;
 
             _ =getMovimientos();
             //Mensaje suscriptor para actualizar el encabezado del pedido (ClienteViewModel)
@@ -68,6 +73,8 @@ namespace PruebaAppPedidos2.ViewsModels
                 IsEnabledTxtCodArti = false;
                 CodArtiABuscar = ArticuloSeleccionado.articodigo;
                 IsVisibleReiniciar = false;
+                OpacityInfoArti = 1;
+                IsVisibleAdd = true;
             }
             //Mensaje suscriptor para reiniciar el pedido 
             MessagingCenter.Subscribe<Object>(this, "ReinicarPedido", (sender) =>
@@ -192,7 +199,16 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _isVisibleReiniciar; }
             set { SetValue(ref _isVisibleReiniciar, value); }
         }
-
+        public double OpacityInfoArti
+        {
+            get { return _opacityInfoArti; }
+            set { SetValue(ref _opacityInfoArti, value); }
+        }
+        public bool IsVisibleAdd
+        {
+            get { return _isVisibleAdd; }
+            set { SetValue(ref _isVisibleAdd, value); }
+        }
         //Procesos
         public async Task irAVerGrupos()
         {
@@ -236,6 +252,7 @@ namespace PruebaAppPedidos2.ViewsModels
             if (App.encabezadoTemp == null)
             {
                 await DisplayAlert("Error","Seleccione un cliente y luego darle continuar", "Ok");
+                UserDialogs.Instance.HideLoading();
                 return;
             }
             
@@ -416,6 +433,24 @@ namespace PruebaAppPedidos2.ViewsModels
             body += $"\nTotal=${PrecioTotalPedido}";
             return body;
         }
+        public async Task leerCodigoDeBarras()
+        {
+            try
+            {
+                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+                scanner.TopText= "Centre el codigo dentro de la pantalla";
+                var result = await scanner.Scan();
+                if (result != null)
+                {
+                    CodArtiABuscar = result.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message.ToString(), "ok");
+                throw;
+            }
+        }
 
         //Comandos
         public ICommand irAVerGruposcommand => new Command(async () => await irAVerGrupos());
@@ -428,5 +463,6 @@ namespace PruebaAppPedidos2.ViewsModels
         public ICommand calcularTotalesPedidocommand => new Command(() => calcularTotalesPedido());
         public ICommand reiniciarPedidocommand => new Command(async () => await reiniciarPedido());
         public ICommand enviarCorreocommand => new Command(async () => await enviarCorreo());
+        public ICommand leerCodigoDeBarrascommand => new Command(async () => await leerCodigoDeBarras());
     }
 }

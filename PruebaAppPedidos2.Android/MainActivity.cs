@@ -10,6 +10,7 @@ using System.Security;
 using Java.Security;
 using static Android.Provider.Settings;
 using static PruebaAppPedidos2.Droid.MainActivity;
+using System.Net.NetworkInformation;
 
 [assembly: Xamarin.Forms.Dependency(typeof(GetInfoImplement))]
 namespace PruebaAppPedidos2.Droid
@@ -25,12 +26,14 @@ namespace PruebaAppPedidos2.Droid
             UserDialogs.Init(this);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::ZXing.Net.Mobile.Forms.Android.Platform.Init();
+            ZXing.Mobile.MobileBarcodeScanner.Initialize(Application);
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode,permissions,grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
