@@ -38,7 +38,6 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _listArticulos; }
             set { SetValue(ref _listArticulos, value); }
         }
-
         public string Palabra1
         {
             get { return _palabra1; }

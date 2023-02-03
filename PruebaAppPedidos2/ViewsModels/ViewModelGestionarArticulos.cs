@@ -55,7 +55,7 @@ namespace PruebaAppPedidos2.ViewsModels
             LstPedidoTemporal = new ObservableCollection<Modelxxxxvpax>();
             IsVisibleReiniciar = true;
             OpacityInfoArti = 0.5;
-            IsVisibleAdd = false;
+
 
             _ =getMovimientos();
             //Mensaje suscriptor para actualizar el encabezado del pedido (ClienteViewModel)
@@ -80,6 +80,16 @@ namespace PruebaAppPedidos2.ViewsModels
             MessagingCenter.Subscribe<Object>(this, "ReinicarPedido", (sender) =>
             {
                 EncabezadoTem = App.encabezadoTemp;
+            });
+
+            //Mensaje susciptor para actualizar los campos de la pagina Gestionar Articulos
+            //y ponerlos vacios otra vez
+            MessagingCenter.Subscribe<Object>(this, "LimpiarPantalla", (sender) =>
+            {
+                OpacityInfoArti = 0.5;
+                IsVisibleAdd = false;
+                CodArtiABuscar = "";
+                _=getMovimientos();
             });
         }
 
@@ -243,7 +253,7 @@ namespace PruebaAppPedidos2.ViewsModels
             {
                 await DisplayAlert("Aviso", "Ya tiene un articulo seleccionado para añadir", "Ok");
             }
-        }
+        } //Boton lupa
         public async Task addArticuloPedidoTemp()
         {
             UserDialogs.Instance.ShowLoading("Agregando");
@@ -274,7 +284,8 @@ namespace PruebaAppPedidos2.ViewsModels
                 await Servicesxxxxvpax.modificarMovimineto(MovAEditar.Id_vpar, _detallesArti, _cantidadArtiActual,_valParcialArtiActual) ;
             }
             UserDialogs.Instance.HideLoading();
-            await Navigation.PopToRootAsync();   
+            MessagingCenter.Send<Object>(this, "LimpiarPantalla");
+            await Navigation.PopToRootAsync();
         }
         public async Task getMovimientos()
         {
@@ -416,9 +427,12 @@ namespace PruebaAppPedidos2.ViewsModels
                 App.encabezadoTemp = null;
                 App.clienteActual = null;
                 EncabezadoTem = App.encabezadoTemp;
+                PrecioTotalPedido=0;
+                CantidadTotalPedido=0;
+                PesoTotalPedido=0;
                 LstPedidoTemporal.Clear();
             }
-        }
+        } //Finalizar Pedido
         public string crearBodyMensaje()
         {
             string body = "";

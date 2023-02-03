@@ -12,7 +12,7 @@ using System.Text;
 
 namespace PruebaAppPedidos2.Droid
 {
-    [Activity(Label = "RmSoftPedidos", Icon = "@mipmap/icon", Theme = "@style/TemaSplash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize )]
+    [Activity(Label = "RmSoftPedidos", Icon = "@mipmap/iconoSplash", Theme = "@style/TemaSplash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize )]
     public class SplashScreen : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

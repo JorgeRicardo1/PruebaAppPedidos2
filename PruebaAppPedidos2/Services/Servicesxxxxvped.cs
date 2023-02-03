@@ -16,6 +16,10 @@ namespace PruebaAppPedidos2.Services
         {
             string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
             string time = DateTime.Now.ToString("HH:mm:ss");
+            string operario = App.Operario.clave;
+            string sucursal = App.Operario.sucursal;
+            string vendedor = App.Operario.ciao_vend;
+            string obra = App.Operario.obra;
 
             var conexionBD = await DataConexion.conectar();
             try
@@ -23,7 +27,7 @@ namespace PruebaAppPedidos2.Services
                 string query = $"INSERT INTO `xxxxvpex` " +
                     $"(`nit`, `numero`, `fecha`, `dias`, `obra`, `transporte`, `fdigitar`, `hdigita`, `datos1`, `vendedor`, `valor`, `abono`, `saldo`, `terminal`, `vriva`, `desctos`, `neto`, `costo`, `titular`, `titudire`, `titutelf`, `tituciud`, `ped_fraxx`, `ped_envio`, `ped_estado`, `sucursal`, `operario`, `grupo`, `consumo`) " +
                     $"VALUES " +
-                    $"('{codigoCliente}', 'Temp', '{date}', '1', '0000', 'trans', '{date}', '{time}', '{datos1}', 'vend', '0', '0', '0', 'ter', '0', '0', '0', '0', '{despacho.titular}', '{despacho.titudire}', '{despacho.titutelf}', '{despacho.tituciud}', '0', '1', '0', 'suc', 'ope', '0', '0')";
+                    $"('{codigoCliente}', 'Temp', '{date}', '1', '{obra}', 'trans', '{date}', '{time}', '{datos1}', '{vendedor}', '0', '0', '0', 'ter', '0', '0', '0', '0', '{despacho.titular}', '{despacho.titudire}', '{despacho.titutelf}', '{despacho.tituciud}', '0', '1', '0', '{sucursal}', '{operario}', '0', '0')";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;

@@ -31,7 +31,7 @@
                             </Grid.RowDefinitions>
                             <Label Text="Seleccione el operario" TextColor="Black" FontAttributes="Bold"/>
                             <Frame Grid.Row="1" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
-                                <Picker TextColor="White" Title="Sellecione Operario" ItemsSource="{Binding OperariosPedidos}" ItemDisplayBinding="{Binding nombre}"
+                                <Picker TextColor="White" Title="Selecione Operario" ItemsSource="{Binding OperariosPedidos}" ItemDisplayBinding="{Binding nombre}"
                                         SelectedItem="{Binding OperarioSeleccionado}">
                                 </Picker>
                             </Frame>

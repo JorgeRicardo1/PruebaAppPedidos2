@@ -19,7 +19,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public ViewModelHistorialPedidos(INavigation navigation) 
         {
             Navigation = navigation;
-            _ = getPedidosVendor("vend");
+            _ = getPedidosVendor(App.Operario.ciao_vend);
         }
 
         //OBJETOS
