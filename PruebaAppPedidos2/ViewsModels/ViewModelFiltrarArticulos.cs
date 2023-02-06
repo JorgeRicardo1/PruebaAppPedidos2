@@ -60,22 +60,22 @@ namespace PruebaAppPedidos2.ViewsModels
         }
 
         //PROCESOS
-        public async Task filtrar()
+        public void filtrar()
         {
             ListArticulos.Clear();
             List<string> palabras = new List<string> { Palabra1, Palabra2, Palabra3, Palabra4 };
-            await ServicesArticulos.obtenerTodoArticulos();
+            //await ServicesArticulos.obtenerTodoArticulos();
             ObservableCollection<ModelArticulo> articulos = ServicesArticulos.Articulos;
             string fraseABuscar = string.Join(" ", palabras);
             fraseABuscar = fraseABuscar.ToUpper().Trim();
-            
+
             foreach (var articulo in articulos)
             {
                 bool r = articulo.artinomb.Contains(fraseABuscar);
                 if (articulo.artinomb.Contains(fraseABuscar) || articulo.artimarca.Contains(fraseABuscar) || articulo.articodigo.Contains(fraseABuscar))
                 {
                     if (!ListArticulos.Contains(articulo))
-                    {  
+                    {
                         ListArticulos.Add(articulo);
                     }
                 }
@@ -97,7 +97,7 @@ namespace PruebaAppPedidos2.ViewsModels
         }
 
         //COMANDOS
-        public ICommand filtrarCommand => new Command(async () => await filtrar());
+        public ICommand filtrarCommand => new Command(() => filtrar());
         public ICommand limpiarBusquedaCommand => new Command(limpiarBusqueda);
         public ICommand irAGestionarArticuloscommand => new Command<ModelArticulo>(async (p) => await irAGestionarArticulos(p));
     }

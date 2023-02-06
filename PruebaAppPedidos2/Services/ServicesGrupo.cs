@@ -18,6 +18,7 @@ namespace PruebaAppPedidos2.Services
 
         ServicesGrupo() 
         {
+            _=extraerGrupos();
         }
 
         public static async Task extraerGrupos()

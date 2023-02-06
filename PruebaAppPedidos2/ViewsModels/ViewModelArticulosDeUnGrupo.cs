@@ -22,7 +22,7 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             Navigation = navigation;
             _grupoAMostrar = grupoSeleccionado;    
-            _ = obtenerArticulos();
+            obtenerArticulos();
         }
 
         //OBJETOS
@@ -40,10 +40,10 @@ namespace PruebaAppPedidos2.ViewsModels
 
         //PROCESOS
 
-        public async Task obtenerArticulos()
+        public void obtenerArticulos()
         {
             //ListArticulos = await ServicesArticulos.obtenerArticulosDeGrupo(GrupoAMostrar.codigo);
-            await ServicesArticulos.obtenerTodoArticulos();
+            //await ServicesArticulos.obtenerTodoArticulos();
             ObservableCollection<ModelArticulo> artiDeGrupo = new ObservableCollection<ModelArticulo>();
             var articulosObtenido = ServicesArticulos.Articulos;
             foreach (var item in articulosObtenido)
@@ -61,7 +61,7 @@ namespace PruebaAppPedidos2.ViewsModels
             await Navigation.PushAsync(new GestionarArticulos(articuloSeleccionado));
         }
         //COMANDOS
-        public ICommand obtenerArticuloscommand => new Command(async () => await obtenerArticulos());
+        public ICommand obtenerArticuloscommand => new Command(() => obtenerArticulos());
         public ICommand irAGestionarArticuloscommand => new Command<ModelArticulo>(async (p) => await irAGestionarArticulos(p));
     }
 }

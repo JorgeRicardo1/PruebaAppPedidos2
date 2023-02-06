@@ -116,6 +116,8 @@ namespace PruebaAppPedidos2.ViewsModels
                 await Servicesxxxxvpex.crearEncabezadoTemp(ClienteActual.tronit, DespachoActual,DetallesExtras);
                 App.clienteActual= ClienteActual;
                 App.encabezadoTemp = await Servicesxxxxvpex.obtenerEncabezado();
+                await ServicesGrupo.extraerGrupos();//METODOS para obtener los grupos y articulos de la empresa una vez
+                await ServicesArticulos.obtenerTodoArticulos();
                 MessagingCenter.Send<Object>(this, "ContinuarPedido"); //Mensaje para cambiar la currentTabPage, en Home 
                 MessagingCenter.Send<Object>(this, "ContinuarPedido2"); //Mensaje para actualizar el encabezado en ViewModelGestionarArti
             }
@@ -126,7 +128,7 @@ namespace PruebaAppPedidos2.ViewsModels
             }
         }
 
-        public async Task HabilitarInfoDespacho()
+        public Task HabilitarInfoDespacho()
         {
             if (DespachoActual.titular == "")
             {
@@ -140,6 +142,8 @@ namespace PruebaAppPedidos2.ViewsModels
             {
                 IsEnableInfoDespacho = true;
             }
+
+            return Task.CompletedTask;
         }
 
         public  string obtenerPrecioCliente(Modelxxx3ro cliente)

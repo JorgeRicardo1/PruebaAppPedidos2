@@ -27,6 +27,9 @@ namespace PruebaAppPedidos2.Models
 
         //INFO PRECIOS OBTENIDOS DE xxxxartv
         public int artivlr1_c { get; set; }
+        public int artivlr2_c { get; set; }
+        public int artivlr3_c { get; set; }
+        public int artivlr4_c { get; set; }
         public int artiiva { get; set; }
         public int articant { get; set; }
     }

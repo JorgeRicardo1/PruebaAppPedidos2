@@ -24,7 +24,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public ViewModelVerGrupo(INavigation navigation)
         {
             Navigation= navigation;
-            _ = obtenerGrupos();
+            obtenerGrupos();
         }
 
         //OBJETOS
@@ -53,11 +53,11 @@ namespace PruebaAppPedidos2.ViewsModels
         }
 
         //PROCESOS
-        public async Task obtenerGrupos()
+        public void obtenerGrupos()
         {
-            await ServicesGrupo.extraerGrupos();
+            //await ServicesGrupo.extraerGrupos();
             //ListGrupos = await ServicesGrupo.extraerGrupos(); Averiguar como
-            ListGrupos =  ServicesGrupo.Grupos;
+            ListGrupos = ServicesGrupo.Grupos;
         }
 
         public async Task irArticulosDeGrupo(ModelGrupo parametros)
@@ -70,7 +70,7 @@ namespace PruebaAppPedidos2.ViewsModels
             await Navigation.PushAsync(new FiltrarArticulos());
         }
         //COMANDOS
-        public ICommand obtenerGruposcommand => new Command(async () => await obtenerGrupos());
+        public ICommand obtenerGruposcommand => new Command(() => obtenerGrupos());
         public ICommand irArticulosDeGrupocommand => new Command<ModelGrupo> (async (p) => await irArticulosDeGrupo(p));
 
         public ICommand irAFiltrarcommand => new Command(async () => await irAfiltrar());
