@@ -113,9 +113,9 @@ namespace PruebaAppPedidos2.ViewsModels
             
             if (ClienteActual != null)
             {
-                await Servicesxxxxvped.crearEncabezadoTemp(ClienteActual.tronit, DespachoActual,DetallesExtras);
+                await Servicesxxxxvpex.crearEncabezadoTemp(ClienteActual.tronit, DespachoActual,DetallesExtras);
                 App.clienteActual= ClienteActual;
-                App.encabezadoTemp = await Servicesxxxxvped.obtenerEncabezado();
+                App.encabezadoTemp = await Servicesxxxxvpex.obtenerEncabezado();
                 MessagingCenter.Send<Object>(this, "ContinuarPedido"); //Mensaje para cambiar la currentTabPage, en Home 
                 MessagingCenter.Send<Object>(this, "ContinuarPedido2"); //Mensaje para actualizar el encabezado en ViewModelGestionarArti
             }

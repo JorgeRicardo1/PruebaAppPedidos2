@@ -83,13 +83,14 @@ namespace PruebaAppPedidos2.ViewsModels
             });
 
             //Mensaje susciptor para actualizar los campos de la pagina Gestionar Articulos
-            //y ponerlos vacios otra vez
+            //y poner vacio algunos campos (el mensaje.Send esta en la funcion addMovimiento)
             MessagingCenter.Subscribe<Object>(this, "LimpiarPantalla", (sender) =>
             {
                 OpacityInfoArti = 0.5;
                 IsVisibleAdd = false;
                 CodArtiABuscar = "";
                 _=getMovimientos();
+                Task.Run(async () => await Servicesxxxxvpex.actualizarTotalesPedido(App.encabezadoTemp.id_vtaped, PrecioTotalPedido)); 
             });
         }
 
@@ -106,6 +107,8 @@ namespace PruebaAppPedidos2.ViewsModels
             _isEditing = true;
             _isVisibleFinalizar = false;
             IsEnableCantidad = true;
+            OpacityInfoArti = 1;
+            IsVisibleAdd = true;
         }
 
         //Objetos
@@ -220,17 +223,22 @@ namespace PruebaAppPedidos2.ViewsModels
             set { SetValue(ref _isVisibleAdd, value); }
         }
         //Procesos
-        public async Task irAVerGrupos()
+        public async Task irAVerGrupos() 
         {
+            
             if (ArticuloSeleccionado == null)
             {
+                UserDialogs.Instance.ShowLoading("Buscando");
+                await Task.Delay(500);
                 if (IsEditing)
                 {
                     await DisplayAlert("Aviso", "Se esta editando un movimiento", "Ok");
+                    UserDialogs.Instance.HideLoading();
                     return;
                 }
                 if (App.encabezadoTemp == null)
                 {
+                    UserDialogs.Instance.HideLoading();
                     await DisplayAlert("Error", "Seleccione un cliente y luego darle continuar", "Ok");
                     return;
                 }
@@ -239,18 +247,23 @@ namespace PruebaAppPedidos2.ViewsModels
                     var articuloSeleccionado = await ServicesArticulos.getArticulo(CodArtiABuscar);
                     if (articuloSeleccionado == null)
                     {
+                        UserDialogs.Instance.HideLoading();
                         await DisplayAlert("Aviso",$"No existe un articolo con el codigo: {CodArtiABuscar}","Ok");
                         return;
                     }
                     await Navigation.PushAsync(new GestionarArticulos(articuloSeleccionado));
+                    UserDialogs.Instance.HideLoading();
                 }
                 else
                 {
+                    UserDialogs.Instance.HideLoading();
                     await Navigation.PushAsync(new VerGrupos());
+                    
                 }
             }
             else
             {
+                UserDialogs.Instance.HideLoading();
                 await DisplayAlert("Aviso", "Ya tiene un articulo seleccionado para añadir", "Ok");
             }
         } //Boton lupa
@@ -284,7 +297,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 await Servicesxxxxvpax.modificarMovimineto(MovAEditar.Id_vpar, _detallesArti, _cantidadArtiActual,_valParcialArtiActual) ;
             }
             UserDialogs.Instance.HideLoading();
-            MessagingCenter.Send<Object>(this, "LimpiarPantalla");
+            MessagingCenter.Send<Object>(this, "LimpiarPantalla");  
             await Navigation.PopToRootAsync();
         }
         public async Task getMovimientos()
@@ -373,7 +386,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 bool respuesta = await DisplayAlert("Aviso", "Seguro desea borrar todo el pedido actual?", "Si", "No");
                 if (respuesta)
                 {
-                    await Servicesxxxxvped.borrarEncabezado(App.encabezadoTemp.id_vtaped);
+                    await Servicesxxxxvpex.borrarEncabezado(App.encabezadoTemp.id_vtaped);
                     App.encabezadoTemp = null;
                     LstPedidoTemporal = null;
                     PrecioTotalPedido = 0;

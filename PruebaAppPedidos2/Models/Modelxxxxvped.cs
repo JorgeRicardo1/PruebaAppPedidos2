@@ -46,5 +46,8 @@ namespace PruebaAppPedidos2.Models
         public string desp_telf { get; set; }
         public string desp_city { get; set; }
         public int consumo { get; set; }
+
+        //propiedad para pasar a texto si ha sido aprovado o no
+        public string textAprovado { get; set; }
     }
 }

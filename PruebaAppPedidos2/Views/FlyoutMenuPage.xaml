@@ -16,7 +16,8 @@
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:FlyoutItemPage}">
                     <local:FlyoutItemPage title="Pedido" iconSource="" targetPage="{x:Type local2:Home}"/>
-                    <local:FlyoutItemPage title="Historial" iconSource="" targetPage="{x:Type local2:HistorialPedidos}"/>
+                    <local:FlyoutItemPage title="Pedidos Activos" iconSource="" targetPage="{x:Type local2:HistorialPedidos}"/>
+                    <local:FlyoutItemPage title="Historico Pedidos" iconSource="" targetPage="{x:Type local2:HistoricoPedidos}"/>
                 </x:Array>
             </ListView.ItemsSource>
             <ListView.ItemTemplate>

@@ -15,6 +15,7 @@ namespace PruebaAppPedidos2.ViewsModels
     {
         //Variables
         public ObservableCollection<Modelxxxxvped> _pedidosVendedor;
+        public string _txtPedidoAprovado;
         //Constructor
         public ViewModelHistorialPedidos(INavigation navigation) 
         {
@@ -28,10 +29,19 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _pedidosVendedor; }
             set { SetValue(ref _pedidosVendedor, value); }
         }
+        public string TxtPedidoAprovado
+        {
+            get { return _txtPedidoAprovado; }
+            set { SetValue(ref _txtPedidoAprovado, value); }
+        }
         //PROCESOS
         public async Task getPedidosVendor(string idVendedor)
         {
-            PedidosVendedor = await Servicesxxxxvped.getAllPedidosVendedor(idVendedor);
+            PedidosVendedor = await Servicesxxxxvpex.getAllPedidosVendedor(idVendedor);
+            foreach (var pedido in PedidosVendedor)
+            {
+                pedido.textAprovado = (pedido.ped_estado == 0) ? "No" : "Si";
+            }
         }
         public async Task irDetallePedidoVendedor(Modelxxxxvped pedido)
         {

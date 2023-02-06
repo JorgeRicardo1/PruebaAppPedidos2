@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PruebaAppPedidos2.Views.HistorialPedidos"
-             >
+             x:Class="PruebaAppPedidos2.Views.HistoricoPedidos">
     <StackLayout>
         <StackLayout>
-            <Label Text="Historial de pedidos en proceso" FontSize="Large" FontAttributes="Bold"/>
+            <Label Text="Historico de pedidos" FontSize="Large" FontAttributes="Bold"/>
         </StackLayout>
         <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
         <Grid Margin="3,0,3,5">
