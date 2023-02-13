@@ -113,8 +113,8 @@ namespace PruebaAppPedidos2.ViewsModels
             
             if (ClienteActual != null)
             {
+                App.clienteActual = ClienteActual;
                 await Servicesxxxxvpex.crearEncabezadoTemp(ClienteActual.tronit, DespachoActual,DetallesExtras);
-                App.clienteActual= ClienteActual;
                 App.encabezadoTemp = await Servicesxxxxvpex.obtenerEncabezado();
                 await ServicesGrupo.extraerGrupos();//METODOS para obtener los grupos y articulos de la empresa una vez
                 await ServicesArticulos.obtenerTodoArticulos();

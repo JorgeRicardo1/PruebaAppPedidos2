@@ -303,7 +303,6 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task getMovimientos()
         {
             //if (IsRefreshing) { return; }
-            
             try
             {
                 IsVisible = false;

@@ -1,6 +1,7 @@
 ﻿using MySqlConnector;
 using PruebaAppPedidos2.Data;
 using PruebaAppPedidos2.Models;
+using PruebaAppPedidos2.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,13 +23,13 @@ namespace PruebaAppPedidos2.Services
             string obra = App.Operario.obra;
             string terminal = App.Operario.terminal;
 
-            var conexionBD = await DataConexion.conectar();
+            MySqlConnection conexionBD = await DataConexion.conectar();
             try
             {
                 string query = $"INSERT INTO `xxxxvpex` " +
-                    $"(`nit`, `numero`, `fecha`, `dias`, `obra`, `transporte`, `fdigitar`, `hdigita`, `datos1`, `vendedor`, `valor`, `abono`, `saldo`, `terminal`, `vriva`, `desctos`, `neto`, `costo`, `titular`, `titudire`, `titutelf`, `tituciud`, `ped_fraxx`, `ped_envio`, `ped_estado`, `sucursal`, `operario`, `grupo`, `consumo`) " +
+                    $"(`nit`, `numero`, `fecha`, `dias`, `obra`, `transporte`, `fdigitar`, `hdigita`, `datos1`, `vendedor`, `valor`, `abono`, `saldo`, `terminal`, `vriva`, `desctos`, `neto`, `costo`, `titular`, `titudire`, `titutelf`, `tituciud`, `ped_fraxx`, `ped_envio`, `ped_estado`, `sucursal`, `operario`, `grupo`,`desp_nomb`,`desp_direc`,`desp_telf`,`desp_city`, `consumo`) " +
                     $"VALUES " +
-                    $"('{codigoCliente}', 'Temp', '{date}', '1', '{obra}', 'trans', '{date}', '{time}', '{datos1}', '{vendedor}', '0', '0', '0', '{terminal}', '0', '0', '0', '0', '{despacho.titular}', '{despacho.titudire}', '{despacho.titutelf}', '{despacho.tituciud}', '0', '1', '0', '{sucursal}', '{operario}', '0', '0')";
+                    $"('{codigoCliente}', 'Temp', '{date}', '1', '{obra}', 'trans', '{date}', '{time}', '{datos1}', '{vendedor}', '0', '0', '0', '{terminal}', '0', '0', '0', '0', '{App.clienteActual.tronombre}', '{App.clienteActual.trodirec}', '{App.clienteActual.trotelef}', '{App.clienteActual.trociudad}', '0', '1', '0', '{sucursal}', '{operario}', '0','{despacho.titular}', '{despacho.titudire}', '{despacho.titutelf}', '{despacho.tituciud}','0')";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
@@ -44,7 +45,7 @@ namespace PruebaAppPedidos2.Services
 
         public static async Task<Modelxxxxvped> obtenerEncabezado()
         {
-            var conexionBD = await DataConexion.conectar();
+            MySqlConnection conexionBD = await DataConexion.conectar();
             try
             {
                 Modelxxxxvped encabezadoTemp = new Modelxxxxvped();
