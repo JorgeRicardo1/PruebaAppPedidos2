@@ -81,7 +81,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task obtenerCliente()
         {
             UserDialogs.Instance.ShowLoading("Buscando");
-            await Task.Delay(1000);
+            await Task.Delay(500);
             if (Tronit != null)
             {
                 ClienteActual = await Servicesxxx3ro.extraerCliente(Tronit);

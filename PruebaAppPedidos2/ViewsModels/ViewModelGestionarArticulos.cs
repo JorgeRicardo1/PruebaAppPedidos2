@@ -67,7 +67,7 @@ namespace PruebaAppPedidos2.ViewsModels
             if(ArticuloSeleccionado != null)
             {
                 _cantidadArtiActual = "1";
-                _valUnidad = articuloSeleccionado.artivlr1_c.ToString();
+                calcularcostoArti();
                 _ = calcularValorParcial();
                 IsEnableCantidad = true;
                 IsEnabledTxtCodArti = false;
@@ -289,7 +289,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 }
                 if (ArticuloSeleccionado.articodigo != null)
                 {
-                    await Servicesxxxxvpax.addMoviminetoPedidoTemp(ArticuloSeleccionado, EncabezadoTem, Convert.ToInt32(CantidadArtiActual), Convert.ToInt32(ValParcialArtiActual), DetallesArti);
+                    await Servicesxxxxvpax.addMoviminetoPedidoTemp(ArticuloSeleccionado, EncabezadoTem, Convert.ToInt32(CantidadArtiActual), Convert.ToInt32(ValParcialArtiActual), DetallesArti, Convert.ToInt32(ValUnidad));
                 }
             }
             else
@@ -476,6 +476,27 @@ namespace PruebaAppPedidos2.ViewsModels
             {
                 await DisplayAlert("Error", ex.Message.ToString(), "ok");
                 throw;
+            }
+        }
+        public void calcularcostoArti()
+        {
+            switch (App.clienteActual.troprecio)
+            {
+                case 1:
+                    ValUnidad = ArticuloSeleccionado.artivlr1_c.ToString();
+                    break;
+                case 2:
+                    ValUnidad = (ArticuloSeleccionado.artivlr2_c == 0) ? ArticuloSeleccionado.artivlr1_c.ToString() : ArticuloSeleccionado.artivlr2_c.ToString();
+                    break;
+                case 3:
+                    ValUnidad = (ArticuloSeleccionado.artivlr3_c == 0) ? ArticuloSeleccionado.artivlr1_c.ToString() : ArticuloSeleccionado.artivlr3_c.ToString();
+                    break;
+                case 4:
+                    ValUnidad = (ArticuloSeleccionado.artivlr4_c == 0) ? ArticuloSeleccionado.artivlr1_c.ToString() : ArticuloSeleccionado.artivlr4_c.ToString();
+                    break;
+                default:
+                    ValUnidad = ArticuloSeleccionado.artivlr1_c.ToString();
+                    break;
             }
         }
 
