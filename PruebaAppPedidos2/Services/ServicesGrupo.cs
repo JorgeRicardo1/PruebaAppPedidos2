@@ -82,6 +82,7 @@ namespace PruebaAppPedidos2.Services
             catch (MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
+                conexionBD.Close();
                 throw new InvalidOperationException("what happend");
             }
         }

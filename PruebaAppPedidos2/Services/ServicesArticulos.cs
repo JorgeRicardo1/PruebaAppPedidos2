@@ -122,16 +122,18 @@ namespace PruebaAppPedidos2.Services
                         articulo.artiiva = reader.GetInt32("artiiva");
                         articulo.articant = reader.GetInt32("articant");
                     }
+                    conexionBD.Close();
                     return articulo;
                 }
                 else
                 {
+                    conexionBD.Close();
                     return null;
                 }
             }           
             catch (Exception)
             {
-
+                conexionBD.Close();
                 throw;
             }
         }

@@ -1,5 +1,6 @@
 ﻿using PruebaAppPedidos2.Models;
 using PruebaAppPedidos2.Services;
+using PruebaAppPedidos2.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public string _nombreCliente;
         public DateTime _fechaDesde;
         public DateTime _fechaHasta;
+        public string _msgListaVacia;
 
         //Constructor
         public ViewModelHistoricoPedidos(INavigation navigation)
@@ -53,6 +55,11 @@ namespace PruebaAppPedidos2.ViewsModels
             get { return _fechaHasta; }
             set { SetValue(ref _fechaHasta, value); }
         }
+        public string MsgListaVacia
+        {
+            get { return _msgListaVacia; }
+            set { SetValue(ref _msgListaVacia, value); }
+        }
         //Procesos
         public async Task getPedidosVendor(string idVendedor)
         {
@@ -66,9 +73,16 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task filtrarPedidos()
         {
             PedidosVendedor = await Servicesxxxxvped.getPedidosFiltrados(NitCliente, NombreCliente, FechaDesde, FechaHasta);
-            foreach (var pedido in PedidosVendedor)
+            if (PedidosVendedor.Count > 0)
             {
-                pedido.textAprovado = (pedido.ped_estado == 0) ? "No" : "Si";
+                foreach (var pedido in PedidosVendedor)
+                {
+                    pedido.textAprovado = (pedido.ped_estado == 0) ? "No" : "Si";
+                }
+            }
+            else
+            {
+                MsgListaVacia = "No se encontraron pedidos";
             }
         }
 
@@ -76,11 +90,19 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             NitCliente = "";
             NombreCliente = "";
+            MsgListaVacia = "";
             if (PedidosVendedor.Count != 0) { PedidosVendedor.Clear(); }
 
         }
+        public async Task irDetallePedidoVendedor(Modelxxxxvped pedido)
+        {
+            //await DisplayAlert("hye",$"{pedido}","hey");
+            await Navigation.PushAsync(new DetallesPedidoVendedor(pedido,false));
+        }
+
         //Comandos
         public ICommand filtrarPedidoscommand => new Command(async () => await filtrarPedidos());
         public ICommand limpiarBusquedaCommand => new Command(limpiarBusqueda);
+        public ICommand irDetallePedidoVendedorcommand => new Command<Modelxxxxvped>(async (p) => await irDetallePedidoVendedor(p));
     }
 }

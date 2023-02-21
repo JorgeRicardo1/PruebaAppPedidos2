@@ -46,7 +46,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task irDetallePedidoVendedor(Modelxxxxvped pedido)
         {
             //await DisplayAlert("hye",$"{pedido}","hey");
-           await Navigation.PushAsync(new DetallesPedidoVendedor(pedido));
+           await Navigation.PushAsync(new DetallesPedidoVendedor(pedido, true));
         }
 
         //COMANDOS

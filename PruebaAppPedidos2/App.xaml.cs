@@ -67,16 +67,18 @@ namespace PruebaAppPedidos2
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     var empresa = await App.Context.getEmpresaAsync();
                     if (empresa.Count == 0)
                     {
                         func = false;
+                        Console.WriteLine("el errror es: " +  ex.Message);
                         MainPage = new NavigationPage(new ValidacionView(null));
                     }
                     else 
                     {
+                        Console.WriteLine("el errror es: " +  ex.Message);
                         MainPage = new NavigationPage(new ValidacionView(empresa[0]));
                     }
                 }

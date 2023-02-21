@@ -78,6 +78,7 @@ namespace PruebaAppPedidos2.Services
             }
             catch (Exception)
             {
+                conexionBD.Close();
                 throw;
             }
         }
@@ -90,7 +91,8 @@ namespace PruebaAppPedidos2.Services
             ObservableCollection<Modelxxxxvped> pedidosVendedor = new ObservableCollection<Modelxxxxvped>();
             try
             {
-                string query = $"SELECT * FROM xxxxvped WHERE nit LIKE '{nit}%' AND  fdigitar >= '{fechaDe}' AND fdigitar < '{fechaHa}' AND titular LIKE '{nombre}%'";
+                string query = $"SELECT * FROM xxxxvped WHERE nit LIKE '{nit}%' AND  fdigitar >= '{fechaDe}' AND fdigitar < '{fechaHa}' AND titular LIKE '{nombre}%'" +
+                                $"AND vendedor = '{App.Operario.ciao_vend}'";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;

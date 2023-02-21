@@ -14,10 +14,10 @@ namespace PruebaAppPedidos2.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetallesPedidoVendedor : ContentPage
 	{
-		public DetallesPedidoVendedor (Modelxxxxvped Pedido)
+		public DetallesPedidoVendedor (Modelxxxxvped Pedido, bool estadoPedido)
 		{
 			InitializeComponent ();
-            BindingContext = new ViewModelDetallesPedidoVend(Navigation, Pedido);
+            BindingContext = new ViewModelDetallesPedidoVend(Navigation, Pedido, estadoPedido);
         }
 	}
 }

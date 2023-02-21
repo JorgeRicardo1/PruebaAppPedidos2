@@ -56,7 +56,7 @@ namespace PruebaAppPedidos2.Services
             }
             catch (Exception)
             {
-
+                conexionBD.Close();
                 throw;
             }
         }

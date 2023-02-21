@@ -101,12 +101,13 @@ namespace PruebaAppPedidos2.Services
                         encabezadoTemp.consumo = reader.GetInt32("consumo");
                     }
                 }
+                reader.Close();
                 conexionBD.Close();
                 return encabezadoTemp;
             }
             catch (Exception)
             {
-
+                conexionBD.Close();
                 throw;
             }
         }
@@ -122,6 +123,7 @@ namespace PruebaAppPedidos2.Services
                 comando.Connection = conexionBD;
                 conexionBD.Open();
                 reader = comando.ExecuteReader();
+                reader.Close();
                 conexionBD.Close();
             }
             catch (Exception)
@@ -212,10 +214,82 @@ namespace PruebaAppPedidos2.Services
                 comando.Connection = conexionBD;
                 conexionBD.Open();
                 reader = comando.ExecuteReader();
+                reader.Close();
                 conexionBD.Close();
             }
             catch (Exception)
             {
+                conexionBD.Close();
+                throw;
+            }
+        }
+
+        public static async Task<Modelxxxxvped> buscarEncabezado(string nitCliente, DateTime fecha, string hdigita)
+        {
+            MySqlConnection conexionBD = await DataConexion.conectar();
+            string date = fecha.ToString("yyyy-MM-dd");
+            try
+            {
+                Modelxxxxvped encabezadoTemp = new Modelxxxxvped();
+                string query = $"SELECT * FROM xxxxvpex WHERE nit = '{nitCliente}' AND fecha = '{date}' AND hdigita = '{hdigita}';";
+                MySqlCommand comando = new MySqlCommand(query);
+                MySqlDataReader reader = null;
+                comando.Connection = conexionBD;
+                conexionBD.Open();
+                reader = comando.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        encabezadoTemp.nit = reader.GetString("nit");
+                        encabezadoTemp.numero = reader.GetString("numero");
+                        encabezadoTemp.fecha = reader.GetDateTime("fecha");
+                        encabezadoTemp.dias = reader.GetInt16("dias");
+                        encabezadoTemp.obra = reader.GetString("obra");
+                        encabezadoTemp.transporte = reader.GetString("transporte");
+                        encabezadoTemp.fultima = Lector.safeGetDate(reader, "fultima");
+                        encabezadoTemp.fdigitar = reader.GetDateTime("fdigitar");
+                        encabezadoTemp.hdigita = reader.GetString("hdigita");
+                        encabezadoTemp.factura = reader.GetString("factura");
+                        encabezadoTemp.datos1 = reader.GetString("datos1");
+                        encabezadoTemp.vendedor = reader.GetString("vendedor");
+                        encabezadoTemp.valor = reader.GetInt32("valor");
+                        encabezadoTemp.abono = reader.GetInt32("abono");
+                        encabezadoTemp.saldo = reader.GetInt32("saldo");
+                        encabezadoTemp.terminal = reader.GetString("terminal");
+                        encabezadoTemp.vriva = reader.GetInt32("vriva");
+                        encabezadoTemp.desctos = reader.GetInt32("desctos");
+                        encabezadoTemp.neto = reader.GetInt32("neto");
+                        encabezadoTemp.costo = reader.GetInt32("costo");
+                        encabezadoTemp.titular = reader.GetString("titular");
+                        encabezadoTemp.titudire = reader.GetString("titudire");
+                        encabezadoTemp.titutelf = reader.GetString("titutelf");
+                        encabezadoTemp.tituciud = reader.GetString("tituciud");
+                        encabezadoTemp.ped_fraxx = reader.GetInt32("ped_fraxx");
+                        encabezadoTemp.ped_envio = reader.GetInt32("ped_envio");
+                        encabezadoTemp.ped_estado = reader.GetInt32("ped_estado");
+                        encabezadoTemp.ped_estadn = reader.GetString("ped_estadn");
+                        encabezadoTemp.ped_closed = Lector.safeGetDate(reader, "ped_closed");
+                        encabezadoTemp.ped_closet = reader.GetString("ped_closet");
+                        encabezadoTemp.sucursal = reader.GetString("sucursal");
+                        encabezadoTemp.term_pedi = Lector.safeGetString(reader, "term_pedi");
+                        encabezadoTemp.grupo = reader.GetInt32("grupo");
+                        encabezadoTemp.fventa = Lector.safeGetDate(reader, "fventa");
+                        encabezadoTemp.id_vtaped = reader.GetInt32("id_vtaped");
+                        //encabezadoTemp.desp_nomb = Lector.safeGetString(reader, "desp_nomb");
+                        //encabezadoTemp.desp_direc = Lector.safeGetString(reader, "desp_direc");
+                        //encabezadoTemp.desp_telf = Lector.safeGetString(reader, "desp_telf");
+                        //encabezadoTemp.desp_city = Lector.safeGetString(reader, "desp_city");
+                        encabezadoTemp.consumo = reader.GetInt32("consumo");
+                    }
+                }
+                reader.Close();
+                conexionBD.Close();
+                return encabezadoTemp;
+            }
+            catch (Exception)
+            {
+                conexionBD.Close();
                 throw;
             }
         }

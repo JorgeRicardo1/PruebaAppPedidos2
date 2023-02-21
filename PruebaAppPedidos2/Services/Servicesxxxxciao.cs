@@ -63,17 +63,19 @@ namespace PruebaAppPedidos2.Services
                         operario.ciao_vend = reader.GetString("ciao_vend");
                         operario.rest_mesa = reader.GetInt32("rest_mesa");
                     }
-
+                    conexionBD.Close();
                     return operario;
                 }
                 else
                 {
+                    conexionBD.Close();
                     return null;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                conexionBD.Close();
                 throw;
             }
         }
@@ -139,12 +141,13 @@ namespace PruebaAppPedidos2.Services
                 }
                 else
                 {
+                    conexionBD.Close();
                     return null;
                 }
             }
             catch (Exception)
             {
-
+                conexionBD.Close();
                 throw;
             }
         }

@@ -42,16 +42,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Text="Fecha" FontAttributes="Bold"/>
-            <Label Grid.Column="1" Text="Total" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-            <Label Grid.Column="2" Text="Codigo" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-            <Label Grid.Column="3" Text="Cliente" FontAttributes="Bold"/>
-            <Label Grid.Column="4" Text="Nombre" FontAttributes="Bold" Margin="0,0,0,-10"/>
+            <Label Grid.Column="1" Text="Total" FontAttributes="Bold"/>
+            <Label Grid.Column="2" Text="Cliente" FontAttributes="Bold"/>
+            <Label Grid.Column="3" Text="Nombre" FontAttributes="Bold" Margin="0,0,0,-10"/>
             
         </Grid>
-        <CollectionView  ItemsSource="{Binding PedidosVendedor}" x:Name="pedidos_vend_list" EmptyView="No se encontraron pedidos"
+        <CollectionView  ItemsSource="{Binding PedidosVendedor}" x:Name="pedidos_vend_list" EmptyView="{Binding MsgListaVacia}"
                          SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate >
@@ -63,13 +61,11 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Text="{Binding fecha,StringFormat='{0:d}'}" TextColor="Black"/>
-                                <Label Grid.Column="4" HorizontalTextAlignment="Center" Text="{Binding titular}" TextColor="Black"/>
-                                <Label Grid.Column="2" HorizontalTextAlignment="Center" Text="{Binding id_vtaped}" TextColor="Black"/>
-                                <Label Grid.Column="3" Text="{Binding nit}" TextColor="Black"/>
-                                <Label Grid.Column="1" HorizontalTextAlignment="End" Text="{Binding valor,StringFormat='${0:#,#}'}" TextColor="Black"/>
+                                <Label Grid.Column="1" Text="{Binding valor,StringFormat='${0:#,#}'}" TextColor="Black"/>
+                                <Label Grid.Column="2" Text="{Binding nit}" TextColor="Black"/>
+                                <Label Grid.Column="3" Text="{Binding titular}" TextColor="Black"/>
                             </Grid>
                         </Frame>
                         <StackLayout.GestureRecognizers>

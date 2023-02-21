@@ -6,18 +6,25 @@
         <StackLayout Margin="5">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Detalles pedido" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Start"/>
-                <Label Text="{Binding Pedido.fecha,StringFormat='{0:d}'}" FontSize="Medium" FontAttributes="Bold" VerticalTextAlignment="End"
-                       HorizontalOptions="EndAndExpand"/>
             </StackLayout>
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto">
+                <Label Text="Fecha" Grid.Column="0" Grid.Row="0" FontAttributes="Bold"/>
+                <Label Text="{Binding Pedido.fecha,StringFormat='{0:d}'}" Grid.Column="0" Grid.Row="1" />
+                <Label Text="Nombre Cliente" Grid.Column="1" Grid.Row="0" FontAttributes="Bold"/>
+                <Label Text="{Binding Pedido.titular}" Grid.Column="1" Grid.Row="1" />
+                <Label Text="Total" Grid.Column="2" Grid.Row="0" FontAttributes="Bold"/>
+                <Label Text="{Binding Pedido.valor, StringFormat='${0:#,#}'}" Grid.Column="2" Grid.Row="1" />
+            </Grid>
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
-            <Grid ColumnDefinitions="*,*,*,*,*" Background="#C3C3C3" Margin="0,0,0,-8">
+            <Label Text="Movimientos" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Start"/>
+            <Grid ColumnDefinitions="*,*,*,*,*" Background="#C3C3C3" Margin="0,0,0,-4" RowDefinitions="auto">
                 <Label Text="Articulo" Grid.Column="0" Grid.ColumnSpan="2"/>
                 <Label Text="Cantidad" Grid.Column="2" />
                 <Label Text="Val.Unidad" Grid.Column="3" />
                 <Label Text="Parcial" Grid.Column="4" />
             </Grid>
-            <CollectionView ItemsSource="{Binding LstMovimientosPedido}" HeightRequest="300" BackgroundColor="#C3C3C3"
-                                x:Name="list_pedido_temp" EmptyView="No hay movimientos en este pedido">
+            <CollectionView ItemsSource="{Binding LstMovimientosPedido}" VerticalOptions="Fill" BackgroundColor="#C3C3C3"
+                                x:Name="list_pedido_temp" EmptyView="No hay movimientos en este pedido" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame>
@@ -31,6 +38,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Button Text="Continuar Pedido" Command="{Binding continuarPedidoCommand}" IsVisible="{Binding EstadoPedido}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

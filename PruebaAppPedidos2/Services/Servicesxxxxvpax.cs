@@ -30,6 +30,7 @@ namespace PruebaAppPedidos2.Services
                 comando.Connection = conexionBD;
                 conexionBD.Open();
                 reader = comando.ExecuteReader();
+                reader.Close();
                 conexionBD.Close();
             }
             catch (Exception)
@@ -141,10 +142,13 @@ namespace PruebaAppPedidos2.Services
                     reader.Close();
                     conexionBD.Close();
                 }
+                reader.Close();
+                conexionBD.Close();
                 return lstMovimientos;
             }
             catch (Exception)
             {
+                conexionBD.Close();
                 throw;
             }
         }
