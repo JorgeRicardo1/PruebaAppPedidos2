@@ -24,7 +24,7 @@
     <ScrollView Margin="8">
         <StackLayout>
             <StackLayout>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
                     <Label Text="Articulos" FontAttributes="Bold" FontSize="Large" HorizontalOptions="StartAndExpand"/>
                     <Button Text="Cod.Barras" Command="{Binding leerCodigoDeBarrascommand}" IsVisible="true" Background="#4c62be" CornerRadius="25" 
                             TextTransform="None" HorizontalOptions="End" TextColor="White"/>

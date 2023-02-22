@@ -34,7 +34,11 @@ namespace PruebaAppPedidos2.Views
                 CurrentPage = Children[0];
             });
 
-            
+            //Mensaje suscriptor para retomar un pedido activo
+            MessagingCenter.Subscribe<Object>(this, "RetomarPedido2", (sender) =>
+            {
+                CurrentPage = Children[1];
+            });
         }
     }
 }

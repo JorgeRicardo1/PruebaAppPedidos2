@@ -35,5 +35,15 @@ namespace PruebaAppPedidos2.Data
             connectionString = $"Database = {empresa[0].empresa}; Data Source = {empresa[0].ipserver}; User Id = {empresa[0].usuario}; Password= {empresa[0].serverPassword}";
             //connectionString = "Database = a000; Data Source = 192.168.1.108; User Id = pruebas; Password= qwerty";
         }
+
+        public static void abrir()
+        {
+            conexionBD.Open();
+        }
+
+        public static void cerrar()
+        {
+            conexionBD.Close();
+        }
     }
 }

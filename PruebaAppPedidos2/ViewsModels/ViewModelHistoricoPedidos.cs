@@ -88,11 +88,17 @@ namespace PruebaAppPedidos2.ViewsModels
 
         public void limpiarBusqueda()
         {
-            NitCliente = "";
-            NombreCliente = "";
-            MsgListaVacia = "";
-            if (PedidosVendedor.Count != 0) { PedidosVendedor.Clear(); }
-
+            if (PedidosVendedor == null)
+            {
+                return;
+            }
+            if (PedidosVendedor.Count > 0)
+            {
+                NitCliente = "";
+                NombreCliente = "";
+                MsgListaVacia = "";
+                PedidosVendedor.Clear();
+            }
         }
         public async Task irDetallePedidoVendedor(Modelxxxxvped pedido)
         {

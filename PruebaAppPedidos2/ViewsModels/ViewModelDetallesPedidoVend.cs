@@ -51,7 +51,14 @@ namespace PruebaAppPedidos2.ViewsModels
         //PROCESOS
         public async Task getMovimientosPedidoVend()
         {
-            LstMovimientosPedido = await Servicesxxxxvpax.getMovimientosPedidoTemp(Pedido.id_vtaped);
+            if (EstadoPedido)
+            {
+                LstMovimientosPedido = await Servicesxxxxvpax.getMovimientosPedidoTemp(Pedido.id_vtaped);
+            }
+            else
+            {
+                LstMovimientosPedido = await Servicesxxxxvpar.getMovimientosPedido(Pedido.numero);
+            }
         }
 
         public async Task continuarPedido()
@@ -67,7 +74,9 @@ namespace PruebaAppPedidos2.ViewsModels
             await ServicesGrupo.extraerGrupos();//METODOS para obtener los grupos y articulos de la empresa una vez
             await ServicesArticulos.obtenerTodoArticulos();
             await DisplayAlert("Aviso", "Informacion de el pedido obtenida, ahora puede continuar este pedido en la seccion 'realizar pedido'", "Ok");
-            await Navigation.PopToRootAsync();
+            //await Navigation.PopToRootAsync();
+            MessagingCenter.Send<Object>(this, "RetomarPedido");//Mensaje para MainPage que cambie la pagina del Flyout
+            MessagingCenter.Send<Object>(this, "RetomarPedido2");//Mensaje para Home que cambia la tabbed page
 
         }
         //COMANDOS

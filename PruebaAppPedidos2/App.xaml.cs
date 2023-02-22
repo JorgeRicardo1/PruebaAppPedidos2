@@ -55,7 +55,7 @@ namespace PruebaAppPedidos2
                         if (func)
                         {
                             var empre = await Servicesllequipo.validar(id, empresa[0].empresa);
-                            if (empre != null && empre.modulos.Equals("M800") && empre.activar.Equals(empresa[0].activar))
+                            if (empre != null && empre.modulos.Contains("M10") && empre.activar.Equals(empresa[0].activar))
                             {
                                 
                                 MainPage = new NavigationPage(new LoginOperarioPage());

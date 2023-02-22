@@ -40,7 +40,7 @@ namespace PruebaAppPedidos2.Services
                 }
                 reader.Close();
                 string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
-                new MySqlCommand($"UPDATE empresas.llequipo SET maquina = '{DeviceInfo.Name}',facceso = '{date}',eq_notas='M800'" +
+                new MySqlCommand($"UPDATE empresas.llequipo SET maquina = '{DeviceInfo.Name}',facceso = '{date}',eq_notas='{"M10 " + date}'" +
                     $"WHERE nro_mac='{mac}'; ",conexionBD).ExecuteNonQuery();
                 conexionBD.Close();
                 return empre;

@@ -33,7 +33,7 @@ namespace PruebaAppPedidos2.Services
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
-                conexionBD.Open();
+                DataConexion.abrir();
                 reader = comando.ExecuteReader();
 
                 while (reader.Read())
@@ -67,7 +67,7 @@ namespace PruebaAppPedidos2.Services
                     listArticulos.Add(articulo);
                 }
                 reader.Close();
-                conexionBD.Close();
+                DataConexion.cerrar();
                 Articulos = listArticulos;
             }
             catch (MySqlException ex)
@@ -91,7 +91,7 @@ namespace PruebaAppPedidos2.Services
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
-                conexionBD.Open();
+                DataConexion.abrir();
                 reader = comando.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -122,18 +122,18 @@ namespace PruebaAppPedidos2.Services
                         articulo.artiiva = reader.GetInt32("artiiva");
                         articulo.articant = reader.GetInt32("articant");
                     }
-                    conexionBD.Close();
+                    DataConexion.cerrar();
                     return articulo;
                 }
                 else
                 {
-                    conexionBD.Close();
+                    DataConexion.cerrar();
                     return null;
                 }
             }           
             catch (Exception)
             {
-                conexionBD.Close();
+                DataConexion.cerrar();
                 throw;
             }
         }

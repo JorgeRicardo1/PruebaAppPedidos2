@@ -17,7 +17,13 @@ namespace PruebaAppPedidos2.Views
 		{
 			InitializeComponent ();
 			flyout.listMenuLateral.ItemSelected += OnSelectedItem;
-		}
+            //Mensaje suscriptor de VMDetallePedidoVend para ir a la seccion de realizar pedidos
+            MessagingCenter.Subscribe<Object>(this, "RetomarPedido", (sender) =>
+            {
+                Detail = new NavigationPage (new Home());
+                flyout.listMenuLateral.SelectedItem = 0;
+            });
+        }
 
         private void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
         {

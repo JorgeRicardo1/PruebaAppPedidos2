@@ -21,7 +21,7 @@ namespace PruebaAppPedidos2.Services
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
-                conexionBD.Open();
+                DataConexion.abrir();
                 reader = comando.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -63,19 +63,19 @@ namespace PruebaAppPedidos2.Services
                         operario.ciao_vend = reader.GetString("ciao_vend");
                         operario.rest_mesa = reader.GetInt32("rest_mesa");
                     }
-                    conexionBD.Close();
+                    DataConexion.cerrar();
                     return operario;
                 }
                 else
                 {
-                    conexionBD.Close();
+                    DataConexion.cerrar();
                     return null;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                conexionBD.Close();
+                DataConexion.cerrar();
                 throw;
             }
         }
@@ -91,7 +91,7 @@ namespace PruebaAppPedidos2.Services
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
-                conexionBD.Open();
+                DataConexion.abrir();
                 reader = comando.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -136,18 +136,18 @@ namespace PruebaAppPedidos2.Services
                         operarios.Add(operario);
                     }
                     reader.Close();
-                    conexionBD.Close();
+                    DataConexion.cerrar();
                     return operarios;
                 }
                 else
                 {
-                    conexionBD.Close();
+                    DataConexion.cerrar();
                     return null;
                 }
             }
             catch (Exception)
             {
-                conexionBD.Close();
+                DataConexion.cerrar();
                 throw;
             }
         }

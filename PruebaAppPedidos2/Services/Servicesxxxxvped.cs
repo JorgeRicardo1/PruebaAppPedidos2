@@ -21,7 +21,7 @@ namespace PruebaAppPedidos2.Services
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
-                conexionBD.Open();
+                DataConexion.abrir();
                 reader = comando.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -63,22 +63,22 @@ namespace PruebaAppPedidos2.Services
                         pedido.grupo = reader.GetInt32("grupo");
                         pedido.fventa = Lector.safeGetDate(reader, "fventa");
                         pedido.id_vtaped = reader.GetInt32("id_vtaped");
-                        //pedido.desp_nomb = Lector.safeGetString(reader, "desp_nomb");
-                        //pedido.desp_direc = Lector.safeGetString(reader, "desp_direc");
-                        //pedido.desp_telf = Lector.safeGetString(reader, "desp_telf");
-                        //pedido.desp_city = Lector.safeGetString(reader, "desp_city");
+                        pedido.desp_nomb = Lector.safeGetString(reader, "desp_nomb");
+                        pedido.desp_direc = Lector.safeGetString(reader, "desp_direc");
+                        pedido.desp_telf = Lector.safeGetString(reader, "desp_telf");
+                        pedido.desp_city = Lector.safeGetString(reader, "desp_city");
                         pedido.consumo = reader.GetInt32("consumo");
 
                         pedidosVendedor.Add(pedido);
                     }
                 }
                 reader.Close();
-                conexionBD.Close();
+                DataConexion.cerrar();
                 return pedidosVendedor;
             }
             catch (Exception)
             {
-                conexionBD.Close();
+                DataConexion.cerrar();
                 throw;
             }
         }
@@ -96,7 +96,7 @@ namespace PruebaAppPedidos2.Services
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
-                conexionBD.Open();
+                DataConexion.abrir();
                 reader = comando.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -138,17 +138,17 @@ namespace PruebaAppPedidos2.Services
                         pedido.grupo = reader.GetInt32("grupo");
                         pedido.fventa = Lector.safeGetDate(reader, "fventa");
                         pedido.id_vtaped = reader.GetInt32("id_vtaped");
-                        //pedido.desp_nomb = Lector.safeGetString(reader, "desp_nomb");
-                        //pedido.desp_direc = Lector.safeGetString(reader, "desp_direc");
-                        //pedido.desp_telf = Lector.safeGetString(reader, "desp_telf");
-                        //pedido.desp_city = Lector.safeGetString(reader, "desp_city");
+                        pedido.desp_nomb = Lector.safeGetString(reader, "desp_nomb");
+                        pedido.desp_direc = Lector.safeGetString(reader, "desp_direc");
+                        pedido.desp_telf = Lector.safeGetString(reader, "desp_telf");
+                        pedido.desp_city = Lector.safeGetString(reader, "desp_city");
                         pedido.consumo = reader.GetInt32("consumo");
 
                         pedidosVendedor.Add(pedido);
                     }
                 }
                 reader.Close();
-                conexionBD.Close();
+                DataConexion.cerrar();
                 return pedidosVendedor;
             }
             catch (Exception)

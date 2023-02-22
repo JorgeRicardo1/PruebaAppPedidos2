@@ -436,6 +436,7 @@ namespace PruebaAppPedidos2.ViewsModels
                     // Some other exception occurred
                     await DisplayAlert("Error", ex.ToString(), "OK");
                 }
+                //await Servicesxxxxvpex.actualizarTotalesPedido(App.encabezadoTemp.id_vtaped, PrecioTotalPedido);
                 App.encabezadoTemp = null;
                 App.clienteActual = null;
                 EncabezadoTem = App.encabezadoTemp;
@@ -461,20 +462,27 @@ namespace PruebaAppPedidos2.ViewsModels
         }
         public async Task leerCodigoDeBarras()
         {
-            try
+            if (EncabezadoTem != null)
             {
-                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
-                scanner.TopText= "Centre el codigo dentro de la pantalla";
-                var result = await scanner.Scan();
-                if (result != null)
+                try
                 {
-                    CodArtiABuscar = result.Text;
+                    var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+                    scanner.TopText = "Centre el codigo dentro de la pantalla";
+                    var result = await scanner.Scan();
+                    if (result != null)
+                    {
+                        CodArtiABuscar = result.Text;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", ex.Message.ToString(), "ok");
+                    throw;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                await DisplayAlert("Error", ex.Message.ToString(), "ok");
-                throw;
+                await DisplayAlert("Aviso", "Primero debe empezar un pedido", "Ok");
             }
         }
         public void calcularcostoArti()
