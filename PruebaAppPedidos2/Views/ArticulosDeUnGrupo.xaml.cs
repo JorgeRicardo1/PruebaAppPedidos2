@@ -18,5 +18,18 @@ namespace PruebaAppPedidos2.Views
             InitializeComponent();
             BindingContext = new ViewModelArticulosDeUnGrupo(Navigation, parametros);
         }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var _container = BindingContext as ViewModelArticulosDeUnGrupo;
+            if (string.IsNullOrEmpty(e.NewTextValue))
+            {
+                arti_list.ItemsSource = _container.ListArticulos;
+            }
+            else
+            {
+                arti_list.ItemsSource = _container.ListArticulos.Where(i => i.artinomb.Contains(e.NewTextValue.ToUpper()));
+            }
+        }
     }
 }

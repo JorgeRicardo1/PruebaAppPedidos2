@@ -7,6 +7,7 @@
                FontSize="Large"
                HorizontalOptions="Center"
                FontAttributes="Bold"/>
+        <SearchBar Grid.Column="0" TextChanged="SearchBar_TextChanged" Placeholder="Buscar Articulo" ></SearchBar>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".5*"/>
