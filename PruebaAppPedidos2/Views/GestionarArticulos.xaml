@@ -23,6 +23,7 @@
     </ContentPage.Resources>
     <ScrollView Margin="8">
         <StackLayout>
+            <!-- REGION INFORMACION DE PEDIO Y BOTONES Cod.Barras y Reiniciar-->
             <StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
                     <Label Text="Articulos" FontAttributes="Bold" FontSize="Large" HorizontalOptions="StartAndExpand"/>
@@ -38,7 +39,9 @@
                     <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Body" VerticalOptions="Center"/>
                 </StackLayout>
             </StackLayout>
+            <!-- END REGION INFORMACION DE PEDIO Y BOTONES Cod.Barras y Reiniciar-->
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
+            <!-- REGION totales de el pedido en curso-->
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                 <Label Text="Total" FontAttributes="Bold"
                        VerticalTextAlignment="Center"/>
@@ -68,21 +71,26 @@
                            VerticalTextAlignment="Center"/>
                 </Frame>
             </StackLayout>
+            <!-- END REGION totales de el pedido en curso-->
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
+            <!-- REGION  busqueda de articulo, cantidad y valor -->
             <Grid RowDefinitions="auto,45,*,45" ColumnDefinitions="*,*,*,*">
                 <!-- fila 0-->
                 <Label Text="Codigo Articulo"
+                       FontAttributes="Bold"
                        Grid.Row="0"
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center"/>
                 <Label Text="Cantidad"
+                       FontAttributes="Bold"
                        Grid.Row="0"
                        Grid.Column="2"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center"/>
                 <Label Text="Valor Unidad"
+                       FontAttributes="Bold"
                        Grid.Row="0"
                        Grid.Column="3"
                        HorizontalTextAlignment="Center"/>
@@ -138,11 +146,13 @@
                 </Frame>
                 <!-- fila 2-->
                 <Label Text="Detalle Movimiento(Opcional)"
+                       FontAttributes="Bold"
                        Grid.Row="2"
                        Grid.Column="0"
                        Grid.ColumnSpan="3"
                        VerticalTextAlignment="Center"/>
                 <Label Text="Valor Parcial"
+                       FontAttributes="Bold"
                        Grid.Row="2"
                        Grid.Column="3"
                        VerticalTextAlignment="Center"/>
@@ -166,14 +176,18 @@
                            HorizontalTextAlignment="Center"/>
                 </Frame>
             </Grid>
+            <!-- END REGION  busqueda de articulo, cantidad y valor -->
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
+            <!-- REGION  Informacion de el articulo seleccionado -->
             <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*" Opacity="{Binding OpacityInfoArti}">
                 <!-- fila 0-->
                 <Label Text="Descripcion Articulo"
+                       FontAttributes="Bold"
                        Grid.Row="0"
                        Grid.Column="0"
                        Grid.ColumnSpan="3"/>
                 <Label Text="Marca"
+                       FontAttributes="Bold"
                        Grid.Row="0"
                        Grid.Column="3"/>
                 <!-- fila 1-->
@@ -192,13 +206,16 @@
                 </Frame>
                 <!-- fila 2 -->
                 <Label Text="Peso"
+                       FontAttributes="Bold"
                        Grid.Row="2"
                        Grid.Column="0"/>
                 <Label Text="Codigo Alter"
+                       FontAttributes="Bold"
                        Grid.Row="2"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"/>
                 <Label Text="Stock"
+                       FontAttributes="Bold"
                        Grid.Row="2"
                        Grid.Column="3"/>
                 <!-- fila 3 -->
@@ -222,7 +239,9 @@
                     <Label Text="{Binding ArticuloSeleccionado.articant}"/>
                 </Frame>
             </Grid>
+            <!-- END REGION  Informacion de el articulo seleccionado -->
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
+            <!-- REGION  Botones para agregar, editar y eliminar articulos -->
             <StackLayout Orientation="Horizontal">
                 <ImageButton Source="check.png" 
                              BackgroundColor="#26b232"
@@ -245,7 +264,7 @@
                              Padding="10,5,5,5"
                              IsVisible="{Binding IsVisible}"
                              Command="{Binding borrarMovimientocommand}"/>
-                <Button Text="Finalizar"
+                <Button Text="Guardar"
                         BackgroundColor="#007491"
                         TextColor="White"
                         CornerRadius="20"
@@ -254,12 +273,16 @@
                         IsVisible="{Binding IsVisibleFinalizar}"
                         Command="{Binding enviarCorreocommand}"/>
             </StackLayout>
+            <!-- END REGION  Botones para agregar, editar y eliminar articulos -->
+            <!-- REGION  encabezados de los movimientos de el pedido -->
             <Grid ColumnDefinitions="*,*,*,*,*" Background="#C3C3C3" Margin="0,0,0,-8">
                 <Label Text="Articulo" Grid.Column="0" Grid.ColumnSpan="2"/>
                 <Label Text="Cantidad" Grid.Column="2" />
                 <Label Text="Val.Unidad" Grid.Column="3" />
                 <Label Text="Parcial" Grid.Column="4" />
             </Grid>
+            <!-- END REGION  encabezados de los movimientos de el pedido -->
+            <!-- REGION  movimientos de el pedido actual -->
             <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding getMovimientoscommand}">
                 <CollectionView ItemsSource="{Binding LstPedidoTemporal}" HeightRequest="300" BackgroundColor="#C3C3C3"
                                 x:Name="list_pedido_temp" SelectionMode="Single" SelectionChangedCommand="{Binding activarBotonescommand}"
@@ -278,6 +301,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </RefreshView>
+            <!-- END REGION  movimientos de el pedido actual -->
         </StackLayout>
     </ScrollView>
 </ContentPage>

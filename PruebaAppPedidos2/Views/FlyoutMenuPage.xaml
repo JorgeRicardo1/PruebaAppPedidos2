@@ -17,7 +17,7 @@
                 <x:Array Type="{x:Type local:FlyoutItemPage}">
                     <local:FlyoutItemPage title="Realizar Pedidos" iconSource="" targetPage="{x:Type local2:Home}"/>
                     <local:FlyoutItemPage title="Pedidos En Proceso" iconSource="" targetPage="{x:Type local2:HistorialPedidos}"/>
-                    <local:FlyoutItemPage title="Historico Pedidos" iconSource="" targetPage="{x:Type local2:HistoricoPedidos}"/>
+                    <local:FlyoutItemPage title="Pedidos Aprobados" iconSource="" targetPage="{x:Type local2:HistoricoPedidos}"/>
                 </x:Array>
             </ListView.ItemsSource>
             <ListView.ItemTemplate>
