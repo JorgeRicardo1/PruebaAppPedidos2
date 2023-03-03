@@ -35,5 +35,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Text="Salir" x:Name="btnSalir" Clicked="btnSalir_Clicked" BackgroundColor="#91002b" TextColor="White" Margin="5"/>
     </StackLayout>
 </ContentPage>

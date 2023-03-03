@@ -18,5 +18,5 @@ namespace PruebaAppPedidos2.Views
 			InitializeComponent ();
             BindingContext = new ViewModelHistorialPedidos(Navigation);
         }
-	}
+    }
 }

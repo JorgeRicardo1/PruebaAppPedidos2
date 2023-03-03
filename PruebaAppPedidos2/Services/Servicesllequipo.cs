@@ -21,7 +21,7 @@ namespace PruebaAppPedidos2.Services
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
-                conexionBD.Open();
+                DataConexion.abrir();
                 reader = comando.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -35,7 +35,19 @@ namespace PruebaAppPedidos2.Services
                 }
                 else
                 {
-                    conexionBD.Close();
+                    DataConexion.cerrar();
+
+
+                    string validacionPassword = $"{mac.Substring(mac.Length - 4), 4}" + "M0D3L0";
+                    string query2 = $"INSERT INTO `empresas`.`llequipo` (`empresa`, `nro_mac`, `activar`, `modulos`) VALUES ('{empresa}', '{mac}', '{validacionPassword}', 'M10');";
+                    MySqlCommand comando2 = new MySqlCommand(query2);
+                    MySqlDataReader reader2 = null;
+                    comando2.Connection = conexionBD;
+                    DataConexion.abrir();
+                    reader2 = comando2.ExecuteReader();
+
+                    reader2.Close();
+                    DataConexion.cerrar();
                     return null;
                 }
                 reader.Close();
@@ -50,6 +62,11 @@ namespace PruebaAppPedidos2.Services
                 conexionBD.Close();
                 throw;
             }
+        }
+
+        public static async Task insertMac()
+        {
+
         }
     }
 }

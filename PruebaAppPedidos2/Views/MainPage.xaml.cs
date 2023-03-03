@@ -38,6 +38,8 @@ namespace PruebaAppPedidos2.Views
 
         protected override bool OnBackButtonPressed()
         {
+            Detail = new NavigationPage(new Home());
+            flyout.listMenuLateral.SelectedItem = 0;
             return true;
         }
 
