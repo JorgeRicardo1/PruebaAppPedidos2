@@ -18,7 +18,7 @@
             <Label Text="Marca" FontAttributes="Bold" Grid.Column="1" HorizontalTextAlignment="Center"/>
             <Label Text="Valor unidad" FontAttributes="Bold" Grid.Column="2" HorizontalTextAlignment="Center"/>
         </Grid>
-        <CollectionView ItemsSource="{Binding ListArticulos}" x:Name="arti_list" EmptyView="No hay articulos disponibles">
+        <CollectionView ItemsSource="{Binding ListArticulos}" x:Name="arti_list" EmptyView="No se encontraron articulos">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>

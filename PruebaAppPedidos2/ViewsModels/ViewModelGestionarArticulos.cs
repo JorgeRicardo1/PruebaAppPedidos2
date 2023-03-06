@@ -83,7 +83,7 @@ namespace PruebaAppPedidos2.ViewsModels
             });
 
             //Mensaje susciptor para actualizar los campos de la pagina Gestionar Articulos
-            //y poner vacio algunos campos (el mensaje.Send esta en la funcion addMovimiento)
+            //y poner vacio algunos campos (el mensaje.Send esta en la funcion addArticuloPedidoTemp)
             MessagingCenter.Subscribe<Object>(this, "LimpiarPantalla", (sender) =>
             {
                 OpacityInfoArti = 0.5;
@@ -267,6 +267,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 await DisplayAlert("Aviso", "Ya tiene un articulo seleccionado para añadir", "Ok");
             }
         } //Boton lupa
+
         public async Task addArticuloPedidoTemp()
         {
             UserDialogs.Instance.ShowLoading("Agregando");
@@ -300,6 +301,7 @@ namespace PruebaAppPedidos2.ViewsModels
             MessagingCenter.Send<Object>(this, "LimpiarPantalla");  
             await Navigation.PopToRootAsync();
         }
+
         public async Task getMovimientos()
         {
             //if (IsRefreshing) { return; }
@@ -320,6 +322,7 @@ namespace PruebaAppPedidos2.ViewsModels
             }
             finally { IsRefreshing = false; }
         }
+
         public async Task calcularValorParcial()
         {
             if( CantidadArtiActual!="")
@@ -331,6 +334,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 ValParcialArtiActual = "0";
             }
         }
+
         public void activarBotones()
         {
             try
@@ -347,6 +351,7 @@ namespace PruebaAppPedidos2.ViewsModels
             }
             //finally { IsVisible = false; }
         }
+
         public async Task borrarMovimiento()
         {
             Modelxxxxvpax movimientoAborrar = MovimientoSeleccionado;
@@ -357,12 +362,14 @@ namespace PruebaAppPedidos2.ViewsModels
             }
             await getMovimientos();   
         }
+
         public async Task editarMovimiento()
         {
             Modelxxxxvpax movimientoAeditar = MovimientoSeleccionado;
             await DisplayAlert("Aviso", $"Se editara el producto {movimientoAeditar.detalle}, una vez finalizado darle agregar", "ok");
             await Navigation.PushAsync(new GestionarArticulos(movimientoAeditar));
         }
+
         public void calcularTotalesPedido()
         {
             PrecioTotalPedido = 0;
@@ -378,6 +385,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 }
             }
         }
+
         public async Task reiniciarPedido()
         {
             if (App.encabezadoTemp != null)
@@ -403,6 +411,7 @@ namespace PruebaAppPedidos2.ViewsModels
             }
             
         }
+
         public async Task enviarCorreo()
         {
             if (App.encabezadoTemp == null || LstPedidoTemporal.Count == 0)
@@ -446,6 +455,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 LstPedidoTemporal.Clear();
             }
         } //Finalizar Pedido
+
         public string crearBodyMensaje()
         {
             string body = "";
@@ -460,6 +470,7 @@ namespace PruebaAppPedidos2.ViewsModels
             body += $"\nTotal=${PrecioTotalPedido}";
             return body;
         }
+
         public async Task leerCodigoDeBarras()
         {
             if (EncabezadoTem != null)
@@ -485,6 +496,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 await DisplayAlert("Aviso", "Primero debe empezar un pedido", "Ok");
             }
         }
+
         public void calcularcostoArti()
         {
             switch (App.clienteActual.troprecio)
@@ -507,6 +519,11 @@ namespace PruebaAppPedidos2.ViewsModels
             }
         }
 
+        public async Task updateArticulos()
+        {
+            await ServicesGrupo.extraerGrupos();//METODOS para obtener los grupos y articulos de la empresa una vez
+            await ServicesArticulos.obtenerTodoArticulos();
+        }
         //Comandos
         public ICommand irAVerGruposcommand => new Command(async () => await irAVerGrupos());
         public ICommand addArticuloPedidoTempcommand => new Command(async () => await addArticuloPedidoTemp());
@@ -519,5 +536,6 @@ namespace PruebaAppPedidos2.ViewsModels
         public ICommand reiniciarPedidocommand => new Command(async () => await reiniciarPedido());
         public ICommand enviarCorreocommand => new Command(async () => await enviarCorreo());
         public ICommand leerCodigoDeBarrascommand => new Command(async () => await leerCodigoDeBarras());
+        public ICommand updateArticuloscommand => new Command(async () => await updateArticulos());
     }
 }

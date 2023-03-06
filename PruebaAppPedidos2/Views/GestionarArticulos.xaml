@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="PruebaAppPedidos2.Views.GestionarArticulos"
-             Title="Articulos">
+             Title="Pedido">
     <ContentPage.Resources>
         <Style TargetType="Frame">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -25,19 +25,22 @@
         <StackLayout>
             <!-- REGION INFORMACION DE PEDIO Y BOTONES Cod.Barras y Reiniciar-->
             <StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
-                    <Label Text="Articulos" FontAttributes="Bold" FontSize="Large" HorizontalOptions="StartAndExpand"/>
-                    <Button Text="Cod.Barras" Command="{Binding leerCodigoDeBarrascommand}" IsVisible="true" Background="#4c62be" CornerRadius="25" 
-                            TextTransform="None" HorizontalOptions="End" TextColor="White"/>
-                    <Button Text="Reiniciar" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}" HorizontalOptions="End"
-                            Background="#91002b" CornerRadius="25" TextTransform="None" TextColor="White"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="0,-15,0,0">
+                <Label Text="Gestionar Pedido" FontAttributes="Bold" FontSize="Large" HorizontalOptions="StartAndExpand"/>
+                <StackLayout Orientation="Horizontal" Margin="0,0,0,0">
                     <Label Text="Cc/Nit:" FontSize="Body" VerticalOptions="Center"/>
                     <Label Text="{Binding EncabezadoTem.nit}" FontSize="Body" VerticalOptions="Center"/>
                     <Label Text="Fech#:" FontSize="Body" VerticalOptions="Center"/>
                     <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Body" VerticalOptions="Center"/>
                 </StackLayout>
+                <Grid ColumnDefinitions="*,*,*">
+                    <Button Text="Cod.Barras" Grid.Column="0" Command="{Binding leerCodigoDeBarrascommand}" IsVisible="true" Background="#4c62be" CornerRadius="25" 
+                            TextTransform="None"  TextColor="White"/>
+                    <Button Text="Reiniciar" Grid.Column="1" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}" 
+                            Background="#91002b" CornerRadius="25" TextTransform="None" TextColor="White"/>
+                    <Button Text="Actualizar" Grid.Column="2" Command="{Binding updateArticuloscommand}" 
+                            Background="#F1BE2E" CornerRadius="25" TextTransform="None" TextColor="White"/>
+                </Grid>
+                
             </StackLayout>
             <!-- END REGION INFORMACION DE PEDIO Y BOTONES Cod.Barras y Reiniciar-->
             <BoxView HorizontalOptions="FillAndExpand" WidthRequest="1" HeightRequest="3" Color="#007491" Margin="5"/>
