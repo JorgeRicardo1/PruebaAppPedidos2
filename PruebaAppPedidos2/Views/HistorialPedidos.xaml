@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PruebaAppPedidos2.Views.HistorialPedidos"
              >
-    <StackLayout>
+    <StackLayout Margin="5">
         <StackLayout>
             <Label Text="Historial de pedidos en proceso" FontSize="Large" FontAttributes="Bold"/>
         </StackLayout>
@@ -18,7 +18,7 @@
             <Label Grid.Column="0" Text="Fecha" FontAttributes="Bold"/>
             <Label Grid.Column="1" Text="Total" FontAttributes="Bold"/>
             <Label Grid.Column="2" Text="Cliente" FontAttributes="Bold"/>
-            <Label Grid.Column="3" Text="Aprovado" HorizontalTextAlignment="Center"  FontAttributes="Bold" Margin="0,0,0,-10"/>
+            <Label Grid.Column="3" Text="Aprobado" HorizontalTextAlignment="Center"  FontAttributes="Bold" Margin="0,0,0,-10"/>
 
         </Grid>
         <CollectionView  ItemsSource="{Binding PedidosVendedor}" x:Name="pedidos_vend_list" EmptyView="No se encontraron pedidos"

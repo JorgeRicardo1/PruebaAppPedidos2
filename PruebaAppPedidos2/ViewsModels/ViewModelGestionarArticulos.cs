@@ -279,7 +279,12 @@ namespace PruebaAppPedidos2.ViewsModels
                 UserDialogs.Instance.HideLoading();
                 return;
             }
-            
+            if (CantidadArtiActual == "0" || CantidadArtiActual == "")
+            {
+                await DisplayAlert("Aviso", "Ingrese una cantidad valida", "Ok");
+                UserDialogs.Instance.HideLoading();
+                return;
+            }
             if (!IsEditing)
             {
                 if (ArticuloSeleccionado == null)
@@ -539,3 +544,4 @@ namespace PruebaAppPedidos2.ViewsModels
         public ICommand updateArticuloscommand => new Command(async () => await updateArticulos());
     }
 }
+

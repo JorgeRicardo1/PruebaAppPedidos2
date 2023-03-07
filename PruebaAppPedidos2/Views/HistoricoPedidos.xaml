@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PruebaAppPedidos2.Views.HistoricoPedidos">
-    <StackLayout>
+    <StackLayout Margin="5">
         <StackLayout>
             <Label Text="Historico de pedidos" FontSize="Large" FontAttributes="Bold"/>
         </StackLayout>

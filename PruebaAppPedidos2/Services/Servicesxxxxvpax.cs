@@ -24,7 +24,7 @@ namespace PruebaAppPedidos2.Services
                 string query = $"INSERT INTO `xxxxvpax` " +
                     $"(`numero`, `fecha`, `tpcmbte`, `codigo`, `nit`, `punto`, `puntox`, `obra`, `detalle`, `medida`, `operario`, `hdigita`, `fdigitar`, `entregan`, `cantinic`, `cantidad`, `valor`, `costo`, `neto`, `dsct4`, `dsct2`, `desctos`, `iva`, `vriva`, `vrventa`, `consumo`, `compuesto`, `peso`, `anulado`, `id_vtaped`) " +
                     $"VALUES " +
-                    $"('TEMP', '{fecha}', 'V', '{artiSeleccioando.articodigo}', '{encabezadoTemp.nit}', '000', '000', '{obra}', '{artiSeleccioando.artinomb} {detalles}', '{artiSeleccioando.artiunidad}', '{operario}', '{encabezadoTemp.hdigita}', '{fecha}', '0.00', '{cantidad}', '0', '{valorUnidad}', '0.0', '{neto}', '0.00', '0.00', '0.00', '{artiSeleccioando.artiiva}', '0', '0', '0', '0', '{artiSeleccioando.artipeso}', '0', '{encabezadoTemp.id_vtaped}');";
+                    $"('', '{fecha}', 'V', '{artiSeleccioando.articodigo}', '{encabezadoTemp.nit}', '000', '000', '{obra}', '{artiSeleccioando.artinomb} {detalles}', '{artiSeleccioando.artiunidad}', '{operario}', '{encabezadoTemp.hdigita}', '{fecha}', '0.00', '0', '{cantidad}', '{valorUnidad}', '0.0', '{neto}', '0.00', '0.00', '0.00', '{artiSeleccioando.artiiva}', '0', '0', '0', '0', '{artiSeleccioando.artipeso}', '0', '{encabezadoTemp.id_vtaped}');";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;

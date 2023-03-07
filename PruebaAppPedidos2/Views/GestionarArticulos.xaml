@@ -133,7 +133,7 @@
                         </Entry>
                     </Frame>
                     <Frame Padding="0"
-                           HorizontalOptions="FillAndExpand">
+                           HorizontalOptions="End">
                         <Label Text="{Binding ArticuloSeleccionado.artiunidad}"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"/>
@@ -295,7 +295,7 @@
                             <Frame>
                                 <Grid ColumnDefinitions="*,*,*,*,*"  Margin="0,0,0,-8">
                                     <Label Text="{Binding detalle}" Grid.Column="0" Grid.ColumnSpan="2"/>
-                                    <Label Text="{Binding cantinic}" Grid.Column="2" />
+                                    <Label Text="{Binding cantidad}" Grid.Column="2" />
                                     <Label Text="{Binding valor, StringFormat='${0:#,#}'}" Grid.Column="3" />
                                     <Label Text="{Binding neto, StringFormat='${0:#,#}'}" Grid.Column="4" />
                                 </Grid>

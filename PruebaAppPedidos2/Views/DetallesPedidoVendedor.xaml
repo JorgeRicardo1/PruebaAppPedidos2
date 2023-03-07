@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PruebaAppPedidos2.Views.DetallesPedidoVendedor">
     <ContentPage.Content>
-        <StackLayout Margin="5">
+        <StackLayout Margin="8">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Detalles pedido" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Start"/>
             </StackLayout>
@@ -30,7 +30,7 @@
                         <Frame>
                             <Grid ColumnDefinitions="*,*,*,*,*"  Margin="0,0,0,-8">
                                 <Label Text="{Binding detalle}" Grid.Column="0" Grid.ColumnSpan="2"/>
-                                <Label Text="{Binding cantinic}" Grid.Column="2" />
+                                <Label Text="{Binding cantidad}" Grid.Column="2" />
                                 <Label Text="{Binding valor, StringFormat='${0:#,#}'}" Grid.Column="3" />
                                 <Label Text="{Binding neto, StringFormat='${0:#,#}'}" Grid.Column="4" />
                             </Grid>

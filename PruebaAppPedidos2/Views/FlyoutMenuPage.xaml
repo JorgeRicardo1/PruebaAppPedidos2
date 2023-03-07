@@ -9,7 +9,7 @@
         <StackLayout HeightRequest="100" BackgroundColor="#72ca73">
             <Label Text="{Binding OperarioActual}" HorizontalOptions="Center" VerticalOptions="Center"
                    FontAttributes="Bold" FontSize="Title" x:Name="txtOperarioActual" TextColor="White"/>
-            <Label Text="Menu de Navegacion" HorizontalOptions="Center" VerticalOptions="Center"
+            <Label Text="Menú de Navegación" HorizontalOptions="Center" VerticalOptions="Center"
                    FontAttributes="Bold" FontSize="Title"/>
         </StackLayout>
         <ListView x:Name="listMenuLateral" x:FieldModifier="public">
