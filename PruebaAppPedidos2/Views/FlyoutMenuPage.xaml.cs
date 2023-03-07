@@ -29,7 +29,10 @@ namespace PruebaAppPedidos2.Views
 					return;
                 }
 			}
-            System.Environment.Exit(0);
-        }
+			var closer = DependencyService.Get<ICloseApplication>();
+			closer?.closeApplication();
+
+			//System.Diagnostics.Process.GetCurrentProcess().Kill();
+		}
     }
 }

@@ -11,7 +11,9 @@ using Java.Security;
 using static Android.Provider.Settings;
 using static PruebaAppPedidos2.Droid.MainActivity;
 using System.Net.NetworkInformation;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(CloseApplication))]
 [assembly: Xamarin.Forms.Dependency(typeof(GetInfoImplement))]
 namespace PruebaAppPedidos2.Droid
 {
@@ -46,6 +48,16 @@ namespace PruebaAppPedidos2.Droid
                 string id = Android.Provider.Settings.Secure.GetString(context.ContentResolver, Secure.AndroidId);
 
                 return id;
+            }
+        }
+
+        public class CloseApplication : ICloseApplication
+        {
+            [Obsolete]
+            public void closeApplication()
+            {
+                var activity = (Activity)Forms.Context;
+                activity.FinishAffinity();
             }
         }
     }

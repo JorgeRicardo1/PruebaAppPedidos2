@@ -34,16 +34,16 @@ namespace PruebaAppPedidos2.Services
                         cliente.trociudad = reader.GetString("trociudad");
                         cliente.trotelef = reader.GetString("trotelef");
                         cliente.troemail = reader.GetString("troemail");
-                        cliente.trocccupo = reader.GetInt32("trocccupo");
-                        cliente.trotipo = reader.GetString("trotipo");
-                        cliente.trocelular = reader.GetString("trocelular");
-                        cliente.tronomb_2 = reader.GetString("tronomb_2");
-                        cliente.troapel_1 = reader.GetString("troapel_1");
-                        cliente.troapel_2 = reader.GetString("troapel_2");
-                        cliente.trocpsaldo = reader.GetInt32("trocpsaldo");
-                        cliente.troprecio = reader.GetInt32("troprecio");
-                        cliente.troccvnc = reader.GetInt32("troccvnc");
-                        cliente.troccsaldo = reader.GetInt32("troccsaldo");
+                        cliente.trocccupo = Lector.safeGetint(reader,"trocccupo");
+                        cliente.trotipo = Lector.safeGetString(reader, "trotipo");
+                        cliente.trocelular = Lector.safeGetString(reader, "trocelular");
+                        cliente.tronomb_2 = Lector.safeGetString(reader, "tronomb_2");
+                        cliente.troapel_1 = Lector.safeGetString(reader, "troapel_1");
+                        cliente.troapel_2 = Lector.safeGetString(reader, "troapel_2");
+                        cliente.trocpsaldo = Lector.safeGetint(reader, "trocpsaldo");
+                        cliente.troprecio = Lector.safeGetint(reader, "troprecio");
+                        cliente.troccvnc = Lector.safeGetint(reader, "troccvnc");
+                        cliente.troccsaldo = Lector.safeGetint(reader, "troccsaldo");
                     }
                 }
                 else

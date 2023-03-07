@@ -35,5 +35,19 @@ namespace PruebaAppPedidos2.Services
                 return string.Empty;
             }
         }
+
+        public static int safeGetint(MySqlDataReader reader, string colName)
+        {
+            int colIndex = reader.GetOrdinal(colName);
+
+            if (!reader.IsDBNull(colIndex))
+            {
+                return reader.GetInt32(colIndex);
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace PruebaAppPedidos2.Services
                 string query = $"INSERT INTO `xxxxvpex` " +
                     $"(`nit`, `numero`, `fecha`, `dias`, `obra`, `transporte`, `fdigitar`, `hdigita`, `datos1`, `vendedor`, `valor`, `abono`, `saldo`, `terminal`, `vriva`, `desctos`, `neto`, `costo`, `titular`, `titudire`, `titutelf`, `tituciud`, `ped_fraxx`, `ped_envio`, `ped_estado`, `sucursal`, `operario`, `grupo`,`desp_nomb`,`desp_direc`,`desp_telf`,`desp_city`, `consumo`) " +
                     $"VALUES " +
-                    $"('{codigoCliente}', 'Temp', '{date}', '1', '{obra}', 'trans', '{date}', '{time}', '{datos1}', '{vendedor}', '0', '0', '0', '{terminal}', '0', '0', '0', '0', '{App.clienteActual.tronombre}', '{App.clienteActual.trodirec}', '{App.clienteActual.trotelef}', '{App.clienteActual.trociudad}', '0', '1', '0', '{sucursal}', '{operario}', '0','{despacho.titular}', '{despacho.titudire}', '{despacho.titutelf}', '{despacho.tituciud}','0')";
+                    $"('{codigoCliente}', '', '{date}', '1', '{obra}', 'trans', '{date}', '{time}', '{datos1}', '{vendedor}', '0', '0', '0', '{terminal}', '0', '0', '0', '0', '{App.clienteActual.tronombre}', '{App.clienteActual.trodirec}', '{App.clienteActual.trotelef}', '{App.clienteActual.trociudad}', '0', '1', '0', '{sucursal}', '{operario}', '0','{despacho.titular}', '{despacho.titudire}', '{despacho.titutelf}', '{despacho.tituciud}','0')";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;
