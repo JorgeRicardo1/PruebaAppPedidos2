@@ -19,6 +19,12 @@ namespace PruebaAppPedidos2.Views
 			BindingContext = new ViewModelLoginOperario();
 
         }
-		
+
+        protected override bool OnBackButtonPressed()
+        {
+
+            return true;
+        }
+
     }
 }

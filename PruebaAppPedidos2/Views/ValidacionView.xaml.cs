@@ -1,4 +1,5 @@
-﻿using PruebaAppPedidos2.Models;
+﻿using Plugin.DeviceInfo;
+using PruebaAppPedidos2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace PruebaAppPedidos2.Views
         public ValidacionView(EmpresaModel empresa)
         {
             InitializeComponent();
-            IdInfo.Text = DependencyService.Get<PruebaAppPedidos2.IDevice>().DeviceID();
+            //IdInfo.Text = DependencyService.Get<PruebaAppPedidos2.IDevice>().DeviceID();
+            IdInfo.Text = CrossDeviceInfo.Current.Id;
             if (empresa == null)
             {
                 func = false;

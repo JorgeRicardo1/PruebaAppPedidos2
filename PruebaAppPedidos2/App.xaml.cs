@@ -7,6 +7,7 @@ using PruebaAppPedidos2.Data;
 using SQLite;
 using System.Threading.Tasks;
 using PruebaAppPedidos2.Services;
+using Plugin.DeviceInfo;
 
 namespace PruebaAppPedidos2
 {
@@ -37,7 +38,8 @@ namespace PruebaAppPedidos2
         protected override void OnStart()  
         {
 
-            var id = DependencyService.Get<PruebaAppPedidos2.IDevice>().DeviceID();
+            //var id = DependencyService.Get<PruebaAppPedidos2.IDevice>().DeviceID();
+            var id = CrossDeviceInfo.Current.Id;
             //var id = "celular004";
             Task.Run(async () =>
             {

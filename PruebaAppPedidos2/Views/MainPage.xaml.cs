@@ -13,7 +13,8 @@ namespace PruebaAppPedidos2.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainPage : FlyoutPage
     {
-		public MainPage ()
+        FlyoutItemPage item;
+        public MainPage ()
 		{
 			InitializeComponent ();
 			flyout.listMenuLateral.ItemSelected += OnSelectedItem;
@@ -27,7 +28,7 @@ namespace PruebaAppPedidos2.Views
 
         private void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
         {
-			var item = e.SelectedItem as FlyoutItemPage;
+			item = e.SelectedItem as FlyoutItemPage;
 			if (item != null)
 			{
 				Detail = new NavigationPage((Page)Activator.CreateInstance(item.targetPage));
@@ -38,8 +39,24 @@ namespace PruebaAppPedidos2.Views
 
         protected override bool OnBackButtonPressed()
         {
-            Detail = new NavigationPage(new Home());
-            flyout.listMenuLateral.SelectedItem = 0;
+            if (item == null)
+            {
+                
+                System.Environment.Exit(0);
+            }
+            else
+            {
+                if (item.title != "Realizar Pedidos")
+                {
+                    Detail = new NavigationPage(new Home());
+                    flyout.listMenuLateral.SelectedItem = 0;
+                }
+                else
+                {
+                    //System.Diagnostics.Process.GetCurrentProcess().Kill();
+                    System.Environment.Exit(0);
+                }
+            }
             return true;
         }
 

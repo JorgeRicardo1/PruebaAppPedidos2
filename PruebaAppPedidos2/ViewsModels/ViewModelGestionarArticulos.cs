@@ -100,7 +100,7 @@ namespace PruebaAppPedidos2.ViewsModels
             Navigation = navigation;
             EncabezadoTem = App.encabezadoTemp;
             _movAEditar = movimientoSeleccionado;
-            _cantidadArtiActual = movimientoSeleccionado.cantinic.ToString();
+            _cantidadArtiActual = movimientoSeleccionado.cantidad.ToString();
             _detallesArti = movimientoSeleccionado.detalle;
             _valParcialArtiActual = movimientoSeleccionado.neto.ToString();
             _valUnidad = movimientoSeleccionado.valor.ToString();
@@ -360,7 +360,7 @@ namespace PruebaAppPedidos2.ViewsModels
         public async Task borrarMovimiento()
         {
             Modelxxxxvpax movimientoAborrar = MovimientoSeleccionado;
-            bool respuesta = await DisplayAlert("Aviso", $"Seguro que quiere borrar el articulo {movimientoAborrar.detalle} ?", "yes", "no");
+            bool respuesta = await DisplayAlert("Aviso", $"Seguro que quiere borrar el articulo {movimientoAborrar.detalle} ?", "Si", "No");
             if (respuesta)
             {
                 await Servicesxxxxvpax.borrarMovimiento(movimientoAborrar.Id_vpar);
@@ -385,7 +385,7 @@ namespace PruebaAppPedidos2.ViewsModels
                 foreach (var movimiento in LstPedidoTemporal)
                 {
                     PrecioTotalPedido += movimiento.neto;
-                    CantidadTotalPedido += movimiento.cantinic;
+                    CantidadTotalPedido += movimiento.cantidad;
                     PesoTotalPedido += movimiento.peso;
                 }
             }

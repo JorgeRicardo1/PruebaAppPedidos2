@@ -33,7 +33,7 @@
                     <Label Text="{Binding EncabezadoTem.id_vtaped}" FontSize="Body" VerticalOptions="Center"/>
                 </StackLayout>
                 <Grid ColumnDefinitions="*,*,*">
-                    <Button Text="Cod.Barras" Grid.Column="0" Command="{Binding leerCodigoDeBarrascommand}" IsVisible="true" Background="#4c62be" CornerRadius="25" 
+                    <Button Text="Cod.Barras" Grid.Column="0" Command="{Binding leerCodigoDeBarrascommand}" IsVisible="{Binding IsVisibleReiniciar}" Background="#4c62be" CornerRadius="25" 
                             TextTransform="None"  TextColor="White"/>
                     <Button Text="Reiniciar" Grid.Column="1" Command="{Binding reiniciarPedidocommand}" IsVisible="{Binding IsVisibleReiniciar}" 
                             Background="#91002b" CornerRadius="25" TextTransform="None" TextColor="White"/>

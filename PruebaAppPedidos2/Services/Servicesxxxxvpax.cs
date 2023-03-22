@@ -64,7 +64,7 @@ namespace PruebaAppPedidos2.Services
             var conexionBD = await DataConexion.conectar();
             try
             {
-                string query = $"UPDATE `xxxxvpax` SET `detalle` = '{detalle}', `cantinic` = '{cantidad}', `neto` = '{neto}' WHERE `Id_vpar` = '{id}'";
+                string query = $"UPDATE `xxxxvpax` SET `detalle` = '{detalle}', `cantidad` = '{cantidad}', `neto` = '{neto}' WHERE `Id_vpar` = '{id}'";
                 MySqlCommand comando = new MySqlCommand(query);
                 MySqlDataReader reader = null;
                 comando.Connection = conexionBD;

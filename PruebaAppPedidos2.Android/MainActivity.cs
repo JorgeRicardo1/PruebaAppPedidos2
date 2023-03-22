@@ -13,8 +13,9 @@ using static PruebaAppPedidos2.Droid.MainActivity;
 using System.Net.NetworkInformation;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(CloseApplication))]
+
 [assembly: Xamarin.Forms.Dependency(typeof(GetInfoImplement))]
+[assembly: Dependency(typeof(CloseApplication))]
 namespace PruebaAppPedidos2.Droid
 {
     [Activity(Label = "PruebaAppPedidos2", Icon = "@mipmap/iconoSplash", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
@@ -53,10 +54,11 @@ namespace PruebaAppPedidos2.Droid
 
         public class CloseApplication : ICloseApplication
         {
-            [Obsolete]
+            
             public void closeApplication()
             {
-                var activity = (Activity)Forms.Context;
+                var activity = (Activity)Android.App.Application.Context;
+                
                 activity.FinishAffinity();
             }
         }
