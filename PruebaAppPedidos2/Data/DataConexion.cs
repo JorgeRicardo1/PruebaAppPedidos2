@@ -32,7 +32,8 @@ namespace PruebaAppPedidos2.Data
         }
         public static void getConnectionString(List<EmpresaModel> empresa)
         {
-            connectionString = $"Database = {empresa[0].empresa}; Data Source = {empresa[0].ipserver}; User Id = {empresa[0].usuario}; Password= {empresa[0].serverPassword}";
+            connectionString = $"Database = {empresa[0].empresa}; Data Source = {empresa[0].ipserver}; User Id = {empresa[0].usuario}; Password= {empresa[0].serverPassword}; ConvertZeroDateTime=True";
+            //connectionString = "Database = a000; Data Source = 192.168.1.108; User Id = pruebas; Password= qwerty";
             //connectionString = "Database = a000; Data Source = 192.168.1.108; User Id = pruebas; Password= qwerty";
         }
 

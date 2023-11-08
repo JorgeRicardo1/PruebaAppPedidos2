@@ -424,42 +424,51 @@ namespace PruebaAppPedidos2.ViewsModels
                 await DisplayAlert("Aviso", "No hay ningun pedido o articulo para enviar", "Ok");
                 return;
             }
-            bool respuesta = await DisplayAlert("Finalizar", "Esta seguro que quiere finalizar el pedido?", "Si", "No");
-            if (respuesta)
-            {
-                try
-                {
-                    //Propiedades del mensaje
-                    var message = new EmailMessage
-                    {
-                        Subject = "Informacion Pedido",
-                        Body = crearBodyMensaje(),
-                        To = { App.clienteActual.troemail },
-                    };
 
-                    //API que se encarga de abrir el cliente como el Gmail, Outlook u otros para realizar el envío del mensaje
-                    await Email.ComposeAsync(message);
-                }
-                catch (FeatureNotSupportedException fnsEx)
+            bool respuestaFinalizar = await DisplayAlert("Finalizar", "Esta seguro que quiere finalizar el pedido?", "Si", "No");
+            if (respuestaFinalizar)
+            {
+                bool respuestaCorreo = await DisplayAlert("Enviar correo", "Desea enviar un correo?", "Si", "No");
+
+                if (respuestaCorreo)
                 {
-                    // Email is not supported on this device
-                    await DisplayAlert("Error", fnsEx.ToString(), "OK");
+                    try
+                    {
+                        //Propiedades del mensaje
+                        var message = new EmailMessage
+                        {
+                            Subject = "Informacion Pedido",
+                            Body = crearBodyMensaje(),
+                            To = { App.clienteActual.troemail },
+                        };
+
+                        //API que se encarga de abrir el cliente como el Gmail, Outlook u otros para realizar el envío del mensaje
+                        await Email.ComposeAsync(message);
+                    }
+                    catch (FeatureNotSupportedException fnsEx)
+                    {
+                        // Email is not supported on this device
+                        await DisplayAlert("Error", fnsEx.ToString(), "OK");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Some other exception occurred
+                        await DisplayAlert("Error", ex.ToString(), "OK");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    // Some other exception occurred
-                    await DisplayAlert("Error", ex.ToString(), "OK");
-                }
+
+                // Finalizar proceso independientemente de si se envió el correo o no
                 //await Servicesxxxxvpex.actualizarTotalesPedido(App.encabezadoTemp.id_vtaped, PrecioTotalPedido);
                 App.encabezadoTemp = null;
                 App.clienteActual = null;
                 EncabezadoTem = App.encabezadoTemp;
-                PrecioTotalPedido=0;
-                CantidadTotalPedido=0;
-                PesoTotalPedido=0;
+                PrecioTotalPedido = 0;
+                CantidadTotalPedido = 0;
+                PesoTotalPedido = 0;
                 LstPedidoTemporal.Clear();
             }
-        } //Finalizar Pedido
+        }
+
 
         public string crearBodyMensaje()
         {
@@ -467,7 +476,7 @@ namespace PruebaAppPedidos2.ViewsModels
             int i = 1;
             foreach (var movimiento  in LstPedidoTemporal)
             {
-                body += $"-{i} \t {movimiento.detalle}\t Cantidad:{movimiento.cantinic}\t Neto:${movimiento.neto}\n";
+                body += $"-{i} \t {movimiento.detalle}\t Cantidad:{movimiento.cantidad}\t Neto:${movimiento.neto}\n";
                 body += "\n";
                 i++;
             }
