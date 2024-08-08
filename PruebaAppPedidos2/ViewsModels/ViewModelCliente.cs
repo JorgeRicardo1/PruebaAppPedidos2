@@ -82,26 +82,29 @@ namespace PruebaAppPedidos2.ViewsModels
         {
             UserDialogs.Instance.ShowLoading("Buscando");
             await Task.Delay(500);
-            if (Tronit != null)
+
+            if (string.IsNullOrWhiteSpace(Tronit) || Tronit.Length <= 5)
             {
-                ClienteActual = await Servicesxxx3ro.extraerCliente(Tronit);
-                if (ClienteActual == null)
-                {
-                    await DisplayAlert("Aviso", $"No existe un cliente con nit {Tronit}", "Ok");
-                    UserDialogs.Instance.HideLoading();
-                    return;
-                }
-                NombreCompleto = $"{ClienteActual.tronombre} {ClienteActual.tronomb_2} {ClienteActual.troapel_1} {ClienteActual.troapel_2}";
-                PrecioOtorgado = obtenerPrecioCliente(ClienteActual);
-                
-                //DespachoActual = await Servicesxxxxvped.extraerInfoDespacho(Tronit);
+                await DisplayAlert("Aviso", "Digite un Nit válido", "Ok");
+                UserDialogs.Instance.HideLoading();
+                return;
             }
-            else
+
+            ClienteActual = await Servicesxxx3ro.extraerCliente(Tronit);
+            if (ClienteActual == null)
             {
-                await DisplayAlert("Aviso", $"No se ha escrito un nit para buscar", "Ok");
+                await DisplayAlert("Aviso", $"No existe un cliente con nit {Tronit}", "Ok");
+                UserDialogs.Instance.HideLoading();
+                return;
             }
+            NombreCompleto = $"{ClienteActual.tronombre} {ClienteActual.tronomb_2} {ClienteActual.troapel_1} {ClienteActual.troapel_2}";
+            PrecioOtorgado = obtenerPrecioCliente(ClienteActual);
+
+            //DespachoActual = await Servicesxxxxvped.extraerInfoDespacho(Tronit);
+
             UserDialogs.Instance.HideLoading();
         }
+
 
         public async Task continuarPedido()
         {

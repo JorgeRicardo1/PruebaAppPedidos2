@@ -68,17 +68,33 @@ namespace PruebaAppPedidos2.ViewsModels
                 await DisplayAlert("Aviso", "Ya tiene un pedido en proceso, para empezar uno nuevo, primero reinicie el pedido actual", "Ok");
                 return;
             }
+
+            App.encabezadoTemp = await Servicesxxxxvpex.buscarEncabezado(Pedido.nit, Pedido.fecha, Pedido.hdigita);
+
+            // Verificar el estado del pedido
+            if (App.encabezadoTemp.ped_estado != 0 && App.encabezadoTemp.ped_estado != 1)
+            {
+                await DisplayAlert("Aviso", "No se puede continuar con el pedido, Solicite autorizacion", "Ok");
+                App.encabezadoTemp = null;
+                return;
+            }
+
             ClienteActual = await Servicesxxx3ro.extraerCliente(Pedido.nit);
             App.clienteActual = ClienteActual;
-            App.encabezadoTemp = await Servicesxxxxvpex.buscarEncabezado(Pedido.nit, Pedido.fecha, Pedido.hdigita);
-            await ServicesGrupo.extraerGrupos();//METODOS para obtener los grupos y articulos de la empresa una vez
-            await ServicesArticulos.obtenerTodoArticulos();
-            await DisplayAlert("Aviso", "Informacion de el pedido obtenida, ahora puede continuar este pedido en la seccion 'realizar pedido'", "Ok");
-            //await Navigation.PopToRootAsync();
-            MessagingCenter.Send<Object>(this, "RetomarPedido");//Mensaje para MainPage que cambie la pagina del Flyout
-            MessagingCenter.Send<Object>(this, "RetomarPedido2");//Mensaje para Home que cambia la tabbed page
 
+            // Si ped_estado es 0 o 1, y el encabezado se ha reiniciado, continúa con la acción normalmente
+            await ServicesGrupo.extraerGrupos();
+            await ServicesArticulos.obtenerTodoArticulos();
+            await DisplayAlert("Aviso", "Información del pedido obtenida, ahora puede continuar este pedido en la sección 'realizar pedido'", "Ok");
+
+            // Descomentado si es necesario volver a la página raíz
+            // await Navigation.PopToRootAsync();
+
+            MessagingCenter.Send<Object>(this, "RetomarPedido"); // Mensaje para MainPage que cambie la página del Flyout
+            MessagingCenter.Send<Object>(this, "RetomarPedido2"); // Mensaje para Home que cambia la tabbed page
         }
+
+
         //COMANDOS
         public ICommand continuarPedidoCommand => new Command(async () => await continuarPedido());
     }

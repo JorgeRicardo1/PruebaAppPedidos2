@@ -38,33 +38,41 @@ namespace PruebaAppPedidos2.Services
 
                 while (reader.Read())
                 {
-                    ModelArticulo articulo = new ModelArticulo();
-                    articulo.articodigo = reader.GetString("articodigo").ToString();
-                    articulo.artigrupo = reader.GetString("artigrupo").ToString();
-                    articulo.articodi2 = reader.GetString("articodi2").ToString();
-                    articulo.artinomb = reader.GetString("artinomb").ToString();
-                    articulo.artiunidad = reader.GetString("artiunidad").ToString();
-                    articulo.artiaplica = reader.GetString("artiaplica").ToString();
-                    articulo.artirefer = reader.GetString("artirefer").ToString();
-                    articulo.articontie = reader.GetInt32("articontie");
-                    articulo.artipeso = reader.GetInt32("artipeso");
-                    articulo.articolor = reader.GetString("articolor").ToString();
-                    articulo.artimarca = reader.GetString("artimarca").ToString();
-                    articulo.artiinvima = reader.GetString("artiinvima").ToString();
-                    articulo.artinomb2 = reader.GetString("artinomb2").ToString();
-                    articulo.artiforma = reader.GetString("artiforma").ToString();
-                    articulo.artiptoi = reader.GetInt32("artiptoi");
-                    articulo.artiptor = reader.GetInt32("artiptor");
-                    articulo.artiptop1 = reader.GetInt32("artiptop1");
-                    articulo.artiptop2 = reader.GetInt32("artiptop2");
-                    articulo.artivlr1_c = reader.GetInt32("artivlr1_c");
-                    articulo.artivlr2_c = reader.GetInt32("artivlr2_c");
-                    articulo.artivlr3_c = reader.GetInt32("artivlr3_c");
-                    articulo.artivlr4_c = reader.GetInt32("artivlr4_c");
-                    articulo.artiiva = reader.GetInt32("artiiva");
-                    articulo.articant = reader.GetInt32("articant");
+                    try
+                    {
+                        ModelArticulo articulo = new ModelArticulo();
+                        articulo.articodigo = reader.GetString("articodigo").ToString();
+                        articulo.artigrupo = reader.GetString("artigrupo").ToString();
+                        articulo.articodi2 = reader.GetString("articodi2").ToString();
+                        articulo.artinomb = reader.GetString("artinomb").ToString();
+                        articulo.artiunidad = reader.GetString("artiunidad").ToString();
+                        articulo.artiaplica = reader.GetString("artiaplica").ToString();
+                        articulo.artirefer = reader.GetString("artirefer").ToString();
+                        articulo.articontie = Convert.ToInt32(reader.GetInt64("articontie"));
+                        articulo.artipeso = Convert.ToInt32(reader.GetInt64("artipeso"));
+                        articulo.articolor = reader.GetString("articolor").ToString();
+                        articulo.artimarca = reader.GetString("artimarca").ToString();
+                        articulo.artiinvima = reader.GetString("artiinvima").ToString();
+                        articulo.artinomb2 = reader.GetString("artinomb2").ToString();
+                        articulo.artiforma = reader.GetString("artiforma").ToString();
+                        articulo.artiptoi = Convert.ToInt32(reader.GetInt64("artiptoi"));
+                        articulo.artiptor = Convert.ToInt32(reader.GetInt64("artiptor"));
+                        articulo.artiptop1 = Convert.ToInt32(reader.GetInt64("artiptop1"));
+                        articulo.artiptop2 = Convert.ToInt32(reader.GetInt64("artiptop2"));
+                        articulo.artivlr1_c = Convert.ToInt32(reader.GetInt64("artivlr1_c"));
+                        articulo.artivlr2_c = Convert.ToInt32(reader.GetInt64("artivlr2_c"));
+                        articulo.artivlr3_c = Convert.ToInt32(reader.GetInt64("artivlr3_c"));
+                        articulo.artivlr4_c = Convert.ToInt32(reader.GetInt64("artivlr4_c"));
+                        articulo.artiiva = Convert.ToInt32(reader.GetInt64("artiiva"));
+                        articulo.articant = Convert.ToInt32(reader.GetInt64("articant"));
 
-                    listArticulos.Add(articulo);
+                        listArticulos.Add(articulo);
+                    }
+                    catch (OverflowException ex)
+                    {
+                        // Si ocurre un desbordamiento, muestra información sobre la fila que causó el error
+                        Console.WriteLine($"Error de desbordamiento en la fila {reader.GetOrdinal("articodigo")}: {ex.Message}");
+                    }
                 }
                 reader.Close();
                 DataConexion.cerrar();
