@@ -44,7 +44,7 @@ namespace PruebaAppPedidos2
             Task.Run(async () =>
             {
                 try
-                {
+                { //
                     var empresa = await App.Context.getEmpresaAsync();
                     DataConexion.getConnectionString(empresa);
                     if (empresa.Count == 0)
